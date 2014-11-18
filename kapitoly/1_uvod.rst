@@ -23,3 +23,9 @@ Jazyk SQL
 ---------
 
 
+Indexy
+------
+
+Indexy v databázi slouží k co možná nejrychlejšímu dohledání záznamů. Fungují na podobném principu jako rejstřík v knize. Jedná se o jakýsi utříděný seznam klíčů spojených s odkazem na konkrétní datovou stránku, na místo na pevném disku, kde je uložena požadovaná informace. Smyslem indexu je provést při dohledání záznamu minimum porovnání hodnot v indexu s požadovanou hodnotou. U neindexované tabulky bychom museli porovnat požadovanou hodnotu se všemi záznamy.
+
+.. noteadvanced:: Nejčastějším typem indexu je `b-tree`, zde jsou hodnoty uloženy ve stromovité struktuře založené na dichotmickém větvení. Na každém uzlu porovnáme požadovanou hodnotu s hodnotou na uzlu a zjistíme, jestli je větší, nebo menší. S každým patrem je síto jemější. To je velice efektivní, když si uvědomíme, že při zdvojnásobení objemu dat přibude jen jedno porovnání navíc.
