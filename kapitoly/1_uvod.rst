@@ -25,8 +25,8 @@ kterému je věnován tento kurz.
    existují takzvané `souborové databáze`, tedy soubory, které se chovají 
    podobným způsobem jako databázový server, ovšem bez řady výhod, které 
    poskytuje plnohodnotná databáze. Na druhou stranu se s nimi o poznání 
-   snáze manipuluje. Příkladem může být MS Acces *jak se to píše?*, nebo 
-   SQLLite (a jeho prostorové nadstavby Geopackage a SpatialLite).
+   snáze manipuluje. Příkladem může být MS Access *jak se to píše?*, nebo 
+   SQLite (a jeho prostorové nadstavby Geopackage a SpatiaLite).
 
 Provoz databáze přináší určité požadavky na režii, ve srovnání s 
 daty v souborech. O její správu a nastavení se musí starat kvalifikovaný 
@@ -34,20 +34,59 @@ specialista, má určité nároky na hardware apod. Co nám tedy přináší a
 kdy je pro nás nezastupitelná?
 
 Je třeba, v první řadě, vzít v potaz objem dat. Od jistého objemu není 
-možné efektivně pracovat s daty uloženými v souborech.
+možné efektivně pracovat s daty uloženými v souborech. Naproti tomu v
+databázi můžeme pomocí indexů přistupovat přímo k jednotlivým záznamům
+tak, jak jsou uloženy na datových stránkách.
 
-Editace
 
 Integrita
+^^^^^^^^^
+
+Další benefit, který nám databáze může přinést je "hlídání" `referenční
+integrity`.
+
+Referenční integrita znamená, že tabulky jsou mezi sebou provázány cizími
+klíči. Tedy pokud podřízené (slave) tabulka obsahuje položku s odkazy do
+jiné `nadřízené` tabulky, není možné do podřízené tabulky přidat záznam,
+pokud v nadřízené tabulce neexistuje hodnota, na kterou odkazuje cizí klíč.
+Nemůžeme tedy například do tabulky jednotlivých vozidel přidat vozdlo s
+odkazem na typ `tříkolka`, pokud nemáme v tabulce typů vozidel typ `tříkolka`.
+Nebo, jiný příklad, pokud máme tabulku staveb a parcel, při správně
+nastavené referenční integritě nám databáze nedovolí vložit budovu na
+neexistující parcele.
+
+Další užitečná vlastnost je, že je možné nastavit chování podřízeného
+záznamu při smazání souvisejícího záznamu v nadřízené tabulce. Můžeme zvolit
+`RESTRICT`, nebo `CASCADE`. V případě CASCADE se související záznamy mažou,
+v případě RESTRICT není možné nadřízený záznam smazat, dokud jsou na něj
+navázány záznamy v podřízených tabulkách.
 
 Spolupráce
+^^^^^^^^^^
 
-Statická/dynamická data
+Není obvyklé, aby k jednomu souboru přistupovalo více klientských aplikací
+zároveň, protože by si ho přepisovaly "pod rukama". Databáze je v tomhle daleko
+mazanější a umožňuje, aby nad jedním setem dat mohlo pracovat množství klientů
+naráz. V databázi je navíc možné nastavovat práva na zápis, čtení a manipulaci
+s tabulkami, schématy, funkcemi... Podobně jako v souborovém systému.
+
+Transakce
+^^^^^^^^^
+
+Transakčnost databáze znamená, že se série změn se provede buď celá, nebo vůbec.
+Typický (a tím pádem pěkně otřepaný případ) je situace, kdy převádíme peníze z
+účtu na účet. Tedy, nebylo by dobré, aby byly z jednoho účtu odečteny, aniž by na
+cílový účet byly přidány.
+
+Seznam požadavků na transakční databázi bývá označován zkratkou `ACID`. Znamená to
+`Atomic, Consistent, Isolated, Durable`. Znamená to, že transakce je nedělitelná,
+před i po jejím proběhnutí musí být platná referenční integrita, transakce se navzájem
+neovlivňují a změny jsou trvalé i po případné havárii databázového serveru.
 
 Co je databáze?
-^^^^^^^^^^^^^^^
+================
 
-Databázi, ať už relační, nebo objektovou, si můžeme představit jako 
+Databázi, ať už relační, nebo dokumentová, si můžeme představit jako 
 knihovnu. V knihách (tabulkách) máme nějaké informace. Informace pro nás 
 vyhledávají knihovnice (obslužné programy). K tomu používají katalogy a 
 rejstříky (indexy). Organizace knihovny je plně pod naší kontrolou, 
@@ -61,12 +100,27 @@ vyhradíme? Jak budeme nakládat s místem po vyřazených svazcích (porces
 VACUUM)? A tak dále. Se svými zaměstnanci komunikujeme v jazyce SQL (pokud 
 tedy hovoříme o relační databázi).
 
-A co prostorová databáze?
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Tabulky
+--------
 
-Prostorová databáze, se podobá takové knihovně, ve které kromě knih jsou 
-také mapy, atlasy, globusy... Zkrátka nosiče informací, které 
-zaznamenávají také umístění jednotlivých údajů.
+V relační databázi ukládáme data do tabulek. Tabulka je svisle dělena na
+jednotlivé sloupce (můžeme říkat také položky) a vodorovně do řádek (záznamů).
+Data v jednom sloupci musí mít stejný `typ` (datum, celé číslo, textový řetězec).
+
+Schémata
+--------
+
+
+
+Typy
+----
+
+Datové typy odpovídají typům z programovacích jazyků, základem jsou celočíselné
+typy (integer, bigint apod.) a řetězce (varchar, char, text ...), tím ovšem výčet
+zdaleka nekončí. Pro prostorovou reprezentaci používáme datový typ `geometry`, nebo
+`geography`, řádku tabulky odpovídají kompozitní typy, celé datové struktury je
+možné ukládat do `nerelačních datových typů` jako je `JSON`, `hstore`, nebo `XML`
+a dalo by se dále pokračovat.
 
 Indexy
 ------
@@ -80,12 +134,36 @@ porovnání hodnot v indexu s požadovanou hodnotou. U neindexované tabulky
 bychom museli porovnat požadovanou hodnotu se všemi záznamy.
 
 .. noteadvanced:: Nejčastějším typem indexu je `b-tree`, zde jsou hodnoty 
-uloženy ve stromovité struktuře založené na dichotmickém větvení. Na 
-každém uzlu porovnáme požadovanou hodnotu s hodnotou na uzlu a zjistíme, 
-jestli je větší, nebo menší. S každým patrem je síto jemější. To je 
-velice efektivní, když si uvědomíme, že při zdvojnásobení objemu dat 
-přibude jen jedno porovnání navíc.
+   uloženy ve stromovité struktuře založené na dichotmickém větvení. Na 
+   každém uzlu porovnáme požadovanou hodnotu s hodnotou na uzlu a zjistíme, 
+   jestli je větší, nebo menší. S každým patrem je síto jemější. To je 
+   velice efektivní, když si uvědomíme, že při zdvojnásobení objemu dat 
+   přibude jen jedno porovnání navíc. B-tree index je možné sestavit jen nad
+   položkami s takovým typem dat, který je možné porovnávat pomocí operátorů
+   `<` a `>`.
+
+Omezení-constrainty
+-------------------
+
+
+Triggery
+--------
+
+Funkce
+------
+
+
+
+
+A co prostorová databáze?
+=========================
+
+Prostorová databáze, se podobá takové knihovně, ve které kromě knih jsou 
+také mapy, atlasy, globusy... Zkrátka nosiče informací, které 
+zaznamenávají také umístění jednotlivých údajů.
 
 
 Simple feature
---------------
+==============
+
+

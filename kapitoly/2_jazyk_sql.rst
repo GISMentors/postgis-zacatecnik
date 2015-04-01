@@ -16,9 +16,9 @@ pro definici databázových struktur. Pro tvorbu databází, tabulek, indexů,
 pohledů, funkcí, triggerů atd.
 
 .. noteadvanced:: Kromě jazyka SQL můžeme psát v PostgreSQL funkce i v 
-dalších jazycích. Mimo jiné se jedná o perl, python, R, javascript a 
-další, zejména však pl/pgsql, procedurální jazyk PostgreSQL, syntaxí 
-podobný jazyku používanému v databázích Oracle.
+   dalších jazycích. Mimo jiné se jedná o perl, python, R, javascript a 
+   další, zejména však pl/pgsql, procedurální jazyk PostgreSQL, syntaxí 
+   podobný jazyku používanému v databázích Oracle.
 
 Syntaxe
 ^^^^^^^
@@ -115,10 +115,10 @@ V takovém případě slečna musí porovnat místo výskytu s vámi zadanou
 lokalitou.
 
 .. noteadvanced:: Je zjevné, že k požadovanému výsledku se může slečna 
-dobrat různými, různě efektivními způsoby. Postup, kterým bude pracovat 
-se nazývá `prováděcí plán`. K volbě ideálního způsobu slouží 
-statistiky, které si databáze ukládá a které jsou aktualizovány po 
-každém dotazu.
+   dobrat různými, různě efektivními způsoby. Postup, kterým bude pracovat 
+   se nazývá `prováděcí plán`. K volbě ideálního způsobu slouží 
+   statistiky, které si databáze ukládá a které jsou aktualizovány po 
+   každém dotazu.
 
 Dotaz do SQL může potom vypadat následovně:
 
