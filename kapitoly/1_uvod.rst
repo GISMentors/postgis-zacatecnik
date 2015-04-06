@@ -8,32 +8,36 @@ Databáze
 Kdy ukládat data do databáze?
 -----------------------------
 
-V geoinformatické praxi pracujeme se třemi typy zdrojů dat. Jednak se jedná 
-o data uložená v souborovém systému. Typicky může jít o data v 
-zastaralém, leč stále nejpoužívanějším formátu `ESRI shapefile`, 
-případně `GML`, hovoříme-li o vektorových datech. Dalším typem jsou 
-webové služby, jmenovitě `WFS`, tedy web feature service. V případě WFS 
-si aplikace vyžádá pomocí souboru ve značkovacím jazyce `XML` vyžádá 
-data na vzdáleném serveru po síti. Posledním typem uložení dat, kterému 
-je věnováno následující školení, je uložení dat v databázi. Většina 
-současných databází, ať již `Open Source`, nebo ryze komerčních 
-podporuje v nějaké míře ukládání a dotazování prostorových prvků. 
-Ať už zmíníme MySQL, Oracle, nebo MSSQL a v neposlední řadě PosgreSQL, 
-kterému je věnován tento kurz.
+V geoinformatické praxi pracujeme se třemi typy zdrojů dat. Jednak se
+jedná o data uložená v souborovém systému. Typicky může jít o data v
+zastaralém, leč stále nejpoužívanějším formátu :wikipedia-en:`Esri
+Shapefile`, případně :wikipedia-en:`GML <Geography Markup Language>`,
+hovoříme-li o vektorových datech. Dalším typem jsou webové služby,
+jmenovitě :wikipedia-en:`WFS <Web Feature Service>` (Web Feature
+Service). V případě WFS si aplikace vyžádá pomocí souboru ve
+značkovacím jazyce :wikipedia-en:`XML` data na vzdáleném serveru po
+síti. Posledním typem uložení dat, kterému je věnováno toto školení,
+je uložení dat v databázi. Většina současných databází, ať již `Open
+Source` nebo ryze proprietárních podporuje v nějaké míře ukládání a
+dotazování prostorových prvků.  Ať už :wikipedia:`MySQL`,
+:wikipedia:`Oracle`, nebo :wikipedia:`MSSQL` a v neposlední řadě
+:wikipedia:`PostgreSQL`, kterému je věnován tento kurz.
 
-.. noteadvanced:: Hranice nemusí být vždy jednoznačná, například 
-   existují takzvané `souborové databáze`, tedy soubory, které se chovají 
-   podobným způsobem jako databázový server, ovšem bez řady výhod, které 
-   poskytuje plnohodnotná databáze. Na druhou stranu se s nimi o poznání 
-   snáze manipuluje. Příkladem může být MS Access *jak se to píše?*, nebo 
-   SQLite (a jeho prostorové nadstavby Geopackage a SpatiaLite).
+.. noteadvanced:: Hranice nemusí být vždy jednoznačná, například
+   existují takzvané `souborové databáze`, tedy soubory, které se
+   chovají podobným způsobem jako databázový server, ovšem bez řady
+   výhod, které poskytuje plnohodnotná databáze. Na druhou stranu se s
+   nimi o poznání snáze manipuluje. Příkladem může být :wikipedia:`MS
+   Access` nebo :wikipedia:`SQLite` (a jeho prostorové nadstavby `OGC
+   GeoPackage <http://www.geopackage.org>`_ a
+   :wikipedia-en:`SpatiaLite`).
 
 Provoz databáze přináší určité požadavky na režii, ve srovnání s 
 daty v souborech. O její správu a nastavení se musí starat kvalifikovaný 
 specialista, má určité nároky na hardware apod. Co nám tedy přináší a 
 kdy je pro nás nezastupitelná?
 
-Je třeba, v první řadě, vzít v potaz objem dat. Od jistého objemu není 
+V první řadě je třeba vzít v potaz objem dat. Od jistého objemu není 
 možné efektivně pracovat s daty uloženými v souborech. Naproti tomu v
 databázi můžeme pomocí indexů přistupovat přímo k jednotlivým záznamům
 tak, jak jsou uloženy na datových stránkách.
@@ -46,7 +50,7 @@ Další benefit, který nám databáze může přinést je "hlídání" `referen
 integrity`.
 
 Referenční integrita znamená, že tabulky jsou mezi sebou provázány cizími
-klíči. Tedy pokud podřízené (slave) tabulka obsahuje položku s odkazy do
+klíči. Tedy pokud podřízená (slave) tabulka obsahuje položku s odkazy do
 jiné `nadřízené` tabulky, není možné do podřízené tabulky přidat záznam,
 pokud v nadřízené tabulce neexistuje hodnota, na kterou odkazuje cizí klíč.
 Nemůžeme tedy například do tabulky jednotlivých vozidel přidat vozdlo s
