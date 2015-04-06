@@ -26,20 +26,20 @@ Výstupní dovednost
 ------------------
 
 * Uživatel získá základní znalost :wikipedia:`SQL`
+* Uživatel je schopen data z databáze v QGISu vizualizovat
+* Uživatel je schopen z prostředí QGIS provádět v databázi jednodušší
+  prostorové dotazy a další základní operace
 * Uživatel zvládne naimportovat data do PostGIS v prostředí QGIS
 * Uživatel zvládne exportovat data z PostGIS do jiných GIS formátů
-* Uživatel je schopen data v QGISu vizualizovat
-* Uživatel je schopen provádět jednodušší prostorové dotazy a další
-  základní operace
 
 Požadavky
 ---------
 
 * PC s OS GNU/Linux (např. `OSGeoLive <http://live.osgeo.org>`_),
-  `PostgreSQL <http://www.postgresql.org>`_, `QGIS
-  <http://www.qgis.org>`_ a připojení k internetu, volitelně
-  `pgAdminIII <http://www.pgadmin.org/>`_, `LibreOffice
+  `PostgreSQL <http://www.postgresql.org>`_ a připojení k internetu,
+  volitelně `pgAdminIII <http://www.pgadmin.org/>`_, `LibreOffice
   <http://www.libreoffice.org/>`_
+* `QGIS <http://www.qgis.org>`_ ideálně 2.8
 * `PostGIS 2.0 <http://www.postgis.net>`_ a vyšší
 
 Obsah
