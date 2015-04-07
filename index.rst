@@ -71,6 +71,7 @@ Autoři
 Za `GISMentors <http://www.gismentors.cz/>`_:
 
 * `Jan Michálek <http://www.gismentors.cz/mentors/michalek>`_ ``<godzilalalala gmail.com>``
+* `Martin Landa <http://www.gismentors.cz/mentors/landa>`_ ``<martin.landa opengeolabs.cz>``
 
 Text dokumentu
 ^^^^^^^^^^^^^^
