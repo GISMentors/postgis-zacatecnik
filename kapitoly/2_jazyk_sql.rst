@@ -6,14 +6,19 @@ Jazyk
 
 Jazyk SQL je nástroj pro komunikace uživatele s relační databází. Oproti 
 programovacím jazykům je jednodušší a bližší gramatice mluvené řeči. 
-Je standardizován `SQL ANSI <doplň link>`_. V jazyce SQL vytváříme 
-`dotazy`. SQL dotazy dělíme na dva základní typy. Dotazy pro manipulaci s 
-daty `data manipulating language <odkaz>`_ **DML** a `data definition language 
-<odkaz>`_ **DDL** tedy dotazy pro definici dat. DML slouží pro manipulaci se 
+Je standardizován :wikipedia:`SQL ANSI <SQL>`. V jazyce SQL vytváříme 
+`dotazy`. SQL dotazy dělíme na základní typy, dotazy pro manipulaci s 
+daty :wikipedia-en:`data manipulation language <Data_manipulation_language>` **DML** a
+:wikipedia-en:`data definition language <Data_definition_language>` **DDL** 
+tedy dotazy pro definici dat. DML slouží pro manipulaci se 
 záznamy v tabulkách, tedy pro vyptání dat, mazání záznamů, 
 vyprazdňování tabulek, vkládání a aktualizování záznamů. DDL slouží 
 pro definici databázových struktur. Pro tvorbu databází, tabulek, indexů, 
-pohledů, funkcí, triggerů atd.
+pohledů, funkcí, triggerů atd. Dále známe **DCL** a **TCL**, tedy
+:wikipedia-en:`data control language <Data_control_language>` a
+:wikipedia-en:`transaction control language <Transaction_Control_Language>`.
+První z nich slouží k nastavení přístupových práv (příkazy :sqlcmd:`GRANT` a
+:sqlcmd:`REVOKE`), druhý pak k práci s transakcemi.
 
 .. noteadvanced:: Kromě jazyka SQL můžeme psát v PostgreSQL funkce i v 
    dalších jazycích. Mimo jiné se jedná o perl, python, R, javascript a 
