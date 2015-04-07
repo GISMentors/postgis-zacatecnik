@@ -46,6 +46,12 @@ poté potvrdíme.
 .. figure:: ../images/qgis-pg-conn-test.png
             :class: small
 
+.. notecmd:: Připojení k databázi
+
+   .. code-block:: bash
+      
+      psql gismentors -U skoleni -W -h training.gismentors.eu
+
 Následně se již můžeme k databázi připojit
 
 .. figure:: ../images/qgis-postgis-connect.png
