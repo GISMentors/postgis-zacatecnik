@@ -175,6 +175,11 @@ Můžeme je dotazovat, nastavovat jim práva. K tabulkám, do kterých nahlíže
 toho, kdo je vytvořil. Můžeme tedy pohledem zpřístupnit pro některé uživatele vybraný obsah
 tabulek, které sami nevidí.
 
+Specifickou záležitostí jsou :pgsqlcmd:`materializované pohledy <sql-creatematerializedview>`.
+Zde je výstup dotazu uložen do tabulky a zároveň je uložen dotaz, kterým byl materializovaný
+pohledy vygenerován. Proto může být snadno přegenerován příkazem
+:pgsqlcmd:`REFRESH MATERIALIZE VIEW <sql-refreshmaterializedview>`.
+
 Triggery
 --------
 
