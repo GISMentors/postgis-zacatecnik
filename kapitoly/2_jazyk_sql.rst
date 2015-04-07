@@ -1,8 +1,9 @@
+=========
 Jazyk SQL
 =========
 
 Jazyk
------
+=====
 
 Jazyk SQL je nástroj pro komunikace uživatele s relační databází. Oproti 
 programovacím jazykům je jednodušší a bližší gramatice mluvené řeči. 
@@ -26,7 +27,7 @@ První z nich slouží k nastavení přístupových práv (příkazy :sqlcmd:`GR
    podobný jazyku používanému v databázích Oracle.
 
 Syntaxe
-^^^^^^^
+-------
 
 Základní kostra jazyka SQL vypadá zhruba následovně:
 ::
@@ -47,14 +48,26 @@ Pro výběr dat z tabulky tedy:
 Dotazy v PostgreSQL zakončujeme středníkem.
 
 DML
-^^^
+---
 
-DDL
-^^^
+SELECT
+^^^^^^
 
+Dotaz, kterým vybíráme data z databáze uvozuje příkaz :pgsqlcmd:`SELECT <sql-select>` následovaný
+výčtem sloupců požadovaného výstupu. Výčet sloupců může být nahrazen \* pro výběr všech sloupců.
+Pokud předřadíme výčtu sloupců :sqlcmd:`DISTINCT` bude dotaz vracet pouze unkátní kombinace
+hodnot.  Klauzule :sqlcmd:`FROM` uvozuje výčet tabulek,
+ze kterých budeme vybírat a které mohou (ale nemusí) být propojeny klauzulí :sqlcmd:`JOIN`.
+Následovat může výčet podmínek uvedený klauzulí :sqlcmd:`WHERE` podmínky můžeme řetězit
+booleovskou logikou pomocí :sqlcmd:`AND`, :sqlcmd:`OR`, případně vylučovat pomocí
+:sqlcmd:`NOT`.
+
+Nakonec můžeme použít :sqlcmd:`GROUP BY`, :sqlcmd:`ORDER BY` pro sdružování při agregacích,
+řazení, případně :sqlcmd:`LIMIT` a :sqlcmd:`OFFSET` pro omezení řádků výstupu, eventuálně další,
+méně obvyklé klauzule.
 
 Jak to funguje v praxi?
------------------------
+^^^^^^^^^^^^^^^^^^^^^^^
 
 Dejme tomu, že chcete zjistit, které muchomůrky jsou vhodné k jídlu. 
 Přijdete do knihovny a zepáte se:
@@ -110,8 +123,88 @@ Tedy, v překladu do češtiny:
    [PRO KTERÉ PLATÍ 
       podmínka]
 
+JOIN
+^^^^
+
+Rozlišujeme dva druhy joinů, spojení tabulek. :sqlcmd:`INNER JOIN` 
+a :sqlcmd:`OUTER JOIN`.  :sqlcmd:`INNER JOIN` vrátí pouze takové záznamy, 
+kde došlo k nalezení potřebné hodnoty v obou tabulkách. Naproti tomu 
+:sqlcmd:`OUTER JOIN` vrací pro jednu, případně obě tabulky všechny záznamy.
+:sqlcmd:`OUTER JOIN` dělíme na :sqlcmd:`LEFT JOIN`, :sqlcmd:`RIGHT JOIN` a
+:sqlcmd:`FULL JOIN`. Left a right join vrací všechny záznamy z levé, nebo
+pravé tabulky. :sqlcmd:`FULL JOIN` vrátí všechny záznamy z obou tabulek.
+Speciální situací je :sqlcmd:`CROSS JOIN`, který vrací kartézský součin
+záznamů v obou tabulkách.
+
+Záznamy obvykle párujeme pomocí klauzule :sqlcmd:`ON`, za kterou následují
+podmínky propojení podobně jako za klauzulí :sqlcmd:`WHERE`. Alternativou
+je použití klauzule :sqlcmd:`USING()`, kde je uveden název sloupce, který
+musí být v obou tabulkách. Další možností je :sqlcmd:`NATURAL JOIN`,
+který použije stejně pojmenované sloupce. Ten však nedoporučuji příliš
+používat, zvláště v databázích s proměnlivou strukturou.
+
+UPDATE
+^^^^^^
+
+:pgsqlcmd:`UPDATE <sql-update>` slouží k aktualizování hodnot vybraných
+sloupců. Používá se klauzule :sqlcmd:`WHERE`, výrazy. Také je možno použít
+klauzuli :sqlcmd:`FROM` a aktualizovat tabulku hodnotami z jiných tabulek.
+
+DELETE
+^^^^^^
+
+:pgsqlcmd:`DELETE <sql-delete>` slouží k mazání vybraných záznamů z tabulek.
+
+TRUNCATE
+^^^^^^^^
+
+:pgsqlcmd:`TRUNCATE <sql-truncate>` slouží k okamžitému vyprázdnění celé
+tabulky. Je rychlejší, než použití :sqlcmd:`DELETE` bez podmínek.
+
+Množinové operace
+^^^^^^^^^^^^^^^^^
+
+Množinové operace pracují s výsledky více poddotazů. Jedná se o :sqlcmd:`UNION`,
+:sqlcmd:`UNION ALL`, :sqlcmd:`EXCEPT` a :sqlcmd:`INTERSECT`.
+
+:sqlcmd:`UNION` vrací sjednocení záznamů z obou dotazů, záznamy, které jsou v obou
+dotazech jsou ve výsledku obsaženy pouze jednou. Naproti tomu :sqlcmd:`UNION ALL`
+vrátí všechny řádky z obou dotazů, počet řádků je tedy součtem řádků obou dotazů.
+
+.. noteadvanced:: Pokud víme, že záznamy se neduplikují mezi dotazy, je lepší použít
+   :sqlcmd:`UNION ALL`, provádění pak bude efektivnější, protože si ušetříme porovnávání
+   obou výstuponích recordsetů.
+
+:sqlcmd:`EXCEPT` vrací rozdíl, tedy pouze takové záznamy, které se vyskytují pouze v prvním
+recordsetu. :sqlcmd:`INTERSECT` vrací průnik. Tedy záznamy, které se vyskytují v obou
+recordsetech.
+
+Poddotazy
+^^^^^^^^^
+
+V rámci dotazu můžeme dotazovat další, vnořené, dotazy uzavřené do závorek.
+
+
+DDL
+---
+
+:sqlcmd:`CREATE` a :sqlcmd:`DROP` jsou základní příkazy `data definition language`.
+Pomocí nich vytváříme tabulky, pohledy, omezení, funkce, typy a další.
+
+   :pgsqlcmd:`CREATE TABLE <sql-createtable>`
+
+   :pgsqlcmd:`CREATE VIEW <sql-createview>`
+
+   :pgsqlcmd:`CREATE FUNCTION <sql-createfunction>`
+
+   :pgsqlcmd:`CREATE LANGUAGE <sql-createlanguage>`
+
+   ...
+
+
+
 A co prostorová databáze?
-^^^^^^^^^^^^^^^^^^^^^^^^^
+==========================
 
 Dejme tomu, že nás zajímají jen ty houby, které rostou v okruhu třiceti 
 kilometrů od Pece pod Sněžkou, kde hodláme strávit dovolenou.
