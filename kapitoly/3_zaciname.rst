@@ -129,18 +129,118 @@ Tento dialog umožnuje provádět jednoduché SQL dotazy.
          pokročilé
          <http://www.gismentors.cz/skoleni/postgis/#pokrocily>`_.
 
-Nahráváme vlastní data do databáze
-==================================
+Příklady dotazů
+^^^^^^^^^^^^^^^
 
-Postup pro QGIS
----------------
+.. todo::
+
+Editace vektorových dat
+-----------------------
+
+:program:`QGIS` umožňuje editaci různých formátů vektorových dat
+včetně dat uložených v geodatabázi PostGIS. Přepnout danou vektorovou
+vrstvu do *editačního módu* je možné z kontextového menu
+
+.. figure:: ../images/qgis-edit-menu.png
+            :width: 350px
+
+anebo *nástrojové lišty* QGISu.
+
+.. figure:: ../images/qgis-edit-toolbar.png
+            :width: 300px
+
+Po přepnutí do editačního módu se vektorová vrstva zobrazí včetně
+lomových bodů (červené křížky).
+
+.. figure:: ../images/qgis-edit-mode.png
+            :width: 800px
+
+**Editační nástrojová lišta** QGISu umožňuje
+
+.. figure:: ../images/qgis-edit-toolbar.png
+            :width: 350px
+
+.. table::
+   :class: toc
+
+   +-----+-------------------------------------------------+
+   | |A| |  přidávat nové prvky                            |
+   +-----+-------------------------------------------------+
+   | |M| |  přesunovat existující prvky                    |
+   +-----+-------------------------------------------------+
+   | |N| |  modifikovat uzly (přidávat, mazat a přesunovat)|
+   +-----+-------------------------------------------------+
+   | |D| |  smazat vybrané prvky                           |
+   +-----+-------------------------------------------------+
+   | |C| |  vyjmout vybrané prvky                          |
+   +-----+-------------------------------------------------+
+   | |O| |  kopírovat vybrané prvky                        |
+   +-----+-------------------------------------------------+
+   | |P| |  vložit prvky                                   |
+   +-----+-------------------------------------------------+
+
+.. |A| image:: ../images/qgis-edit-add.png
+               :width: 32px
+               :align: middle
+
+.. |M| image:: ../images/qgis-edit-move.png
+               :width: 32px
+               :align: middle
+
+.. |N| image:: ../images/qgis-edit-node.png
+               :width: 32px
+               :align: middle
+
+.. |D| image:: ../images/qgis-edit-delete.png
+               :width: 32px
+               :align: middle
+
+.. |C| image:: ../images/qgis-edit-cut.png
+               :width: 32px
+               :align: middle
+
+.. |O| image:: ../images/qgis-edit-copy.png
+               :width: 32px
+               :align: middle
+
+.. |P| image:: ../images/qgis-edit-paste.png
+               :width: 32px
+               :align: middle
+
+Příklad přidání nového prvku
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Z nástrojové lišty vybereme nástroj pro *přidávání nového prvku*.
+
+Lomové body nového prvku volíme stisknutím levého tlačítka
+myši. Poslední uložený lomový bod můžeme vrátit zpět pomocí klávesy
+:kbd:`Backspace`.
+
+.. figure:: ../images/qgis-edit-new-feature.png
+            :width: 800px
+
+Editaci prvku ukončíme stisknutím pravého tlačítka myši. V posledním
+kroku můžeme vyplnit atributy nově přidaného prvku.
+
+.. figure:: ../images/qgis-edit-new-feature-attr.png
+            :width: 800px
+
+.. note:: Více k editace v `manuálu
+          <http://docs.qgis.org/2.2/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html>`_
+          QGISu.
+
+Nahráváme vlastní data do databáze
+----------------------------------
+
+Import dat ve formátu Esri Shapefile
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Předpokládáme, že každý uživatel pracuje ve vlastní databázovém
 schématu. Toto schéma vytvoříme pomocí zásuvného modulu :ref:`DB
 Manageru <db-manager>`.
 
 Vytvoření databázového schématu
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 V našem případě uložíme vektorová data do *vlastního schématu*,
 nejprve toto schéma vytvoříme.
@@ -157,8 +257,8 @@ nejprve toto schéma vytvoříme.
             V nově vytvořeném schématu již má uživatel ``landa``
             právo zápisu.
 
-Import Esri Shapefile do PostGISu
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Import dat
+~~~~~~~~~~
 
 Import vektorových dat ve formátu Esri Shapefile umožňuje zásuvný
 modul *Spit (Shapefile import)* dostupný z menu aplikace QGIS.
@@ -196,10 +296,10 @@ musíme ji :ref:`přidat manuálně <qgis-add-pg-layer>`.
             :class: large
 
 Další možnosti
---------------
+^^^^^^^^^^^^^^
 
 DB Manager
-^^^^^^^^^^
+~~~~~~~~~~
 
 Nahrání dat ve formátu Esri Shapefile do geodatabáze PostGIS umožňuje
 v QGISu i zásuvný modul :program:`DB Manager`. Soubor ve formátu Esri
@@ -226,7 +326,7 @@ transformace do jiného souřadnicového systému :fignote:`(3)`.
 
 
 pgAdmin
-^^^^^^^
+~~~~~~~
 
 Vektorová data ve formátu Esri Shapefile lze do databáze PostGIS
 naimportovat pomocí zásuvného modulu :program:`PostGIS Shapefile and DBF loader`
