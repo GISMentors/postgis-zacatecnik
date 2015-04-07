@@ -37,7 +37,7 @@ Požadavky
 
 * PC s OS GNU/Linux (např. `OSGeoLive <http://live.osgeo.org>`_),
   `PostgreSQL <http://www.postgresql.org>`_ a připojení k internetu,
-  volitelně `pgAdminIII <http://www.pgadmin.org/>`_, `LibreOffice
+  volitelně `pgAdmin <http://www.pgadmin.org/>`_, `LibreOffice
   <http://www.libreoffice.org/>`_
 * `QGIS <http://www.qgis.org>`_ ideálně 2.8
 * `PostGIS 2.0 <http://www.postgis.net>`_ a vyšší
