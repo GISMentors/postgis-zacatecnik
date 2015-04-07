@@ -170,7 +170,7 @@ error, pokud tedy bude tato dávka součástí transakce, neprovede se celá tra
 Pohledy
 -------
 
-Pohledy :pgsqlcmd:`sql-createview` jsou uložené dotazy, které se chovají obdobně jako tabulky.
+:pgsqlcmd:`Pohledy <sql-createview>` jsou uložené dotazy, které se chovají obdobně jako tabulky.
 Můžeme je dotazovat, nastavovat jim práva. K tabulkám, do kterých nahlížejí přistupují s právy
 toho, kdo je vytvořil. Můžeme tedy pohledem zpřístupnit pro některé uživatele vybraný obsah
 tabulek, které sami nevidí.
@@ -178,7 +178,7 @@ tabulek, které sami nevidí.
 Triggery
 --------
 
-Trigger :pgsqlcmd:`sql-createtrigger`, neboli spoušť spustí proceduru při nějaké události.
+:pgsqlcmd:`Trigger <sql-createtrigger>`, neboli spoušť spustí proceduru při nějaké události.
 Existují dva základní typy triggerů a to `DML` a `DDL` triggery.
 
 `DML`, tedy data manipulation language trigger se spustí při nějaké manipulaci s daty, tedy při vložení, smazání, případně
@@ -189,17 +189,24 @@ záznamu, můžeme eliminovat duplicitní záznamy, dříve než dojde k chybě 
 `DDL`, tedy data definition languge trigger je v `PostgreSQL` relativně čerstvá novinka a spustí se při změně ve struktuře,
 například při přidání tabulky může nastavit práva, replikace apod.
 
-Obdobou triggerů jsou pravidla :pgsqlcmd:`sql-createrule`, ta ovšem nedisponují všemi možnostmi triggerů a nedoporučuje
+Obdobou triggerů jsou :pgsqlcmd:`pravidla <sql-createrule>`, ta ovšem nedisponují všemi možnostmi triggerů a nedoporučuje
 se jich příliš používat. Nicméně občas se mohou hodit pokud chceme pracovat s pohledem jako s tabulkou a nastavit,
 co se má dít při vkládání, nebo manipulaci s daty.
 
 Funkce
 ------
 
-Funkce :pgsqlcmd:`sql-createfunction` je v databázi uložená procedura, kterou spustíme dotazem. V `PostgreSQL` může
+:pgsqlcmd:`Funkce <sql-createfunction>` je v databázi uložená procedura, kterou spustíme dotazem. V `PostgreSQL` může
 být napsaná v jazyce SQL, v procedurálním jazyce PosgreSQL PL/pgSQL :pgsqlcmd:`plpgsql`, v dalším z jazyků, které
 PostgreSQL podporuje jako je python, perl, R, javascript, případně může být importovaná z externího modulu napsaného
 například v jazyce `C`.
+
+Funkce tedy spouští nějaký kód, může vracet jednu hodnotu, jednu hodnotu z více řádek (agregační funkce), případně
+může vracet více záznamů, nebo provádět nějaké změny v databázi (například :pgiscmd:`AddGeometryColumn`). Specifickou
+skupinou jsou analytické :pgsqlcmd:`window funkce <tutorial-window>`.
+
+Nastavování práv k funkcím je složitější, než u pohledů, je možno nastavit :sqlcmd:`SECURITY DEFINER` práva a potom
+přistupuje funkce k tabulkám s právy svého tvůrce.
 
 A co prostorová databáze?
 =========================
