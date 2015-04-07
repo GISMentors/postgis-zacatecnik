@@ -83,7 +83,7 @@ Typický (a tím pádem pěkně otřepaný případ) je situace, kdy převádím
 účtu na účet. Tedy, nebylo by dobré, aby byly z jednoho účtu peníze odečteny, aniž by na
 cílový účet byly přidány.
 
-Seznam požadavků na transakční databázi bývá označován zkratkou `ACID`. Znamená to
+Seznam požadavků na transakční databázi bývá označován zkratkou :wikipedia:`ACID`. Znamená to
 `Atomic, Consistent, Isolated, Durable`. Znamená to, že transakce je nedělitelná,
 před i po jejím proběhnutí musí být platná referenční integrita, transakce se navzájem
 neovlivňují a změny jsou trvalé i po případné havárii databázového serveru.
@@ -115,7 +115,13 @@ Data v jednom sloupci musí mít stejný `datový typ` (datum, celé číslo, te
 Schémata
 --------
 
-.. todo::
+Schémata můžeme vnímat podobně jako adresářovou struktury, ovšem bez možnosti dalšího zanořování,
+případně jako `jmenný prostor`. Umožňuje nám logicky dělit databázi, což oceníme například při
+zálohování, při nastavování práv. Databázové tabulky, funkce, indexy apod. musí mít unikátní název
+v rámci schématu (schéma je možné vnímat jako součást názvu). Takže můžeme mít v databázi stejně
+pojmenované tabulky v různých schématech. Příklad využití je napříkad při databázi rozdělené do
+schémat geograficky. Další výhodné využití je při historizování záznamů, kdy máme schéma `historie`
+s podobnou strukturou jako schéma s platnými daty.
 
 Typy
 ----
@@ -150,18 +156,50 @@ bychom museli porovnat požadovanou hodnotu se všemi záznamy.
 Omezení-constrainty
 -------------------
 
-.. todo::
+V odstavci věnovaném referenční integritě je zmíněno, že není možné vložit do sloupce s cizím
+klíčem hodnotu, která není v `nadřízené` tabulce. To je příkladem `omezení cizího klíče`, dalším
+častým příkladem omezení je omezení na unikátní hodnotu, což je podmínka pro `primární klíč`, tedy
+hodnotu, podle které je možné jednoznačně identifikovat řádek. Omezení ovšem můžeme vytvářet dle
+libosti, například můžeme v tabulce osob nastavit, že není možné do sloupce se jménem vložit jméno
+`František`, případně do nějakého číselného sloupce hodnotu, která není dělitelná jedenácti, geometrii
+s rozlohou větší než hektar apod.
+
+Zde je dobré si uvědomit, že pokud se pokusíte vložit data do sloupce a porušíte omezení, vrátí server
+error, pokud tedy bude tato dávka součástí transakce, neprovede se celá transakce.
+
+Pohledy
+-------
+
+Pohledy :pgsqlcmd:`sql-createview` jsou uložené dotazy, které se chovají obdobně jako tabulky.
+Můžeme je dotazovat, nastavovat jim práva. K tabulkám, do kterých nahlížejí přistupují s právy
+toho, kdo je vytvořil. Můžeme tedy pohledem zpřístupnit pro některé uživatele vybraný obsah
+tabulek, které sami nevidí.
 
 Triggery
 --------
 
-.. todo::
+Trigger :pgsqlcmd:`sql-createtrigger`, neboli spoušť spustí proceduru při nějaké události.
+Existují dva základní typy triggerů a to `DML` a `DDL` triggery.
+
+`DML`, tedy data manipulation language trigger se spustí při nějaké manipulaci s daty, tedy při vložení, smazání, případně
+aktualizaci záznamu. Obvyklé využití je například archivování smazávaných hodnot, kontrolu dat při vstupu a podobně.
+Pomocí trigrů lze ošetřit také kontrolu podobně jako u constraint, pokud nastavíme trigr tak, aby se spustil před vložením
+záznamu, můžeme eliminovat duplicitní záznamy, dříve než dojde k chybě a tím pádem nedojde k pádu transakce.
+
+`DDL`, tedy data definition languge trigger je v `PostgreSQL` relativně čerstvá novinka a spustí se při změně ve struktuře,
+například při přidání tabulky může nastavit práva, replikace apod.
+
+Obdobou triggerů jsou pravidla :pgsqlcmd:`sql-createrule`, ta ovšem nedisponují všemi možnostmi triggerů a nedoporučuje
+se jich příliš používat. Nicméně občas se mohou hodit pokud chceme pracovat s pohledem jako s tabulkou a nastavit,
+co se má dít při vkládání, nebo manipulaci s daty.
 
 Funkce
 ------
 
-.. todo::
-
+Funkce :pgsqlcmd:`sql-createfunction` je v databázi uložená procedura, kterou spustíme dotazem. V `PostgreSQL` může
+být napsaná v jazyce SQL, v procedurálním jazyce PosgreSQL PL/pgSQL :pgsqlcmd:`plpgsql`, v dalším z jazyků, které
+PostgreSQL podporuje jako je python, perl, R, javascript, případně může být importovaná z externího modulu napsaného
+například v jazyce `C`.
 
 A co prostorová databáze?
 =========================
@@ -175,3 +213,4 @@ Simple feature
 ==============
 
 .. todo:: To bych klidně doplnil zítra z přednašek co mám ve škole.
+OK
