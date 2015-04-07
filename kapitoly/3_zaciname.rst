@@ -109,11 +109,25 @@ Můžeme procházet metadata jednotlivých vrstev uložených v geodatabázi.
             schématu *ruian* veškerá práva a data může případně
             modifikovat.
 
+Provádíme SQL dotazy
+^^^^^^^^^^^^^^^^^^^^
 
-Otevíráme tabulku
------------------
+Otevřeme dialog pro :doc:`SQL dotazy <2_jazyk_sql>`.
 
-.. todo::
+.. figure:: ../images/qgis-db-manager-sql-toolbar.png
+   :width: 200px
+
+Tento dialog umožnuje provádět jednoduché SQL dotazy.
+
+.. figure:: ../images/qgis-db-manager-sql-window.png
+   :class: middle
+   
+   Příklad určení počtu obcí v ČR
+
+.. tip:: Pokročilejší uživatele ocení spíše konzolový nástroj
+         :program:`psql`. Více k tomuto tématu ve školení `PostGIS pro
+         pokročilé
+         <http://www.gismentors.cz/skoleni/postgis/#pokrocily>`_.
 
 Nahráváme vlastní data do databáze
 ==================================
@@ -222,42 +236,48 @@ aplikace `pgAdmin <http://www.pgadmin.org/>`_.
             :width: 350px
 
 Nejprve definujeme soubor ve formátu Esri Shapefile :fignote:`(1)`,
-cílové databázové schéma :fignote:`(2)` a souřadnicový systém
-:fignote:`(3)`.
+cílové databázové schéma a cílovou tabulku :fignote:`(2)` a případně i
+souřadnicový systém :fignote:`(3)`.
 
 .. figure:: ../images/pgadmin-create.png
 
 .. figure:: ../images/pgadmin-new-layer.png
-            :width: 700px
+            :class: large
+
+Pro pokročilé uživatele
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. tip:: Více k tomuto tématu ve školení `PostGIS pro pokročilé
+         <http://www.gismentors.cz/skoleni/postgis/#pokrocily>`_.
 
 shp2pgsql
-^^^^^^^^^
+~~~~~~~~~
 
 `shp2pgsql
-<http://postgis.net/docs/manual-2.1/using_postgis_dbmanagement.html#shp2pgsql_usage>`_
-je konzolový nástroj, který umožňuje import vektorových dat ve formátu Esri
-Shapefile do geodatabáze PostGIS. Tento nástroj je součástí instalace
-PostGIS.
+<http://postgis.net/docs/using_postgis_dbmanagement.html#shp2pgsql_usage>`_
+je konzolový nástroj, který umožňuje import vektorových dat ve formátu
+Esri Shapefile do geodatabáze PostGIS. Tento nástroj je součástí
+instalace PostGIS.
 
 Nejprve vytvoříme SQL dávku
 
 .. code-block:: bash
 
-               shp2pgsql -s 5514 stavebniobjekty.shp landa.stavebniobjekty > so.sql
+               shp2pgsql -s 5514 FSV_VerejnaWC_b.shp landa.toalety > wc.sql
 
 * ``-s`` definuje souřadnicový systém,
-* ``stavebniobjekty.shp`` je název vstupního souboru ve formátu Esri Shapefile,
-* ``landa.stavebniobjekty`` je název výstupního databázového schématu a tabulky,
-* ``> so.sql`` dávka je uložena do souboru ``so.sql``.
+* ``FSV_VerejnaWC_b.shp`` je název vstupního souboru ve formátu Esri Shapefile,
+* ``landa.toalety`` je název výstupního databázového schématu a tabulky,
+* ``> wc.sql`` dávka je uložena do souboru ``wc.sql``.
 
-Vytvořenou SQL dávku nahrajeme do databáze *gismentors_vugtk*:
+Vytvořenou SQL dávku nahrajeme do databáze *gismentors*:
 
 .. code-block:: bash
 
-                psql gismentors_vugtk -U gismentors -W -h geo102.fsv.cvut.cz -f so.sql
+                psql gismentors -U skoleni -W -h training.gismentors.eu -f wc.sql
 
 ogr2ogr
-^^^^^^^
+~~~~~~~
 
 `ogr2ogr <http://www.gdal.org/ogr2ogr.html>`_ je konzolový nástroj
 knihovny `GDAL <http://gdal.org>`_ umožňující konverzi mezi datovými
@@ -266,11 +286,6 @@ formáty podporovanými touto knihovnou.
 .. code-block:: bash
 
    ogr2ogr -f PostgreSQL \
-   PG:"dbname=gismentors_vugtk host=geo102.fsv.cvut.cz user=gismentors password=XXX active_schema=landa" \
-   stavebniobjekty.shp \
-   -lco FID=gid
-
-.. rubric:: :secnotoc:`Poznámky`
-
-.. [#f1] Předpokládáme, že již máme definovány v QGISu parametry
-         připojení k databázi, viz :doc:`návod <qgis>`.
+   PG:"dbname=gismentors host=training.gismentors.eu user=skoleni password=XXX active_schema=landa" \
+   FSV_VerejnaWC_b.shp \
+   -a_srs EPSG:5514
