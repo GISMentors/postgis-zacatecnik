@@ -175,19 +175,23 @@ TRUNCATE
 :pgsqlcmd:`TRUNCATE <sql-truncate>` slouží k okamžitému vyprázdnění celé
 tabulky. Je rychlejší, než použití :sqlcmd:`DELETE` bez podmínek.
 
+.. code-block:: sql
+
+   TRUNCATE smotlacha_atlas_hub;
+
 Množinové operace
 ^^^^^^^^^^^^^^^^^
 
 Množinové operace pracují s výsledky více poddotazů. Jedná se o :sqlcmd:`UNION`,
 :sqlcmd:`UNION ALL`, :sqlcmd:`EXCEPT` a :sqlcmd:`INTERSECT`.
 
-:sqlcmd:`UNION` vrací sjednocení záznamů z obou dotazů, záznamy, které jsou v obou
-dotazech jsou ve výsledku obsaženy pouze jednou. Naproti tomu :sqlcmd:`UNION ALL`
-vrátí všechny řádky z obou dotazů, počet řádků je tedy součtem řádků obou dotazů.
+:sqlcmd:`UNION` vrací sjednocení záznamů z obou dotazů. Záznamy, které jsou výsledkem (tvz. *recordset*) obou
+dotazů, jsou po sjednocení obsaženy pouze jednou. Naproti tomu :sqlcmd:`UNION ALL`
+vrátí všechny záznamy, výsledkem sjednocení je tedy součet záznamů z obou recordsetů.
 
-.. noteadvanced:: Pokud víme, že záznamy se neduplikují mezi dotazy, je lepší použít
-   :sqlcmd:`UNION ALL`, provádění pak bude efektivnější, protože si ušetříme porovnávání
-   obou výstuponích recordsetů.
+.. noteadvanced:: Pokud víme, že záznamy se mezi dotazy neduplikují, je lepší použít
+   :sqlcmd:`UNION ALL`. Provádění pak bude efektivnější, protože si ušetříme porovnávání
+   obou výstupních recordsetů.
 
 :sqlcmd:`EXCEPT` vrací rozdíl, tedy pouze takové záznamy, které se vyskytují pouze v prvním
 recordsetu. :sqlcmd:`INTERSECT` vrací průnik. Tedy záznamy, které se vyskytují v obou
@@ -196,13 +200,14 @@ recordsetech.
 Poddotazy
 ^^^^^^^^^
 
-V rámci dotazu můžeme dotazovat další, vnořené, dotazy uzavřené do závorek.
+V rámci dotazu můžeme dotazovat další *vnořené* dotazy uzavřené do závorek.
 
+.. todo:: doplnit priklad
 
 DDL
 ---
 
-:sqlcmd:`CREATE` a :sqlcmd:`DROP` jsou základní příkazy `data definition language`.
+:sqlcmd:`CREATE` a :sqlcmd:`DROP` jsou základní příkazy z **Data Definition Language**.
 Pomocí nich vytváříme tabulky, pohledy, omezení, funkce, typy a další.
 
    :pgsqlcmd:`CREATE TABLE <sql-createtable>`
@@ -244,4 +249,4 @@ Dotaz do SQL může potom vypadat následovně:
    WHERE
       rod = 'muchomůrka'
       AND jedla = true
-      AND ST_Distance(vyskyt_lokalita, '5514;POINT(-641455 -987918)'::geometry);
+      AND ST_Distance(vyskyt_lokalita, '5514;POINT(-641455 -987918)'::geometry) < 3e4;
