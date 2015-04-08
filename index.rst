@@ -50,8 +50,8 @@ Obsah
    :maxdepth: 3
 
    kapitoly/1_uvod
-   kapitoly/2_jazyk_sql
-   kapitoly/3_zaciname
+   kapitoly/2_zaciname
+   kapitoly/3_jazyk_sql
 
 O dokumentu
 -----------
