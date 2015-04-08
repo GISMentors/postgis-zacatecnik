@@ -52,6 +52,8 @@ Obsah
    kapitoly/1_uvod
    kapitoly/2_zaciname
    kapitoly/3_jazyk_sql
+   kapitoly/4_prostorove_dotazy.rst
+   kapitoly/5_import_export.rst
 
 O dokumentu
 -----------
