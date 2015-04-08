@@ -132,22 +132,26 @@ je konzolový nástroj, který umožňuje import vektorových dat ve formátu
 Esri Shapefile do geodatabáze PostGIS. Tento nástroj je součástí
 instalace PostGIS.
 
-Nejprve vytvoříme SQL dávku
+.. notecmd:: Import data do databáze pomocí shp2pgsql
 
-.. code-block:: bash
+   Nejprve vytvoříme SQL dávku
 
-               shp2pgsql -s 5514 FSV_VerejnaWC_b.shp landa.toalety > wc.sql
+   .. code-block:: bash
 
-* ``-s`` definuje souřadnicový systém,
-* ``FSV_VerejnaWC_b.shp`` je název vstupního souboru ve formátu Esri Shapefile,
-* ``landa.toalety`` je název výstupního databázového schématu a tabulky,
-* ``> wc.sql`` dávka je uložena do souboru ``wc.sql``.
+      shp2pgsql -s 5514 FSV_VerejnaWC_b.shp landa.toalety > wc.sql
 
-Vytvořenou SQL dávku nahrajeme do databáze *gismentors*:
+   * ``-s`` definuje souřadnicový systém,
+   * ``FSV_VerejnaWC_b.shp`` je název vstupního souboru ve formátu Esri Shapefile,
+   * ``landa.toalety`` je název výstupního databázového schématu a tabulky,
+   * ``> wc.sql`` dávka je uložena do souboru ``wc.sql``.
 
-.. code-block:: bash
+   Vytvořenou SQL dávku nahrajeme do databáze *gismentors*:
 
-                psql gismentors -U skoleni -W -h training.gismentors.eu -f wc.sql
+   .. code-block:: bash
+
+      psql gismentors -U skoleni -W -h training.gismentors.eu -f wc.sql
+
+.. _import-ogr2ogr:
 
 ogr2ogr
 ~~~~~~~
@@ -156,9 +160,62 @@ ogr2ogr
 knihovny `GDAL <http://gdal.org>`_ umožňující konverzi mezi datovými
 formáty podporovanými touto knihovnou.
 
-.. code-block:: bash
+.. notecmd:: Import dat do databáze pomocí ogr2ogr
 
-   ogr2ogr -f PostgreSQL \
-   PG:"dbname=gismentors host=training.gismentors.eu user=skoleni password=XXX active_schema=landa" \
-   FSV_VerejnaWC_b.shp \
-   -a_srs EPSG:5514
+   .. code-block:: bash
+
+      ogr2ogr -f PostgreSQL \
+      PG:"dbname=gismentors host=training.gismentors.eu user=skoleni password=XXX active_schema=landa" \
+      FSV_VerejnaWC_b.shp \
+      -a_srs EPSG:5514
+
+Exportujeme data z databáze
+---------------------------
+
+Data můžeme exportovat z databáze v prostředí QGIS naprosto stejně
+jako u jiných formátů. Načteme si do QGIS vrstvu, kterou si přejeme
+vyexportovat a z kontextového menu nad vrstvou zvolíme volbu
+:menuselection:`???`.
+
+.. todo:: fig
+
+V dialogu zvolíme požadovaný formát a připadně další volby, kterou
+jsou již závislé na z zvoleném formátu.
+
+.. todo:: fig
+
+
+Pro pokročilé uživatele
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Podobně jako v případě importu dat, lze použít pokročilejší nástroje,
+které lze použít ve skriptech při automatizaci a pod. Ukážeme si
+použití nástroje :program:`pgsql2shp`, který umožňuje export dat do
+formátu Esri Shapefile a :program:`ogr2ogr` knihovny GDAL.
+
+.. tip:: Více k tomuto tématu ve školení `PostGIS pro pokročilé
+         <http://www.gismentors.cz/skoleni/postgis/#pokrocily>`_.
+
+pgsql2shp
+~~~~~~~~~
+
+PostGIS kromě nástroje pro import dat ve formátu Esri Shapefile
+:program:`shp2pgsql` nabízí obdobný nástroj pro export dat
+:program:`pgsql2shp`. 
+
+.. notecmd:: Export do formátu Esri Shapefile pomocí pgsql2shp
+
+   V níže uvedeném příkladě vyexportujeme tabulku
+   :dbtable:`obce_polygon` ze schéma *ruain* do souboru ``obce.shp``.
+
+   .. code-block:: sql
+      
+      pgsql2shp -h training.gismentors.eu -u skoleni -P XXX -f obce gismentors ruian.obce_polygon
+
+ogr2ogr
+~~~~~~~
+
+:program:`ogr2ogr` slouží obecně ke konverzi dat, lze jej tedy použít
+jak pro :ref:`import-ogr2ogr`, tak pro export.
+
+.. notecmd:: Export do formátu Esri Shapefile pomocí ogr2ogr

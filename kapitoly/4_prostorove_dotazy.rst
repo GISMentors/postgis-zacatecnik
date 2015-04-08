@@ -54,7 +54,10 @@ Tento dialog umožnuje provádět jednoduché SQL dotazy.
          pokročilé
          <http://www.gismentors.cz/skoleni/postgis/#pokrocily>`_.
 
+Alternativní přístup z PgAdmin
+------------------------------
+
 Příklady dotazů
-^^^^^^^^^^^^^^^
+---------------
 
 .. todo::
