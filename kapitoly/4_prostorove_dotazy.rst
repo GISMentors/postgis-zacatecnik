@@ -37,7 +37,7 @@ Můžeme procházet metadata jednotlivých vrstev uložených v geodatabázi.
 Provádíme SQL dotazy
 --------------------
 
-Otevřeme dialog pro :doc:`SQL dotazy <2_jazyk_sql>`.
+Otevřeme dialog pro :doc:`SQL dotazy <3_jazyk_sql>`.
 
 .. figure:: ../images/qgis-db-manager-sql-toolbar.png
    :width: 200px
@@ -56,6 +56,55 @@ Tento dialog umožnuje provádět jednoduché SQL dotazy.
 
 Vytváříme novou vrstvu jako výsledek prostorového dotazu
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Na základě prostorového dotazu můžeme pomocí dialogu :program:`správce
+databází` vytvářet nové datové vrstvy.
+
+V nasledujícím příkladě vybereme :fignote:`(1)` obce
+(:dbtable:`ruian.obce_polygon`), které obsahují alespoň jednu pořární
+stanici (:dbtable:`osm.pozarni_stanice`). Výsledek zobrazíme v QGISu
+jako novou vrstvu :map:`obce_pozarni_stanice` :fignote:`(2)`.
+
+.. note:: 
+
+   .. code-block:: sql
+                   
+      SELECT o.* FROM ruian.obce_polygon AS o JOIN osm.pozarni_stanice AS p
+       ON ST_Within(p.geom, o.geom);
+
+   Dotaz vracím obce, ve kterých je více než jedna požární stanice,
+   jako duplicitní. Správně by tento dotaz mohl vypadat
+   např. následovně:
+
+   .. code-block:: sql
+
+      SELECT o.* FROM ruian.obce_polygon AS o WHERE EXISTS
+      (
+       SELECT 1 FROM osm.pozarni_stanice AS p WHERE ST_Within(p.geom, o.geom)
+      );
+              
+.. figure:: ../images/qgis-query-new-layer.png
+
+.. note:: Alternativně můžete novou vrsvu vytvořit v databázi rovnou
+          jako novou tabulku a zobrazit v QGISu standardní cestou.
+
+          .. code-block:: sql
+
+             -- nejprve vytvoříme vlastní schéma
+             CREATE SCHEMA uzivatel;
+             
+             CREATE TABLE uzivatel.obce_pozarni_stanice AS
+             SELECT o.* FROM ruian.obce_polygon AS o WHERE EXISTS
+             (
+              SELECT 1 FROM osm.pozarni_stanice AS p WHERE ST_Within(p.geom, o.geom)
+             );
+          
+.. figure:: ../images/qgis-query-new-layer-disp.png
+   :class: large
+
+   Výsledek prostorového dotazu
+                  
+
 
 Alternativní přístup z PgAdmin
 ------------------------------
@@ -84,8 +133,3 @@ Otevřeme SQL okno, do kterého budeme moci posléze psát SQL dotazy.
    :class: middle
 
    Příklad určení počtu obcí v ČR
-
-Příklady dotazů
----------------
-
-.. todo:: select DISTINCT * from ruian.obce_polygon as o join osm.zeleznice as z on st_intersects(z.geom, o.geom)
