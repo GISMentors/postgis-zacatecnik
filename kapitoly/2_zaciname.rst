@@ -19,6 +19,8 @@ anebo z *nástrojové lišty* aplikace QGIS. Další možností je použít
 .. figure:: ../images/qgis-add-pg-vector-toolbar.png
 	    :width: 150px
 
+.. _db-connection:
+
 V dialogu nejprve nadefinujeme parametry připojení k databázi.
 
 .. figure:: ../images/qgis-postgis-new.png

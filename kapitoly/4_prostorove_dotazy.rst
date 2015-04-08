@@ -54,10 +54,38 @@ Tento dialog umožnuje provádět jednoduché SQL dotazy.
          pokročilé
          <http://www.gismentors.cz/skoleni/postgis/#pokrocily>`_.
 
+Vytváříme novou vrstvu jako výsledek prostorového dotazu
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Alternativní přístup z PgAdmin
 ------------------------------
+
+Přidáme nové spojení.
+
+.. figure:: ../images/pgadmin-new-conn-toolbar.png
+   :class: small
+	    
+V následujícím dialogu vyplníme parametry připojení k databázi (viz
+:ref:`db-connection`).
+
+.. figure:: ../images/pgadmin-new-conn-dialog.png
+   :width: 400px
+
+Připojení se přidá do seznamu.
+
+.. figure:: ../images/pgadmin-new-conn.png
+   :class: small
+
+Otevřeme SQL okno, do kterého budeme moci posléze psát SQL dotazy.
+
+.. figure:: ../images/pgadmin-sql-window-toolbar.png
+
+.. figure:: ../images/pgadmin-sql-window.png
+   :class: middle
+
+   Příklad určení počtu obcí v ČR
 
 Příklady dotazů
 ---------------
 
-.. todo::
+.. todo:: select DISTINCT * from ruian.obce_polygon as o join osm.zeleznice as z on st_intersects(z.geom, o.geom)
