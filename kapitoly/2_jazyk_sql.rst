@@ -2,29 +2,27 @@
 Jazyk SQL
 =========
 
-Jazyk
-=====
-
-Jazyk SQL je nástroj pro komunikace uživatele s relační databází. Oproti 
+Jazyk **SQL** je nástroj pro komunikaci uživatele s relační databází. Oproti 
 programovacím jazykům je jednodušší a bližší gramatice mluvené řeči. 
 Je standardizován :wikipedia:`SQL ANSI <SQL>`. V jazyce SQL vytváříme 
-`dotazy`. SQL dotazy dělíme na základní typy, dotazy pro manipulaci s 
-daty :wikipedia-en:`data manipulation language <Data_manipulation_language>` **DML** a
-:wikipedia-en:`data definition language <Data_definition_language>` **DDL** 
+`dotazy`. SQL dotazy dělíme na dva základní typy: dotazy pro manipulaci s 
+daty **DML** (:wikipedia-en:`data manipulation language <Data_manipulation_language>`) a
+**DDL** (:wikipedia-en:`data definition language <Data_definition_language>`)
 tedy dotazy pro definici dat. DML slouží pro manipulaci se 
 záznamy v tabulkách, tedy pro vyptání dat, mazání záznamů, 
 vyprazdňování tabulek, vkládání a aktualizování záznamů. DDL slouží 
 pro definici databázových struktur. Pro tvorbu databází, tabulek, indexů, 
-pohledů, funkcí, triggerů atd. Dále známe **DCL** a **TCL**, tedy
+pohledů, funkcí, triggerů atd. Dále rozlišujeme **DCL** a **TCL**, tedy
 :wikipedia-en:`data control language <Data_control_language>` a
 :wikipedia-en:`transaction control language <Transaction_Control_Language>`.
 První z nich slouží k nastavení přístupových práv (příkazy :sqlcmd:`GRANT` a
 :sqlcmd:`REVOKE`), druhý pak k práci s transakcemi.
 
-.. noteadvanced:: Kromě jazyka SQL můžeme psát v PostgreSQL funkce i v 
-   dalších jazycích. Mimo jiné se jedná o perl, python, R, javascript a 
-   další, zejména však pl/pgsql, procedurální jazyk PostgreSQL, syntaxí 
-   podobný jazyku používanému v databázích Oracle.
+.. noteadvanced:: Kromě jazyka SQL můžeme psát v PostgreSQL funkce i v
+   dalších jazycích. Mimo jiné se jedná o :wikipedia:`Perl`,
+   :wikipedia:`Python`, R, :wikipedia:`JavaScript` a další. Zejména
+   však :pgsqlcmd:`PL/PgSQL <plpgsql>`, procedurální jazyk PostgreSQL, syntaxí
+   podobný jazyku používanému v databázích :wikipedia:`Oracle`.
 
 Syntaxe
 -------
@@ -45,7 +43,7 @@ Pro výběr dat z tabulky tedy:
    PRO KTERÉ PLATÍ
    podmínka;
 
-Dotazy v PostgreSQL zakončujeme středníkem.
+.. note:: Dotazy v PostgreSQL zakončujeme středníkem.
 
 DML
 ---
@@ -54,11 +52,11 @@ SELECT
 ^^^^^^
 
 Dotaz, kterým vybíráme data z databáze uvozuje příkaz :pgsqlcmd:`SELECT <sql-select>` následovaný
-výčtem sloupců požadovaného výstupu. Výčet sloupců může být nahrazen \* pro výběr všech sloupců.
+výčtem sloupců požadovaného výstupu. Výčet sloupců může být nahrazen ``*`` pro výběr všech sloupců.
 Pokud předřadíme výčtu sloupců :sqlcmd:`DISTINCT` bude dotaz vracet pouze unkátní kombinace
 hodnot.  Klauzule :sqlcmd:`FROM` uvozuje výčet tabulek,
 ze kterých budeme vybírat a které mohou (ale nemusí) být propojeny klauzulí :sqlcmd:`JOIN`.
-Následovat může výčet podmínek uvedený klauzulí :sqlcmd:`WHERE` podmínky můžeme řetězit
+Následovat může výčet podmínek uvedený klauzulí :sqlcmd:`WHERE`. Podmínky můžeme řetězit
 booleovskou logikou pomocí :sqlcmd:`AND`, :sqlcmd:`OR`, případně vylučovat pomocí
 :sqlcmd:`NOT`.
 
@@ -67,24 +65,24 @@ Nakonec můžeme použít :sqlcmd:`GROUP BY`, :sqlcmd:`ORDER BY` pro sdružován
 méně obvyklé klauzule.
 
 Jak to funguje v praxi?
-^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Dejme tomu, že chcete zjistit, které muchomůrky jsou vhodné k jídlu. 
-Přijdete do knihovny a zepáte se:
+Přijdete do knihovny a zeptáte se:
 ::
 
-   Dobrý den, slečno, prosímvás, 
+   Dobrý den, slečno, prosím vás, 
    podívala byste se mi do Smotlachova atlasu hub a
    zjistila,
    které muchomůrky jsou jedlé?
 
-Slečna půjde, vytáhne z regálu smotlachu, podívá se do rejstříku a 
+Slečna půjde, vytáhne z regálu "Smotlachu", podívá se do rejstříku a 
 najde všechny muchomůrky, každou nalistuje a zjistí, které jsou jedlé. Ty 
 pro Vás vypíše.
 
 V relační databázi by to vypadalo nějak takto.
 
-Máme **tabulku** nazvanou *smotlacha_atlas_hub*. Vypadá nějak takto.
+Máme **tabulku** nazvanou *smotlacha_atlas_hub*. Vypadá nějak takto:
 
 .. table::
    :class: border
@@ -92,7 +90,7 @@ Máme **tabulku** nazvanou *smotlacha_atlas_hub*. Vypadá nějak takto.
    +------------+---------+----------+-----------+-------+-------------+-------+--------------------+-----------+-----------+
    | rod        | druh    |  rod_lat | druh_lat  | popis | foto        | jedla | vyskyt_lokalita    | vyskyt_od | vyskyt_do |
    +============+=========+==========+===========+=======+=============+=======+====================+===========+===========+
-   | muchomůrka | růžovka | amanita  | rubescens | ...   | ruzovka.jpg | true  | MULTIPOLYGON(((... | 1.6       | 31.10     |
+   | muchomůrka | růžovka | amanita  | rubescens | ...   | ruzovka.jpg | true  | MULTIPOLYGON(((... | 1.6.      | 31.10.    |
    +------------+---------+----------+-----------+-------+-------------+-------+--------------------+-----------+-----------+
    |            |         |          |           |       |             |       |                    |           |           |
    +------------+---------+----------+-----------+-------+-------------+-------+--------------------+-----------+-----------+
@@ -101,7 +99,7 @@ Máme **tabulku** nazvanou *smotlacha_atlas_hub*. Vypadá nějak takto.
    |            |         |          |           |       |             |       |                    |           |           |
    +------------+---------+----------+-----------+-------+-------------+-------+--------------------+-----------+-----------+
 
-Dotaz potom bude vypadat:
+SQL dotaz potom bude vypadat následovně:
 
 .. code-block:: sql
 
@@ -114,7 +112,7 @@ Dotaz potom bude vypadat:
       rod = 'muchomůrka'
       AND jedla = true;
       
-Tedy, v překladu do češtiny:
+V překladu do češtiny by dotaz mohl znít:
 ::
 
    VYBER
@@ -126,34 +124,50 @@ Tedy, v překladu do češtiny:
 JOIN
 ^^^^
 
-Rozlišujeme dva druhy joinů, spojení tabulek. :sqlcmd:`INNER JOIN` 
-a :sqlcmd:`OUTER JOIN`.  :sqlcmd:`INNER JOIN` vrátí pouze takové záznamy, 
+Rozlišujeme dva druhy joinů, tj. spojení tabulek: :sqlcmd:`INNER JOIN` 
+a :sqlcmd:`OUTER JOIN`.
+
+:sqlcmd:`INNER JOIN` vrátí pouze takové záznamy, 
 kde došlo k nalezení potřebné hodnoty v obou tabulkách. Naproti tomu 
 :sqlcmd:`OUTER JOIN` vrací pro jednu, případně obě tabulky všechny záznamy.
 :sqlcmd:`OUTER JOIN` dělíme na :sqlcmd:`LEFT JOIN`, :sqlcmd:`RIGHT JOIN` a
-:sqlcmd:`FULL JOIN`. Left a right join vrací všechny záznamy z levé, nebo
+:sqlcmd:`FULL JOIN`. :sqlcmd:`LEFT` a :sqlcmd:`RIGHT JOIN` vrací všechny záznamy z levé nebo
 pravé tabulky. :sqlcmd:`FULL JOIN` vrátí všechny záznamy z obou tabulek.
 Speciální situací je :sqlcmd:`CROSS JOIN`, který vrací kartézský součin
 záznamů v obou tabulkách.
 
 Záznamy obvykle párujeme pomocí klauzule :sqlcmd:`ON`, za kterou následují
 podmínky propojení podobně jako za klauzulí :sqlcmd:`WHERE`. Alternativou
-je použití klauzule :sqlcmd:`USING()`, kde je uveden název sloupce, který
+je použití klauzule :sqlcmd:`USING`, kde je uveden název sloupce, který
 musí být v obou tabulkách. Další možností je :sqlcmd:`NATURAL JOIN`,
-který použije stejně pojmenované sloupce. Ten však nedoporučuji příliš
+který použije stejně pojmenované sloupce. Ten však nedoporučeme příliš
 používat, zvláště v databázích s proměnlivou strukturou.
+
+.. todo:: doplnit priklad
 
 UPDATE
 ^^^^^^
 
 :pgsqlcmd:`UPDATE <sql-update>` slouží k aktualizování hodnot vybraných
-sloupců. Používá se klauzule :sqlcmd:`WHERE`, výrazy. Také je možno použít
+sloupců. Používá se klauzule :sqlcmd:`WHERE` a výrazy. Také je možno použít
 klauzuli :sqlcmd:`FROM` a aktualizovat tabulku hodnotami z jiných tabulek.
+
+Příklad nastavení výskýtu od 1.června pro všechny houhy z rodu "amanita":
+
+.. code-block:: sql
+
+   UPDATE smotlacha_atlas_hub SET vyskyt_od = '1.6.' WHERE rod_lat = 'amanita';
 
 DELETE
 ^^^^^^
 
 :pgsqlcmd:`DELETE <sql-delete>` slouží k mazání vybraných záznamů z tabulek.
+
+Příklad odstranění všech jedlých hub z tabulky:
+
+.. code-block:: sql
+
+   DELETE smotlacha_atlas_hub WHERE jedla = true;
 
 TRUNCATE
 ^^^^^^^^
@@ -204,7 +218,7 @@ Pomocí nich vytváříme tabulky, pohledy, omezení, funkce, typy a další.
 
 
 A co prostorová databáze?
-==========================
+-------------------------
 
 Dejme tomu, že nás zajímají jen ty houby, které rostou v okruhu třiceti 
 kilometrů od Pece pod Sněžkou, kde hodláme strávit dovolenou.

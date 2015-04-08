@@ -5,14 +5,14 @@
 	   :width: 140px
 	   :align: left
 
-**PostGIS** je rozšíření objektově-relačního databázového systému
+**PostGIS** je rozšíření objektově-relačního open source databázového systému
 :wikipedia:`PostgreSQL` pro podporu geografických objektů. PostGIS
 implementuje specifikaci `Simple Features
 <http://www.opengeospatial.org/standards/sfa>`_ konsorcia
 :wikipedia:`Open Geospatial Consortium`.
 
 PostGIS lze použít jako databázové uložiště dat společně s oblíbeným
-desktopovými open source GISem QGIS.
+desktopovými open source GISem `QGIS <http://www.qgis.org>`_.
            
 PostGIS je podobně jako QGIS multiplatformní a plně funkční na
 platformách jako GNU/Linux, MS Windows či Mac OSX.
@@ -25,12 +25,13 @@ Vstupní znalost
 Výstupní dovednost
 ------------------
 
-* Uživatel získá základní znalost :wikipedia:`SQL`
-* Uživatel je schopen data z databáze v QGISu vizualizovat
+* Uživatel získá základní znalost jazyka :wikipedia:`SQL`
+* Uživatel je schopen data z databáze v prostředí QGIS vizualizovat a
+  editovat
 * Uživatel je schopen z prostředí QGIS provádět v databázi jednodušší
   prostorové dotazy a další základní operace
-* Uživatel zvládne naimportovat data do PostGIS v prostředí QGIS
-* Uživatel zvládne exportovat data z PostGIS do jiných GIS formátů
+* Uživatel zvládne naimportovat do databáze vlastní data a data z
+  databáze exportovat do ostatních GIS formátů
 
 Požadavky
 ---------
