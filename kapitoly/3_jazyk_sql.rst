@@ -143,7 +143,23 @@ musí být v obou tabulkách. Další možností je :sqlcmd:`NATURAL JOIN`,
 který použije stejně pojmenované sloupce. Ten však nedoporučeme příliš
 používat, zvláště v databázích s proměnlivou strukturou.
 
-.. todo:: doplnit priklad
+.. code-block:: sql
+
+   SELECT houby.rod || ' ' || houby.druh, lokalita.nazev, vyskyt
+   FROM houby
+   JOIN lokalita ON houby.id = lokalita.houby_id
+   WHERE ST_Intersects(
+      (
+         SELECT geom FROM oblasi WHERE nazev = 'Vysočina'
+      )
+      , lokalita.geom)
+   AND vyskyt @> '2015-07-15'::timestamp;
+
+   SELECT houby.rod || ' ' || houby.druh
+   FROM houby
+   JOIN r_recept ON r_recept.houby_id = houby.id
+   JOIN recept ON recept.id = r_recept.recept_id
+   WHERE recept.nazev = 'smaženice';
 
 UPDATE
 ^^^^^^
@@ -202,7 +218,16 @@ Poddotazy
 
 V rámci dotazu můžeme dotazovat další *vnořené* dotazy uzavřené do závorek.
 
-.. todo:: doplnit priklad
+.. code-block:: sql
+
+   SELECT recepty.* FROM
+   (
+   SELECT DISTINCT recept_id FROM r_recept WHERE houby_id IN
+      (
+         SELECT * FROM houby WHERE rod = 'bedla'
+      )
+   ) recepty_na_bedly
+   JOIN recepty ON recepty.id = recepty_na_bedly.recept_id;
 
 DDL
 ---
