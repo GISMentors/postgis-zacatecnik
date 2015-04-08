@@ -219,3 +219,23 @@ ogr2ogr
 jak pro :ref:`import-ogr2ogr`, tak pro export.
 
 .. notecmd:: Export do formátu Esri Shapefile pomocí ogr2ogr
+
+   .. code-block:: bash
+
+      ogr2ogr -f 'ESRI Shapefile' \
+      -lco 'ENCODING=UTF-8' \
+      obce.shp \
+      PG:"dbname=gismentors host=training.gismentors.eu user=skoleni password=XXX" \
+      ruian.obce_polygon
+
+Na rozdíl od nástroje :program:`pgsql2shp` umožňuje :program:`ogr2ogr`
+export nejen do formátu Esri Shapefile.
+
+.. notecmd:: Export do formátu GML pomocí ogr2ogr
+
+   .. code-block:: bash
+
+      ogr2ogr -f 'GML' \
+      obce.gml \
+      PG:"dbname=gismentors host=training.gismentors.eu user=skoleni password=XXX" \
+      ruian.obce_polygon

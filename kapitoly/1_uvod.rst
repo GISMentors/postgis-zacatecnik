@@ -224,5 +224,22 @@ zaznamenávají také umístění jednotlivých údajů.
 Simple feature
 ==============
 
-.. todo:: To bych klidně doplnil zítra z přednašek co mám ve škole.
-OK
+Specifikace OGC `Simple Features Access
+<http://www.opengeospatial.org/standards/sfa>`_ (SFA) popisuje
+společnou architekturu pro tzv. jednoduché geoprvky a specifikuje
+jejich uložení v digitální podobě.
+
+.. note:: V roce 2004 byla specifikace OGC SFA přijata jako
+	  mezinárodní norma označovaná jako ISO 19125 a~později v roce
+	  2006 adoptována jako technická norma ČSN 19125.
+
+Specifikace OGC SFA zavádí pro popis geometrie geoprvků několik typů
+elementů jako je **Point**, **LineString** či **Polygon** a další.
+
+.. figure:: ../images/sfa-classes.png
+   :class: large
+   
+   Přehled jednotlivých typů geometrie specifikace OGC SFA
+
+PostGIS tuto specifikaci implementuje v prosředí objektově-relační
+databáze PostgreSQL.
