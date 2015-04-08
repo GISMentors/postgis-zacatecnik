@@ -175,14 +175,17 @@ Exportujeme data z databáze
 Data můžeme exportovat z databáze v prostředí QGIS naprosto stejně
 jako u jiných formátů. Načteme si do QGIS vrstvu, kterou si přejeme
 vyexportovat a z kontextového menu nad vrstvou zvolíme volbu
-:menuselection:`???`.
+:menuselection:`Save As`.
 
-.. todo:: fig
+.. figure:: ../images/qgis-export-menu.png
+   :class: small
 
 V dialogu zvolíme požadovaný formát a připadně další volby, kterou
-jsou již závislé na z zvoleném formátu.
+jsou již závislé na zvoleném formátu.
 
-.. todo:: fig
+.. figure:: ../images/qgis-export-dialog.png
+
+   Příklad exportu vektorových dat z databáze do formátu Esri Shapefile
 
 
 Pro pokročilé uživatele

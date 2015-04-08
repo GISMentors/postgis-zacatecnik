@@ -24,8 +24,8 @@ První z nich slouží k nastavení přístupových práv (příkazy :sqlcmd:`GR
    však :pgsqlcmd:`PL/PgSQL <plpgsql>`, procedurální jazyk PostgreSQL, syntaxí
    podobný jazyku používanému v databázích :wikipedia:`Oracle`.
 
-Syntaxe
--------
+Syntax
+------
 
 Základní kostra jazyka SQL vypadá zhruba následovně:
 ::
