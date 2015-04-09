@@ -103,8 +103,6 @@ jako novou vrstvu :map:`obce_pozarni_stanice` :fignote:`(2)`.
    :class: large
 
    Výsledek prostorového dotazu
-                  
-
 
 Alternativní přístup z PgAdmin
 ------------------------------
@@ -133,3 +131,15 @@ Otevřeme SQL okno, do kterého budeme moci posléze psát SQL dotazy.
    :class: middle
 
    Příklad určení počtu obcí v ČR
+
+Příklady prostorových dotazů
+----------------------------
+
+.. code-block:: sql
+                
+   SELECT ob.ogc_fid, COUNT(*) pocet, ST_Union(ob.geom) geom FROM ruian.obce_polygon AS ob 
+    JOIN osm.pozarni_stanice AS p ON ST_Within(p.geom, ob.geom)
+    GROUP BY ob.ogc_fid
+    HAVING COUNT(*) > 1;
+
+.. todo:: Rozšířít o další příklady
