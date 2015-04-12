@@ -78,22 +78,25 @@ jako novou vrstvu :map:`obce_pozarni_stanice` :fignote:`(2)`.
 
    .. code-block:: sql
 
-      SELECT o.* FROM ruian.obce_polygon AS o WHERE EXISTS
+      SELECT row_number() over() id, o.* FROM ruian.obce_polygon AS o WHERE EXISTS
       (
        SELECT 1 FROM osm.pozarni_stanice AS p WHERE ST_Within(p.geom, o.geom)
       );
-              
+
+   Kvuli QGISu přidáme ještě nově vytvořený sloupec :dbcolumn:`id` s
+   jednoznačným číselným identifikátorem.
+
 .. figure:: ../images/qgis-query-new-layer.png
 
 .. note:: Alternativně můžete novou vrsvu vytvořit v databázi rovnou
-          jako novou tabulku a zobrazit v QGISu standardní cestou.
+          jako novou tabulku anebo pohled a zobrazit v QGISu standardní cestou.
 
           .. code-block:: sql
 
              -- nejprve vytvoříme vlastní schéma
              CREATE SCHEMA uzivatel;
              
-             CREATE TABLE uzivatel.obce_pozarni_stanice AS
+             CREATE VIEW uzivatel.obce_pozarni_stanice AS
              SELECT o.* FROM ruian.obce_polygon AS o WHERE EXISTS
              (
               SELECT 1 FROM osm.pozarni_stanice AS p WHERE ST_Within(p.geom, o.geom)
