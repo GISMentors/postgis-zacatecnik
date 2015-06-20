@@ -52,7 +52,7 @@ platformách jako GNU/Linux, MS Windows či Mac OSX.
    <http://www.dibavod.cz/>`_.
 
    **Databáze GISMentors** je stažitelná jako `dump
-   <http://training.gismentors.eu/geodata/postgis/gismentors.dump>`_ (475
+   <http://training.gismentors.eu/geodata/postgis/gismentors.dump>`_ (525
    MB).
 
 **Vstupní znalost**
@@ -94,7 +94,8 @@ platformách jako GNU/Linux, MS Windows či Mac OSX.
    kapitoly/4_prostorove_dotazy
    kapitoly/5_import_export
    kapitoly/6_procvicovani_a_prakticke_ukazky
-
+   kapitoly/7_instalace
+              
 *******
 Dodatky
 *******
