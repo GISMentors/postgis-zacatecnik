@@ -41,8 +41,19 @@ platformách jako GNU/Linux, MS Windows či Mac OSX.
 
       Text školení je dostupný i v tisknutelné formě `PDF
       <./skoleni-postgis-zacatecnik.pdf>`_.
-   
-.. warning:: :red:`Toto je pracovní verze školení, která je aktuálně ve vývoji!`
+
+.. note::
+
+   Pro účely školení byl vytvořena vlastní lokace s daty pocházejících
+   z otevřených či veřejných zdrojů jako je `EU-DEM
+   <http://www.eea.europa.eu/data-and-maps/data/eu-dem>`_, `RÚIAN
+   <http://www.cuzk.cz/ruian/RUIAN.aspx>`_, `OpenStreetMap
+   <http://wiki.openstreetmap.org/wiki/Main_Page>`_ a `Dibavod
+   <http://www.dibavod.cz/>`_.
+
+   **Databáze GISMentors** je stažitelná jako `dump
+   <http://training.gismentors.eu/geodata/postgis/gismentors.dump>`_ (475
+   MB).
 
 **Vstupní znalost**
 
@@ -71,6 +82,8 @@ platformách jako GNU/Linux, MS Windows či Mac OSX.
 
    Obsah
    =====
+
+.. warning:: :red:`Toto je pracovní verze školení, která je aktuálně ve vývoji!`
 
 .. toctree::
    :maxdepth: 3
