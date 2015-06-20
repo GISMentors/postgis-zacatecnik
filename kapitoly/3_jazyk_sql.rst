@@ -53,7 +53,7 @@ SELECT
 
 Dotaz, kterým vybíráme data z databáze uvozuje příkaz :pgsqlcmd:`SELECT <sql-select>` následovaný
 výčtem sloupců požadovaného výstupu. Výčet sloupců může být nahrazen ``*`` pro výběr všech sloupců.
-Pokud předřadíme výčtu sloupců :sqlcmd:`DISTINCT` bude dotaz vracet pouze unkátní kombinace
+Pokud předřadíme výčtu sloupců :sqlcmd:`DISTINCT` bude dotaz vracet pouze unikátní kombinace
 hodnot.  Klauzule :sqlcmd:`FROM` uvozuje výčet tabulek,
 ze kterých budeme vybírat a které mohou (ale nemusí) být propojeny klauzulí :sqlcmd:`JOIN`.
 Následovat může výčet podmínek uvedený klauzulí :sqlcmd:`WHERE`. Podmínky můžeme řetězit
@@ -274,4 +274,5 @@ Dotaz do SQL může potom vypadat následovně:
    WHERE
       rod = 'muchomůrka'
       AND jedla = true
-      AND ST_Distance(vyskyt_lokalita, '5514;POINT(-641455 -987918)'::geometry) < 3e4;
+      AND ST_Distance(vyskyt_lokalita,
+      '5514;POINT(-641455 -987918)'::geometry) < 3e4;

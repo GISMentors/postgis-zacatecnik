@@ -51,6 +51,11 @@ clean:
 	rm -rf $(BUILDDIR)/*
 
 html:
+	$(SPHINXBUILD) -E -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
+	@echo
+	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
+
+html2:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
@@ -105,14 +110,21 @@ epub:
 	@echo "Build finished. The epub file is in $(BUILDDIR)/epub."
 
 latex:
-	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	$(SPHINXBUILD) -E -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	sed -i -e 's/\\begin{figure}\[htbp\]/\\begin{figure}\[!ht\]/' \
+		-e 's/\\DUspan{fignote}/\\textcolor{red}/g' \
+		-e 's/\\DUspan{map}/\\texttt/g' \
+		-e 's/\\DUspan{item}/\\colorbox[rgb]{0.80,0.80,0.80}/g' \
+		-e 's/\\DUspan{secnotoc}/\\textrm/g' \
+		-e 's/\\DUspan{sqlcmd}/\\textcolor[RGB]{0,112,32}/g' \
+		$(BUILDDIR)/latex/*.tex
 	@echo
 	@echo "Build finished; the LaTeX files are in $(BUILDDIR)/latex."
 	@echo "Run \`make' in that directory to run these through (pdf)latex" \
 	      "(use \`make latexpdf' here to do that automatically)."
 
 latexpdf:
-	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
+	$(MAKE) latex
 	@echo "Running LaTeX files through pdflatex..."
 	$(MAKE) -C $(BUILDDIR)/latex all-pdf
 	@echo "pdflatex finished; the PDF files are in $(BUILDDIR)/latex."

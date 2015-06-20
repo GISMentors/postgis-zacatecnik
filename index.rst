@@ -1,15 +1,33 @@
-Úvod
-=========================
+.. only:: latex
 
-.. image:: images/postgis-logo.png
-	   :width: 140px
-	   :align: left
+   #####
+   Obsah
+   #####
 
+.. only:: html
+                    
+   ****
+   Úvod
+   ****
+
+.. only:: html
+          
+   .. image:: images/postgis-logo.png
+              :width: 140px
+              :align: left
+                 
 **PostGIS** je rozšíření objektově-relačního open source databázového systému
 :wikipedia:`PostgreSQL` pro podporu geografických objektů. PostGIS
 implementuje specifikaci `Simple Features
 <http://www.opengeospatial.org/standards/sfa>`_ konsorcia
 :wikipedia:`Open Geospatial Consortium`.
+
+.. only:: latex
+
+   .. figure:: images/postgis-logo.png
+      :scale-latex: 60
+
+      Logo projektu PostGIS
 
 PostGIS lze použít jako databázové uložiště dat společně s oblíbeným
 desktopovými open source GISem `QGIS <http://www.qgis.org>`_.
@@ -17,26 +35,20 @@ desktopovými open source GISem `QGIS <http://www.qgis.org>`_.
 PostGIS je podobně jako QGIS multiplatformní a plně funkční na
 platformách jako GNU/Linux, MS Windows či Mac OSX.
 
-.. note::
+.. only:: html
 
-   Pro účely školení byl vytvořena vlastní lokace s daty pocházejících
-   z otevřených či veřejných zdrojů jako je `EU-DEM
-   <http://www.eea.europa.eu/data-and-maps/data/eu-dem>`_, `RÚIAN
-   <http://www.cuzk.cz/ruian/RUIAN.aspx>`_, `OpenStreetMap
-   <http://wiki.openstreetmap.org/wiki/Main_Page>`_ a `Dibavod
-   <http://www.dibavod.cz/>`_.
+   .. tip::
 
-   **Databáze GISMentors** je stažitelná jako `dump
-   <http://training.gismentors.eu/geodata/postgis/gismentors.dump>`_ (475
-   MB).
+      Text školení je dostupný i v tisknutelné formě `PDF
+      <./skoleni-postgis-zacatecnik.pdf>`_.
+   
+.. warning:: :red:`Toto je pracovní verze školení, která je aktuálně ve vývoji!`
 
-Vstupní znalost
----------------
+**Vstupní znalost**
 
 * Uživatel má základní znalosti GIS
 
-Výstupní dovednost
-------------------
+**Výstupní dovednost**
 
 * Uživatel získá základní znalost jazyka :wikipedia:`SQL`
 * Uživatel je schopen data z databáze v prostředí QGIS vizualizovat a
@@ -46,8 +58,7 @@ Výstupní dovednost
 * Uživatel zvládne naimportovat do databáze vlastní data a data z
   databáze exportovat do ostatních GIS formátů
 
-Požadavky
----------
+**Požadavky**
 
 * PC s OS GNU/Linux (např. `OSGeoLive <http://live.osgeo.org>`_),
   `PostgreSQL <http://www.postgresql.org>`_ a připojení k internetu,
@@ -56,8 +67,10 @@ Požadavky
 * `QGIS <http://www.qgis.org>`_ ideálně 2.8
 * `PostGIS 2.0 <http://www.postgis.net>`_ a vyšší
 
-Obsah
-=====
+.. only:: html
+
+   Obsah
+   =====
 
 .. toctree::
    :maxdepth: 3
@@ -65,11 +78,16 @@ Obsah
    kapitoly/1_uvod
    kapitoly/2_zaciname
    kapitoly/3_jazyk_sql
-   kapitoly/4_prostorove_dotazy.rst
-   kapitoly/5_import_export.rst
+   kapitoly/4_prostorove_dotazy
+   kapitoly/5_import_export
+   kapitoly/6_procvicovani_a_prakticke_ukazky
+
+*******
+Dodatky
+*******
 
 O dokumentu
------------
+===========
 
 Text dokumentu je licencován pod `Creative Commons
 Attribution-ShareAlike 4.0 International License
@@ -82,7 +100,7 @@ Attribution-ShareAlike 4.0 International License
 *Verze textu dokumentu:* |release| (sestaveno |today|)
 
 Autoři
-^^^^^^
+------
 
 Za `GISMentors <http://www.gismentors.cz/>`_:
 
@@ -90,7 +108,7 @@ Za `GISMentors <http://www.gismentors.cz/>`_:
 * `Martin Landa <http://www.gismentors.cz/mentors/landa>`_ ``<martin.landa opengeolabs.cz>``
 
 Text dokumentu
-^^^^^^^^^^^^^^
+--------------
 
 .. only:: latex
 

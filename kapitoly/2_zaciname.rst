@@ -2,7 +2,7 @@ Začínáme
 ========
 
 Na úvod si ukážeme přístup k datům uložených v databázi z prostředí
-:program:`QGIS`.
+`QGIS <http://www.qgis.org>`_.
 
 Zobrazujeme data v QGIS
 -----------------------
@@ -34,7 +34,8 @@ Nastavíme:
 
 .. figure:: ../images/qgis-postgis-new-settings.png
            :width: 350px
-
+           :scale-latex: 40
+                 
 Pro opětovné připojení je vhodné si uživatelské jméno a popřípadě i
 heslo (v tomto případě bude heslo uloženo na lokálním disku v textovém
 souboru!) uložit :fignote:`(5)`
@@ -58,7 +59,8 @@ Následně se již můžeme k databázi připojit
 
 .. figure:: ../images/qgis-postgis-connect.png
            :width: 600px
-
+           :scale-latex: 80
+                 
 a vybrat vektorové vrstvy :fignote:`(1)`, které chceme z geodatabáze
 načíst :fignote:`(2)`.
 
@@ -84,6 +86,10 @@ do okna *Vrstvy*.
 
 .. figure:: ../images/../images/qgis-catalog-layer.png
 	    :class: small
+
+.. raw:: latex
+
+   \newpage
 
 Editujeme vektorová data
 ------------------------

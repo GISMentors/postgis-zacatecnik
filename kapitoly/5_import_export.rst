@@ -57,17 +57,20 @@ souřadnicového systému (v tomto případě S-JTSK, tj. :epsg:`5514`)
 vektorových dat :fignote:`(5)`.
 
 .. figure:: ../images/qgis-spit-dialog.png
-            :class: middle
+            :class: middle 
+            :scale-latex: 50
 
-.. figure:: ../images/qgis-spit-progress.png
-	    :width: 200px
+..                          
+   .. figure:: ../images/qgis-spit-progress.png
+	       :width: 200px
 
 Naimportovaná vrstva z geodatabáze PostGIS se nezobrazí automaticky,
 musíme ji :ref:`přidat manuálně <qgis-add-pg-layer>`.
 
 .. figure:: ../images/qgis-add-pg-so.png
             :class: large
-
+            :scale-latex: 70
+                 
 Další možnosti
 ^^^^^^^^^^^^^^
 
@@ -93,10 +96,7 @@ transformace do jiného souřadnicového systému :fignote:`(3)`.
 
 .. figure:: ../images/qgis-db-manager-create-table.png
 	    :width: 400px
-	    
-.. figure:: ../images/qgis-db-manager-finish.png
-            :width: 200px
-
+            :scale-latex: 50
 
 pgAdmin
 ~~~~~~~
@@ -107,7 +107,8 @@ aplikace `pgAdmin <http://www.pgadmin.org/>`_.
 
 .. figure:: ../images/pgadmin-import.png
             :width: 350px
-
+            :scale-latex: 40
+      
 Nejprve definujeme soubor ve formátu Esri Shapefile :fignote:`(1)`,
 cílové databázové schéma a cílovou tabulku :fignote:`(2)` a případně i
 souřadnicový systém :fignote:`(3)`.
@@ -116,12 +117,13 @@ souřadnicový systém :fignote:`(3)`.
 
 .. figure:: ../images/pgadmin-new-layer.png
             :class: large
-
+            :scale-latex: 75
+                 
 Pro pokročilé uživatele
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-.. tip:: Více k tomuto tématu ve školení `PostGIS pro pokročilé
-         <http://www.gismentors.cz/skoleni/postgis/#pokrocily>`_.
+.. tip:: Více k tomuto tématu ve školení :skoleni:`PostGIS pro
+         pokročilé <postgis-pokrocily>`.
 
 shp2pgsql
 ~~~~~~~~~
@@ -169,6 +171,10 @@ formáty podporovanými touto knihovnou.
       FSV_VerejnaWC_b.shp \
       -a_srs EPSG:5514
 
+.. raw:: latex
+
+   \newpage
+
 Exportujeme data z databáze
 ---------------------------
 
@@ -196,8 +202,8 @@ které lze použít ve skriptech při automatizaci a pod. Ukážeme si
 použití nástroje :program:`pgsql2shp`, který umožňuje export dat do
 formátu Esri Shapefile a :program:`ogr2ogr` knihovny GDAL.
 
-.. tip:: Více k tomuto tématu ve školení `PostGIS pro pokročilé
-         <http://www.gismentors.cz/skoleni/postgis/#pokrocily>`_.
+.. tip:: Více k tomuto tématu ve školení :skoleni:`PostGIS pro
+         pokročilé <postgis-pokrocily>`.
 
 pgsql2shp
 ~~~~~~~~~

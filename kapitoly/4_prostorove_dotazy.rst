@@ -30,7 +30,7 @@ Můžeme procházet metadata jednotlivých vrstev uložených v geodatabázi.
 .. figure:: ../images/qgis-db-manager-layer.png
             :width: 700px
 
-            Uživatel ``skoleni`` má pro vrstvu :map:`obce_polygon` ve
+            Uživatel ``skoleni`` má pro vrstvu `obce_polygon` ve
             schématu *ruian* veškerá práva a data může případně
             modifikovat.
 
@@ -46,13 +46,13 @@ Tento dialog umožnuje provádět jednoduché SQL dotazy.
 
 .. figure:: ../images/qgis-db-manager-sql-window.png
    :class: middle
-   
+   :scale-latex: 60
+              
    Příklad určení počtu obcí v ČR
 
 .. tip:: Pokročilejší uživatele ocení spíše konzolový nástroj
-         :program:`psql`. Více k tomuto tématu ve školení `PostGIS pro
-         pokročilé
-         <http://www.gismentors.cz/skoleni/postgis/#pokrocily>`_.
+         :program:`psql`. Více k tomuto tématu ve školení
+         :skoleni:`PostGIS pro pokročilé <postgis-pokrocily>`.
 
 Vytváříme novou vrstvu jako výsledek prostorového dotazu
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -83,7 +83,7 @@ jako novou vrstvu :map:`obce_pozarni_stanice` :fignote:`(2)`.
        SELECT 1 FROM osm.pozarni_stanice AS p WHERE ST_Within(p.geom, o.geom)
       );
 
-   Kvuli QGISu přidáme ještě nově vytvořený sloupec :dbcolumn:`id` s
+   Kvůli QGISu přidáme ještě nově vytvořený sloupec :dbcolumn:`id` s
    jednoznačným číselným identifikátorem.
 
 .. figure:: ../images/qgis-query-new-layer.png
@@ -104,7 +104,8 @@ jako novou vrstvu :map:`obce_pozarni_stanice` :fignote:`(2)`.
           
 .. figure:: ../images/qgis-query-new-layer-disp.png
    :class: large
-
+   :scale-latex: 70
+              
    Výsledek prostorového dotazu
 
 Alternativní přístup z PgAdmin
@@ -115,12 +116,16 @@ Přidáme nové spojení.
 .. figure:: ../images/pgadmin-new-conn-toolbar.png
    :class: small
 	    
-V následujícím dialogu vyplníme parametry připojení k databázi (viz
-:ref:`db-connection`).
+V následujícím dialogu vyplníme parametry připojení k databázi.
 
 .. figure:: ../images/pgadmin-new-conn-dialog.png
    :width: 400px
+   :scale-latex: 40
 
+.. raw:: latex
+
+   \newpage
+                          
 Připojení se přidá do seznamu.
 
 .. figure:: ../images/pgadmin-new-conn.png
@@ -134,15 +139,3 @@ Otevřeme SQL okno, do kterého budeme moci posléze psát SQL dotazy.
    :class: middle
 
    Příklad určení počtu obcí v ČR
-
-Příklady prostorových dotazů
-----------------------------
-
-.. code-block:: sql
-                
-   SELECT ob.ogc_fid, COUNT(*) pocet, ST_Union(ob.geom) geom FROM ruian.obce_polygon AS ob 
-    JOIN osm.pozarni_stanice AS p ON ST_Within(p.geom, ob.geom)
-    GROUP BY ob.ogc_fid
-    HAVING COUNT(*) > 1;
-
-.. todo:: Rozšířít o další příklady

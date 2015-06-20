@@ -4,7 +4,7 @@ import sys
 import os
 
 sys.path.append(os.path.join('..', 'sphinx-template'))
-from utils import get_month_year, get_year
+from utils import get_year
 
 # -- General configuration ------------------------------------------------
 
@@ -18,14 +18,14 @@ copyright = u'2014-%d, Jan JELEN Michálek (GISMentors.eu)' % get_year()
 # built documents.
 #
 # The short X.Y version.
-version = '0.1'
+version = '0.3'
 # The full version, including alpha/beta/rc tags.
-release = '%s alpha' % version
+release = '%sbeta' % version
 
 # -- Options for HTML output ----------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Skoleni-PostGIS'
+htmlhelp_basename = 'skoleni-postgis-zacatecnik'
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
@@ -37,8 +37,8 @@ html_title = project
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    ('index', '%s.tex' % htmlhelp_basename, project,
-     copyright, 'manual'),
+    ('index', '%s-%s.tex' % (htmlhelp_basename, version), project,
+     u'GISMentors', u'manual'),
     ]
 
 # -- Options for manual page output ---------------------------------------
