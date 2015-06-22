@@ -55,6 +55,9 @@ platformách jako GNU/Linux, MS Windows či Mac OSX.
    <http://training.gismentors.eu/geodata/postgis/gismentors.dump>`_ (525
    MB).
 
+   *Návod k instalaci PostGIS a importu databáze GISMentors* :doc:`zde
+   <kapitoly/7_instalace>`.
+
 **Vstupní znalost**
 
 * Uživatel má základní znalosti GIS
