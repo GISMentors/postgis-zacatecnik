@@ -243,7 +243,8 @@ Jednoduchý prostorový dotaz
 .. figure:: ../images/pomer_rozlohy_a_obvodu.png
 
 .. figure:: ../images/pomer_rozlohy_a_obvodu_2.png
-
+   :class: middle
+        
    Symbolizaci vrstvy provedeme v QGISu
 
 Jednoduchý atributový JOIN
@@ -348,6 +349,10 @@ Buffer
 
    SELECT row_number() over() rid, * FROM povodi_jizery
 
+.. raw:: latex
+
+   \newpage
+
 .. noteadvanced::
       
     .. code-block:: sql
@@ -446,4 +451,4 @@ Prostorové analýzy
    USING(ogc_fid)
 
 .. figure:: ../images/katastry_podle_np.png
-
+   :scale-latex: 45

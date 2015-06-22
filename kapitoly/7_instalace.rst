@@ -21,52 +21,79 @@ Stáhněte a nainstalujte `PostgreSQL from EnterpriseDB
 <http://www.enterprisedb.com/products-services-training/pgdownload>`_.
 
 .. figure:: ../images/instalace-win-0.png
-   
+   :scale-latex: 70
+              
    Zvolte 32 anebo 64bitovou verzi.
+
+.. raw:: latex
+
+   \newpage
 
 .. figure:: ../images/instalace-win-1.png
    :width: 400px
-        
+   :scale-latex: 48
+              
 .. figure:: ../images/instalace-win-2.png
    :width: 400px
-        
+   :scale-latex: 48
+              
    Určete adresář na disku, kam se PostgreSQL nainstaluje.
 
 .. figure:: ../images/instalace-win-3.png
    :width: 400px
-
+   :scale-latex: 48
+              
    V dalším kroku zvolte adresář, kam se budou ukládat uživatelská
    data (mohou být velká podle toho k čemu budete databázi využívat).
 
+.. raw:: latex
+
+   \newpage
+   
 .. figure:: ../images/instalace-win-4.png
    :width: 400px
-
+   :scale-latex: 48
+              
 Spusťte nástroj *StackBuilder* a z něho doinstalujte PostGIS.
       
 .. figure:: ../images/instalace-win-5.png
    :width: 400px
-        
+   :scale-latex: 48
+              
 .. figure:: ../images/instalace-win-6.png
    :width: 400px
-
+   :scale-latex: 48
+              
    Zvolíme databázový server, do kterého chceme doinstalovat PostGIS.
+
+.. raw:: latex
+
+   \newpage
 
 .. figure:: ../images/instalace-win-7.png
    :width: 400px
-
+   :scale-latex: 48
+              
    V prostředí Stack Builderu v selci Spatial Extensions zvolíme verzi
    PostGIS podle toho, zda jste nainstalovali 32 anebo 64bitovou verzi
    PostgreSQL.
 
 .. figure:: ../images/instalace-win-8.png
    :width: 400px
-        
+   :scale-latex: 48
+   
 .. figure:: ../images/instalace-win-9.png
    :width: 400px
-        
+   :scale-latex: 48
+
+.. raw:: latex
+
+   \newpage
+                 
 .. figure:: ../images/instalace-win-10.png
    :width: 400px
-
+   :scale-latex: 48
+              
    Adresář s nainstalovaným PostgreSQL by měl instalátor detekován
    automaticky.
 
@@ -80,20 +107,28 @@ Spusťte nástroj *StackBuilder* a z něho doinstalujte PostGIS.
 
    .. figure:: ../images/instalace-win-11.png
       :width: 400px
-        
+      :scale-latex: 48
+              
    .. figure:: ../images/instalace-win-12.png
       :width: 400px
-   
+      :scale-latex: 48
+                 
    .. figure:: ../images/instalace-win-13.png
-      :width: 400pxx
-        
+      :width: 400px
+      :scale-latex: 48
+                 
 .. figure:: ../images/instalace-win-14.png
    :width: 400px
-
+   :scale-latex: 48
+              
 Po úspěšné instalaci PostgreSQL a PostGIS doporučujeme nainstalovat
 také aplikaci `PgAdmin 3 <http://www.pgadmin.org>`_, pomocí které
 naimportujeme testovací databázi GISMentors.
-           
+
+.. raw:: latex
+
+   \newpage
+
 Obnova databáze GISMentors
 --------------------------
 
@@ -108,7 +143,8 @@ PgAdmin 3
 
 .. figure:: ../images/restore-db-2.png
    :width: 400px
-        
+   :scale-latex: 45
+              
    Databázi nazveme "gismentors".
 
 .. figure:: ../images/restore-db-3.png
@@ -116,19 +152,24 @@ PgAdmin 3
    Z kontextového menu nad databázi zvolíme funkci "Obnovit".
 
 .. figure:: ../images/restore-db-4.png
-
+   :scale-latex: 60
+              
    V dialogu pro výběr souboru zvolíme dávku "gismentors.dump" (je
    potřeba nastavit masku na "Všechny soubory").
 
 .. figure:: ../images/restore-db-5.png
    :width: 400px   
-
+   :scale-latex: 45
+              
 .. figure:: ../images/restore-db-6.png
 
    V sekci "Volby obnovení" zaškrtěte "Nekládat - vlastník".
 
 .. warning:: Tato volba je důležitá, jinak skončí import chybou!
 
+.. figure:: ../images/restore-db-7.png
+   :scale-latex: 70
+              
 Z příkazové řádky
 ^^^^^^^^^^^^^^^^^            
 

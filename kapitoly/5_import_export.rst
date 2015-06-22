@@ -167,7 +167,8 @@ formáty podporovanými touto knihovnou.
    .. code-block:: bash
 
       ogr2ogr -f PostgreSQL \
-      PG:"dbname=gismentors host=training.gismentors.eu user=skoleni password=XXX active_schema=landa" \
+      PG:"dbname=gismentors host=training.gismentors.eu user=skoleni password=XXX \
+      active_schema=landa" \
       FSV_VerejnaWC_b.shp \
       -a_srs EPSG:5514
 
@@ -219,7 +220,8 @@ PostGIS kromě nástroje pro import dat ve formátu Esri Shapefile
 
    .. code-block:: sql
       
-      pgsql2shp -h training.gismentors.eu -u skoleni -P XXX -f obce gismentors ruian.obce_polygon
+      pgsql2shp -h training.gismentors.eu -u skoleni -P XXX -f obce gismentors \
+      ruian.obce_polygon
 
 ogr2ogr
 ~~~~~~~

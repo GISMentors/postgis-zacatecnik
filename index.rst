@@ -25,7 +25,7 @@ implementuje specifikaci `Simple Features
 .. only:: latex
 
    .. figure:: images/postgis-logo.png
-      :scale-latex: 60
+      :scale-latex: 40
 
       Logo projektu PostGIS
 
