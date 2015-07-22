@@ -145,17 +145,17 @@ používat, zvláště v databázích s proměnlivou strukturou.
 
 .. code-block:: sql
 
-   SELECT houby.rod || ' ' || houby.druh, lokalita.nazev, vyskyt
-   FROM houby
-   JOIN lokalita ON houby.id = lokalita.houby_id
-   WHERE ST_Intersects(
+   SELECT houby.rod || ' ' || houby.druh, lokalita.nazev, houby.vyskyt  -- vyber "rod druh", "lokalita", "vyskyt"
+   FROM houby                                                           -- z tabulky houby
+   JOIN lokalita ON houby.id = lokalita.houby_id                        -- spoj podle sloupečků s id houby
+   WHERE ST_Intersects(                                                 -- ale pouze tam, kde lokalita je v oblasti "Vysočina"
       (
-         SELECT geom FROM oblasi WHERE nazev = 'Vysočina'
+         SELECT geom FROM oblasti WHERE nazev = 'Vysočina'
       )
       , lokalita.geom)
-   AND vyskyt @> '2015-07-15'::timestamp;
+   AND houby.vyskyt @> '2015-07-15'::timestamp;                         -- a pouze tam, kde výsky je "od"
 
-   SELECT houby.rod || ' ' || houby.druh
+   SELECT houby.rod || ' ' || houby.druh                    
    FROM houby
    JOIN r_recept ON r_recept.houby_id = houby.id
    JOIN recept ON recept.id = r_recept.recept_id
