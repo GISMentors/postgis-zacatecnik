@@ -8,27 +8,28 @@ Databáze
 Kdy ukládat data do databáze?
 =============================
 
-V geoinformatické praxi pracujeme se třemi typy zdrojů dat. Jednak se
-jedná o data uložená v souborovém systému. Hovoříme-li o vektorových
-datech, tak může jít typicky o data v zastaralém, leč stále
-nejpoužívanějším formátu :wikipedia-en:`Esri Shapefile`, případně
-:wikipedia-en:`GML <Geography Markup Language>`. Dalším typem jsou
-webové služby, jmenovitě :wikipedia-en:`WFS <Web Feature Service>`
-(Web Feature Service). V případě WFS si aplikace vyžádá pomocí souboru
-ve značkovacím jazyce :wikipedia-en:`XML` data na vzdáleném serveru po
-síti. Posledním typem uložení dat, kterému je věnováno toto školení,
-je uložení dat v databázi. Většina současných databází, ať již `Open
-Source` nebo ryze proprietárních podporuje v nějaké míře ukládání a
-dotazování prostorových prvků.  Ať už :wikipedia:`MySQL`,
+V geoinformatické praxi pracujeme se třemi typy zdrojů dat. V prvé
+řadě se jedná o data uložená v souborovém systému. Hovoříme-li o
+vektorových datech, tak může jít typicky o data v zastaralém, leč
+stále nejpoužívanějším formátu :wikipedia-en:`Esri Shapefile`,
+případně :wikipedia-en:`OGC GML <Geography Markup Language>`. Dalším
+typem jsou webové služby, jmenovitě :wikipedia-en:`OGC WFS <Web
+Feature Service>` (Web Feature Service). V případě WFS si aplikace
+vyžádá pomocí souboru ve značkovacím jazyce :wikipedia-en:`XML` data
+na vzdáleném serveru po síti. Posledním typem uložení dat, kterému je
+věnováno toto školení, je databáze. Většina současných databází, ať
+již `Open Source` nebo ryze proprietárních podporuje v nějaké míře
+ukládání a dotazování prostorových prvků.  Ať už :wikipedia:`MySQL`,
 :wikipedia:`Oracle`, nebo :wikipedia:`MSSQL` a v neposlední řadě
 :wikipedia:`PostgreSQL`, kterému je věnován tento kurz.
 
-.. noteadvanced:: Hranice nemusí být vždy jednoznačná, například
-   existují takzvané `souborové databáze`, tedy soubory, které se
-   chovají podobným způsobem jako databázový server, ovšem bez řady
-   výhod, které poskytuje plnohodnotná databáze. Na druhou stranu se s
-   nimi o poznání snáze manipuluje. Příkladem může být :wikipedia:`MS
-   Access` nebo open source :wikipedia:`SQLite` (a jeho prostorové nadstavby `OGC
+.. noteadvanced:: Hranice mezi jednotlivými typy zdrojů dat nemusí být
+   vždy jednoznačná. Existují například takzvané `souborové databáze`,
+   tedy soubory, které se chovají podobným způsobem jako databázový
+   server, ovšem bez řady výhod, které poskytuje plnohodnotný
+   databázový systém. Na druhou stranu se s nimi o poznání snáze
+   manipuluje. Příkladem může být :wikipedia:`MS Access` nebo open
+   source :wikipedia:`SQLite` (a jeho prostorové nadstavby `OGC
    GeoPackage <http://www.geopackage.org>`_ a
    :wikipedia-en:`SpatiaLite`).
 
@@ -52,7 +53,7 @@ integrity`.
 Referenční integrita znamená, že tabulky jsou mezi sebou provázány cizími
 klíči. Tedy pokud podřízená (slave) tabulka obsahuje položku s odkazy do
 jiné `nadřízené` tabulky, není možné do podřízené tabulky přidat záznam,
-pokud v nadřízené tabulce neexistuje hodnota na kterou odkazuje cizí klíč.
+pokud v nadřízené tabulce neexistuje hodnota, na kterou odkazuje cizí klíč.
 Nemůžeme tedy například do tabulky jednotlivých vozidel přidat vozidlo s
 odkazem na typ `tříkolka`, pokud nemáme v tabulce typů vozidel typ `tříkolka`.
 Nebo pokud máme tabulku staveb a parcel, při správně
@@ -108,8 +109,8 @@ tedy hovoříme o relační databázi).
 Tabulky
 =======
 
-V relační databázi ukládáme data do tabulek. Tabulka je svisle dělena na
-jednotlivé sloupce (často označovány jako atributy nebo položky) a vodorovně do řádky (záznamy).
+V relační databázi ukládáme data do tabulek (tzv. relací). Tabulka je svisle dělena na
+jednotlivé sloupce (často označovány jako atributy nebo položky) a vodorovně na řádky (záznamy).
 Data v jednom sloupci musí mít stejný `datový typ` (datum, celé číslo, textový řetězec).
 
 Schémata
@@ -117,8 +118,7 @@ Schémata
 
 Schémata můžeme vnímat podobně jako adresářovou struktury, ovšem bez možnosti dalšího zanořování,
 případně jako `jmenný prostor`. Umožňuje nám logicky dělit databázi, což oceníme například při
-zálohování, při nastavování práv. Databázové tabulky, funkce, indexy apod. musí mít unikátní název
-v rámci schématu (schéma je možné vnímat jako součást názvu). Takže můžeme mít v databázi stejně
+zálohování, při nastavování práv. Databázové tabulky, funkce, indexy apod. musí mít v rámci schématu (schéma je možné vnímat jako součást názvu) unikátní název. Takže můžeme mít v databázi stejně
 pojmenované tabulky v různých schématech. Příklad využití je napříkad při databázi rozdělené do
 schémat geograficky. Další výhodné využití je při historizování záznamů, kdy máme schéma `historie`
 s podobnou strukturou jako schéma s platnými daty.
@@ -153,25 +153,25 @@ bychom museli porovnat požadovanou hodnotu se všemi záznamy.
    položkami s takovým typem dat, který je možné porovnávat pomocí operátorů
    ``<`` a ``>``. Nehodí se tedy pro data vícedimenzionální, např. prostorová data.
 
-Omezení-constrainty
-===================
+Omezení (constraints)
+=====================
 
 V odstavci věnovaném referenční integritě je zmíněno, že není možné vložit do sloupce s cizím
-klíčem hodnotu, která není v `nadřízené` tabulce. To je příkladem `omezení cizího klíče`, dalším
-častým příkladem omezení je omezení na unikátní hodnotu, což je podmínka pro `primární klíč`, tedy
-hodnotu, podle které je možné jednoznačně identifikovat řádek. Omezení ovšem můžeme vytvářet dle
+klíčem hodnotu, která není v `nadřízené` tabulce. To je příkladem `omezení cizího klíče`. Dalším
+častým příkladem je omezení na unikátní hodnotu, což je podmínka pro `primární klíč`, tedy
+hodnotu, podle které je možné jednoznačně identifikovat záznam v tabulce. Omezení ovšem můžeme vytvářet dle
 libosti, například můžeme v tabulce osob nastavit, že není možné do sloupce se jménem vložit jméno
 `František`, případně do nějakého číselného sloupce hodnotu, která není dělitelná jedenácti, geometrii
 s rozlohou větší než hektar apod.
 
 Zde je dobré si uvědomit, že pokud se pokusíte vložit data do sloupce a porušíte omezení, vrátí server
-error, pokud tedy bude tato dávka součástí transakce, neprovede se celá transakce.
+chybu. Pokud tedy bude tato dávka součástí transakce, neprovede se celá transakce.
 
-Pohledy
-=======
+Pohledy (views)
+===============
 
 :pgsqlcmd:`Pohledy <sql-createview>` jsou uložené dotazy, které se chovají obdobně jako tabulky.
-Můžeme je dotazovat, nastavovat jim práva. K tabulkám, do kterých nahlížejí přistupují s právy
+Můžeme je dotazovat, nastavovat jim práva. K tabulkám, do kterých pohledy nahlížejí, přistupují s právy
 toho, kdo je vytvořil. Můžeme tedy pohledem zpřístupnit pro některé uživatele vybraný obsah
 tabulek, které sami nevidí.
 
@@ -180,43 +180,45 @@ Zde je výstup dotazu uložen do tabulky a zároveň je uložen dotaz, kterým b
 pohledy vygenerován. Proto může být snadno přegenerován příkazem
 :pgsqlcmd:`REFRESH MATERIALIZE VIEW <sql-refreshmaterializedview>`.
 
+.. note:: Materializované pohledy podporuje PostgreSQL až od verze 9.3.
+                    
 Triggery
 ========
 
 :pgsqlcmd:`Trigger <sql-createtrigger>`, neboli spoušť spustí proceduru při nějaké události.
 Existují dva základní typy triggerů a to `DML` a `DDL` triggery.
 
-**DML**, tedy `data manipulation language` trigger se spustí při nějaké manipulaci s daty, tedy při vložení, smazání, případně
+**DML**, tedy `Data Manipulation Language` trigger se spustí při nějaké manipulaci s daty, tedy při vložení, smazání, případně
 aktualizaci záznamu. Obvyklé využití je například archivování smazávaných hodnot, kontrolu dat při vstupu a podobně.
-Pomocí triggerů lze ošetřit také kontrolu podobně jako u constraint, pokud nastavíme trigger tak, aby se spustil před vložením
+Pomocí triggerů lze ošetřit také kontrolu podobně jako u omezení. Pokud nastavíme trigger tak, aby se spustil před vložením
 záznamu, můžeme eliminovat duplicitní záznamy, dříve než dojde k chybě a tím pádem nedojde k pádu transakce.
 
-**DDL**, tedy `data definition language` trigger je v `PostgreSQL` relativně čerstvá novinka a spustí se při změně ve struktuře,
+**DDL**, tedy `Data Definition Language` trigger je v `PostgreSQL` relativně čerstvá novinka a spustí se při změně ve struktuře,
 například při přidání tabulky může nastavit práva, replikace apod.
 
 Obdobou triggerů jsou :pgsqlcmd:`pravidla <sql-createrule>`, ta ovšem nedisponují všemi možnostmi triggerů a nedoporučuje
-se jich příliš používat. Nicméně občas se mohou hodit pokud chceme pracovat s pohledem jako s tabulkou a nastavit,
-co se má dít při vkládání, nebo manipulaci s daty.
+se jich příliš používat. Nicméně občas se mohou hodit, pokud chceme pracovat s pohledem jako s tabulkou a nastavit,
+co se má dít při vkládání nebo manipulaci s daty.
 
 Funkce
 ======
 
-:pgsqlcmd:`Funkce <sql-createfunction>` je v databázi uložená procedura, kterou spustíme dotazem. V `PostgreSQL` může
-být napsaná v jazyce SQL, v procedurálním jazyce PosgreSQL PL/pgSQL :pgsqlcmd:`plpgsql`, v dalším z jazyků, které
+:pgsqlcmd:`Funkce <sql-createfunction>` je v databázi uložená procedura, kterou spustíme dotazem. V PostgreSQL může
+být napsaná v jazyce SQL, v procedurálním jazyce PosgreSQL PL/pgSQL :pgsqlcmd:`plpgsql` či v dalším z jazyků, které
 PostgreSQL podporuje jako je Python, Perl, R, Javascript. Případně může být importovaná z externího modulu napsaného
-například v jazyce `C`.
+například v jazyce C.
 
-Funkce tedy spouští nějaký kód, může vracet jednu hodnotu, jednu hodnotu z více řádek (agregační funkce), případně
-může vracet více záznamů, nebo provádět nějaké změny v databázi (například :pgiscmd:`AddGeometryColumn`). Specifickou
+Funkce tedy spouští nějaký kód, může vracet jednu hodnotu, jednu hodnotu z více záznamů (agregační funkce), případně
+může vracet více záznamů, nebo provádět nějaké změny v databázi (například funkce PostGISu :pgiscmd:`AddGeometryColumn`). Specifickou
 skupinou jsou analytické :pgsqlcmd:`window funkce <tutorial-window>`.
 
-Nastavování práv k funkcím je složitější, než u pohledů, je možno nastavit :sqlcmd:`SECURITY DEFINER` práva a potom
+Nastavování práv k funkcím je složitější než u pohledů, je možno nastavit :sqlcmd:`SECURITY DEFINER` práva a potom
 přistupuje funkce k tabulkám s právy svého tvůrce.
 
 A co prostorová databáze?
 -------------------------
 
-Prostorová databáze, se podobá takové knihovně, ve které jsou kromě knih
+Prostorová databáze se podobá takové knihovně, ve které jsou kromě knih
 také mapy, atlasy, globusy... Zkrátka nosiče informací, které 
 zaznamenávají také umístění jednotlivých údajů.
 
@@ -241,5 +243,5 @@ elementů jako je **Point**, **LineString** či **Polygon** a další.
    
    Přehled jednotlivých typů geometrie specifikace OGC SFA
 
-PostGIS tuto specifikaci implementuje v prosředí objektově-relační
+PostGIS tuto specifikaci implementuje v prostředí objektově-relační
 databáze PostgreSQL.

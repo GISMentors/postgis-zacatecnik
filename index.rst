@@ -44,19 +44,17 @@ platformách jako GNU/Linux, MS Windows či Mac OSX.
 
 .. note::
 
-   Pro účely školení byl vytvořena vlastní lokace s daty pocházejících
-   z otevřených či veřejných zdrojů jako je `EU-DEM
+   Pro účely školení byla vytvořena datová sada složená z dat
+   pocházejících z otevřených či veřejných zdrojů jako je `EU-DEM
    <http://www.eea.europa.eu/data-and-maps/data/eu-dem>`_, `RÚIAN
    <http://www.cuzk.cz/ruian/RUIAN.aspx>`_, `OpenStreetMap
    <http://wiki.openstreetmap.org/wiki/Main_Page>`_ a `Dibavod
-   <http://www.dibavod.cz/>`_.
+   <http://www.dibavod.cz/>`_. Tato datová sada je dostupná ve formátu
+   dump pro PostgreSQL, ke stažení `zde
+   <http://training.gismentors.eu/geodata/postgis/gismentors.dump>`_
+   (525 MB).
 
-   **Databáze GISMentors** je stažitelná jako `dump
-   <http://training.gismentors.eu/geodata/postgis/gismentors.dump>`_ (525
-   MB).
-
-   *Návod k instalaci PostGIS a importu databáze GISMentors* :doc:`zde
-   <kapitoly/7_instalace>`.
+   Další informace v kapitole :doc:`kapitoly/7_instalace`.
 
 **Vstupní znalost**
 
