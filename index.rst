@@ -42,19 +42,12 @@ platformách jako GNU/Linux, MS Windows či Mac OSX.
       Text školení je dostupný i v tisknutelné formě `PDF
       <./skoleni-postgis-zacatecnik.pdf>`_.
 
-.. note::
+.. notedata::
 
-   Pro účely školení byla vytvořena datová sada složená z dat
-   pocházejících z otevřených či veřejných zdrojů jako je `EU-DEM
-   <http://www.eea.europa.eu/data-and-maps/data/eu-dem>`_, `RÚIAN
-   <http://www.cuzk.cz/ruian/RUIAN.aspx>`_, `OpenStreetMap
-   <http://wiki.openstreetmap.org/wiki/Main_Page>`_ a `Dibavod
-   <http://www.dibavod.cz/>`_. Tato datová sada je dostupná ve formátu
-   dump pro PostgreSQL, ke stažení `zde
+   Datová sada dostupná ve formátu dump pro PostgreSQL je ke stažení
+   `zde
    <http://training.gismentors.eu/geodata/postgis/gismentors.dump>`_
-   (525 MB).
-
-   Další informace v kapitole :doc:`kapitoly/7_instalace`.
+   (525 MB). Další informace v kapitole :doc:`kapitoly/7_instalace`.
 
 **Vstupní znalost**
 
