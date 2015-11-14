@@ -42,10 +42,12 @@ platformách jako GNU/Linux, MS Windows či Mac OSX.
       Text školení je dostupný i v tisknutelné formě `PDF
       <./skoleni-postgis-zacatecnik.pdf>`_.
 
+.. index::
+   pair: datové sady; ke stažení
+
 .. notedata::
 
-   Datová sada dostupná ve formátu dump pro PostgreSQL je ke stažení
-   `zde
+   Datová sada je stažitelná pro PostgreSQL ve `formátu dump
    <http://training.gismentors.eu/geodata/postgis/gismentors.dump>`_
    (525 MB). Další informace v kapitole :doc:`kapitoly/7_instalace`.
 
