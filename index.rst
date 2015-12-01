@@ -57,6 +57,9 @@ platformách jako GNU/Linux, MS Windows či Mac OSX.
    <http://training.gismentors.eu/geodata/postgis/gismentors.dump>`_
    (525 MB). Další informace v kapitole :doc:`kapitoly/7_instalace`.
 
+.. warning:: :red:`Toto je pracovní verze školení, která je aktuálně
+             ve vývoji!`
+
 **Vstupní znalost**
 
 * Uživatel má základní znalosti GIS
@@ -84,8 +87,6 @@ platformách jako GNU/Linux, MS Windows či Mac OSX.
 
    Obsah
    =====
-
-.. warning:: :red:`Toto je pracovní verze školení, která je aktuálně ve vývoji!`
 
 .. toctree::
    :maxdepth: 3

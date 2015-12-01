@@ -215,6 +215,8 @@ skupinou jsou analytické :pgsqlcmd:`window funkce <tutorial-window>`.
 Nastavování práv k funkcím je složitější než u pohledů, je možno nastavit :sqlcmd:`SECURITY DEFINER` práva a potom
 přistupuje funkce k tabulkám s právy svého tvůrce.
 
+.. _prostorova_db:
+
 A co prostorová databáze?
 -------------------------
 
