@@ -4,27 +4,30 @@ Začínáme
 Na úvod si ukážeme přístup k datům uložených v databázi z prostředí
 `QGIS <http://www.qgis.org>`_.
 
+.. note:: Více o programu QGIS se dozvíte na :skoleni:`školení pro
+          začátečníky <qgis-zacatecnik>`.
+          
 Zobrazujeme data v QGIS
 -----------------------
 
 .. _qgis-add-pg-layer:
 
-Vektorová data uložená v geodatabázi PostGIS je možné načíst buď z *menu*
-
-.. figure:: ../images/qgis-add-pg-vector-menu.png
-
-anebo z *nástrojové lišty* aplikace QGIS. Další možností je použít
-:ref:`datový katalog <DataCatalog>`.
+Vektorová data uložená v geodatabázi PostGIS je možné načíst buď z
+menu :menuselection:`Vrstva --> Přidat vrstvy --> Přidat vrstvu
+PostGIS` anebo z *nástrojové lišty* aplikace QGIS.
 
 .. figure:: ../images/qgis-add-pg-vector-toolbar.png
 	    :width: 150px
+
+Další možností je použít :ref:`datový katalog <DataCatalog>`.
 
 .. _db-connection:
 
 V dialogu nejprve nadefinujeme parametry připojení k databázi.
 
 .. figure:: ../images/qgis-postgis-new.png
-
+   :class: middle
+        
 Nastavíme:
 
 * název spojení :fignote:`(1)`
@@ -38,7 +41,7 @@ Nastavíme:
                  
 Pro opětovné připojení je vhodné si uživatelské jméno a popřípadě i
 heslo (v tomto případě bude heslo uloženo na lokálním disku v textovém
-souboru!) uložit :fignote:`(5)`
+souboru!) uložit :fignote:`(5)`.
 
 .. figure:: ../images/qgis-pg-conn-warning.png
 	    :class: small
@@ -58,8 +61,8 @@ poté potvrdíme.
 Následně se již můžeme k databázi připojit
 
 .. figure:: ../images/qgis-postgis-connect.png
-           :width: 600px
-           :scale-latex: 80
+   :class: middle
+   :scale-latex: 80
                  
 a vybrat vektorové vrstvy :fignote:`(1)`, které chceme z geodatabáze
 načíst :fignote:`(2)`.
@@ -182,7 +185,7 @@ kroku můžeme vyplnit atributy nově přidaného prvku.
 .. figure:: ../images/qgis-edit-new-feature-attr.png
             :width: 800px
 
-.. note:: Více k editace v `manuálu
-          <http://docs.qgis.org/2.2/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html>`_
+.. note:: Více k tématu editace v `manuálu
+          <http://docs.qgis.org/2.8/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html>`_
           QGISu.
 

@@ -4,13 +4,13 @@ Jazyk SQL
 
 Jazyk **SQL** je nástroj pro komunikaci uživatele s relační databází. Oproti 
 programovacím jazykům je jednodušší a bližší gramatice mluvené řeči. 
-Je standardizován :wikipedia:`SQL ANSI <SQL>`. V jazyce SQL vytváříme 
+Je standardizován jako :wikipedia:`SQL ANSI <SQL>`. V jazyce SQL vytváříme 
 `dotazy`. SQL dotazy dělíme na dva základní typy: dotazy pro manipulaci s 
 daty **DML** (:wikipedia-en:`data manipulation language <Data_manipulation_language>`) a
 **DDL** (:wikipedia-en:`data definition language <Data_definition_language>`)
 tedy dotazy pro definici dat. DML slouží pro manipulaci se 
 záznamy v tabulkách, tedy pro vyptání dat, mazání záznamů, 
-vyprazdňování tabulek, vkládání a aktualizování záznamů. DDL slouží 
+vyprazdňování tabulek, vkládání a aktualizování záznamů. DDL naopak slouží 
 pro definici databázových struktur. Pro tvorbu databází, tabulek, indexů, 
 pohledů, funkcí, triggerů atd. Dále rozlišujeme **DCL** a **TCL**, tedy
 :wikipedia-en:`data control language <Data_control_language>` a
@@ -60,9 +60,10 @@ Následovat může výčet podmínek uvedený klauzulí :sqlcmd:`WHERE`. Podmín
 booleovskou logikou pomocí :sqlcmd:`AND`, :sqlcmd:`OR`, případně vylučovat pomocí
 :sqlcmd:`NOT`.
 
-Nakonec můžeme použít :sqlcmd:`GROUP BY`, :sqlcmd:`ORDER BY` pro sdružování při agregacích,
-řazení, případně :sqlcmd:`LIMIT` a :sqlcmd:`OFFSET` pro omezení řádků výstupu, eventuálně další,
-méně obvyklé klauzule.
+Nakonec můžeme použít :sqlcmd:`GROUP BY` pro sdružování při
+agregacích, :sqlcmd:`ORDER BY` pro sezaření záznamů či
+případně :sqlcmd:`LIMIT` a :sqlcmd:`OFFSET` pro omezení řádků výstupu,
+eventuálně další, méně obvyklé klauzule.
 
 Jak to funguje v praxi?
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -71,7 +72,7 @@ Dejme tomu, že chcete zjistit, které muchomůrky jsou vhodné k jídlu.
 Přijdete do knihovny a zeptáte se:
 ::
 
-   Dobrý den, slečno, prosím vás, 
+   Dobrý den, slečno, prosím Vás, 
    podívala byste se mi do Smotlachova atlasu hub a
    zjistila,
    které muchomůrky jsou jedlé?
@@ -258,7 +259,7 @@ lokalitou.
 
 .. noteadvanced:: Je zjevné, že k požadovanému výsledku se může slečna 
    dobrat různými, různě efektivními způsoby. Postup, kterým bude pracovat 
-   se nazývá `prováděcí plán`. K volbě ideálního způsobu slouží 
+   se nazývá `prováděcí plán` (query plan). K volbě ideálního způsobu slouží 
    statistiky, které si databáze ukládá a které jsou aktualizovány po 
    každém dotazu.
 

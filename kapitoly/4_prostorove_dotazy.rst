@@ -48,7 +48,7 @@ Tento dialog umožnuje provádět jednoduché SQL dotazy.
    :class: middle
    :scale-latex: 60
               
-   Příklad určení počtu obcí v ČR
+   Příklad určení počtu obcí v ČR.
 
 .. tip:: Pokročilejší uživatele ocení spíše konzolový nástroj
          :program:`psql`. Více k tomuto tématu ve školení
@@ -57,8 +57,8 @@ Tento dialog umožnuje provádět jednoduché SQL dotazy.
 Vytváříme novou vrstvu jako výsledek prostorového dotazu
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Na základě prostorového dotazu můžeme pomocí dialogu :program:`správce
-databází` vytvářet nové datové vrstvy.
+Na základě prostorového dotazu můžeme pomocí dialogu *správce
+databází* vytvářet nové datové vrstvy.
 
 V nasledujícím příkladě vybereme :fignote:`(1)` obce
 (:dbtable:`ruian.obce_polygon`), které obsahují alespoň jednu pořární
@@ -106,7 +106,7 @@ jako novou vrstvu :map:`obce_pozarni_stanice` :fignote:`(2)`.
    :class: large
    :scale-latex: 70
               
-   Výsledek prostorového dotazu
+   Výsledek prostorového dotazu.
 
 Alternativní přístup z PgAdmin
 ------------------------------
@@ -138,4 +138,8 @@ Otevřeme SQL okno, do kterého budeme moci posléze psát SQL dotazy.
 .. figure:: ../images/pgadmin-sql-window.png
    :class: middle
 
-   Příklad určení počtu obcí v ČR
+   Příklad určení počtu obcí v ČR.
+
+.. note:: Narozdíl od správce databází QGIS či konzolového nástroje
+          psql nepodporuje PgAdmin našeptávání, což je z pohledu
+          uživatelského konfortu značné mínus.

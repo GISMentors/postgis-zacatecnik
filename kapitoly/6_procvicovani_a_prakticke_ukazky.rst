@@ -106,6 +106,9 @@ Tuto informaci získáme z pohledu
 systémových tabulek (data o typech a omezeních) a přehledně
 je zobrazuje.
 
+.. note:: Ve verzích PostGIS 1.x byl :dbtable:`geometry_columns`
+          definován jako tabulka a nikoliv jako pohled.
+          
 Jeho struktura je následující:
 
 .. table:: 
@@ -199,7 +202,7 @@ Jednoduchý atributový dotaz
 
    #. s druhem pozemku `10` (les)
 
-#. :dbtable:`stavebniobjekty` ze schématu *ruian_praha* vybavené
+#. Vyberte stavební objekty ze schématu *ruian_praha* vybavené
 
    #. plynem
 
@@ -215,6 +218,7 @@ Jednoduchý atributový dotaz
 
 .. figure:: ../images/atributovy_dotaz.png
 
+   Ukázka SQL dotazu ve správci databází QGIS.
 
 .. code-block:: sql
 
@@ -245,7 +249,7 @@ Jednoduchý prostorový dotaz
 .. figure:: ../images/pomer_rozlohy_a_obvodu_2.png
    :class: middle
         
-   Symbolizaci vrstvy provedeme v QGISu
+   Symbolizaci vrstvy provedeme v QGISu.
 
 Jednoduchý atributový JOIN
 --------------------------
@@ -424,7 +428,7 @@ Agregace
 Prostorové analýzy
 ------------------
 
-#. Obarvěte katastrální území podle toho, kolik procent katastru je v NP
+#. Obarvěte katastrální území podle toho, kolik procent území je v NP
 
 .. code-block:: sql
 
@@ -451,4 +455,7 @@ Prostorové analýzy
    USING(ogc_fid)
 
 .. figure:: ../images/katastry_podle_np.png
+   :class: middle
    :scale-latex: 45
+
+   Vizualizace výsledku v QGISu.

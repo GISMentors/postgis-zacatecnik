@@ -9,8 +9,8 @@ Import dat ve formátu Esri Shapefile
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Předpokládáme, že každý uživatel pracuje ve vlastní databázovém
-schématu. Toto schéma vytvoříme pomocí zásuvného modulu :ref:`DB
-Manageru <db-manager>`.
+schématu. Toto schéma vytvoříme pomocí :ref:`správce databází QGIS
+<db-manager>`.
 
 Vytvoření databázového schématu
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -39,7 +39,7 @@ modul *Spit (Shapefile import)* dostupný z menu aplikace QGIS.
 .. figure:: ../images/qgis-spit-menu.png
             :width: 350px
 
-.. note:: Pokud není nástroj dostupný je nutné ho aktivovat z menu
+.. note:: Pokud není nástroj v QGISu dostupný, je nutné ho aktivovat z menu
           :menuselection:`Zásuvné moduly --> Spravovat a instalovat
           zásuvné moduly`.
 
@@ -78,8 +78,8 @@ DB Manager
 ~~~~~~~~~~
 
 Nahrání dat ve formátu Esri Shapefile do geodatabáze PostGIS umožňuje
-v QGISu i zásuvný modul :program:`DB Manager`. Soubor ve formátu Esri
-Shapefile naimportujeme z menu
+v QGISu i samotný správce databází. Soubor ve formátu Esri Shapefile
+naimportujeme z menu
 
 .. figure:: ../images/shp-import-menu.png
            :width: 200px
@@ -102,7 +102,7 @@ pgAdmin
 ~~~~~~~
 
 Vektorová data ve formátu Esri Shapefile lze do databáze PostGIS
-naimportovat pomocí zásuvného modulu :program:`PostGIS Shapefile and DBF loader`
+naimportovat pomocí zásuvného modulu *PostGIS Shapefile and DBF loader*
 aplikace `pgAdmin <http://www.pgadmin.org/>`_.
 
 .. figure:: ../images/pgadmin-import.png
@@ -134,7 +134,7 @@ je konzolový nástroj, který umožňuje import vektorových dat ve formátu
 Esri Shapefile do geodatabáze PostGIS. Tento nástroj je součástí
 instalace PostGIS.
 
-.. notecmd:: Import data do databáze pomocí shp2pgsql
+.. notecmd:: Import dat do databáze pomocí shp2pgsql
 
    Nejprve vytvoříme SQL dávku
 
@@ -176,8 +176,8 @@ formáty podporovanými touto knihovnou.
 
    \newpage
 
-Exportujeme data z databáze
----------------------------
+Export dat z databáze
+---------------------
 
 Data můžeme exportovat z databáze v prostředí QGIS naprosto stejně
 jako u jiných formátů. Načteme si do QGIS vrstvu, kterou si přejeme
@@ -192,7 +192,7 @@ jsou již závislé na zvoleném formátu.
 
 .. figure:: ../images/qgis-export-dialog.png
 
-   Příklad exportu vektorových dat z databáze do formátu Esri Shapefile
+   Příklad exportu vektorových dat z databáze do formátu Esri Shapefile.
 
 
 Pro pokročilé uživatele

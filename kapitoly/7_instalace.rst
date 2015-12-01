@@ -74,7 +74,7 @@ Spusťte nástroj *StackBuilder* a z něho doinstalujte PostGIS.
    :width: 400px
    :scale-latex: 48
               
-   V prostředí Stack Builderu v selci Spatial Extensions zvolíme verzi
+   V prostředí Stack Builderu v sekci Spatial Extensions zvolíme verzi
    PostGIS podle toho, zda jste nainstalovali 32 anebo 64bitovou verzi
    PostgreSQL.
 
@@ -99,7 +99,7 @@ Spusťte nástroj *StackBuilder* a z něho doinstalujte PostGIS.
 
 .. noteadvanced::
 
-   V PostGIS lze pracovat i s rastrovými daty, viz :skoleni:`PostGIS
+   V PostGIS lze pracovat i s rastrovými daty, viz :skoleni:`školení
    pro pokrocilé <postgis-pokrocily>`. Pokud plánujeme pracovat i s
    rastrovými daty v databázi PostGIS musíme tuto funkcionalitu
    aktivovat už při instalaci.
@@ -173,10 +173,9 @@ PgAdmin 3
 Z příkazové řádky
 ^^^^^^^^^^^^^^^^^            
 
-Pro Bash:
-
 .. code-block:: bash
 
+   wget http://training.gismentors.eu/geodata/postgis/gismentors.dump
    createdb gismentors
    pg_restore gismentors.dump | psql gismentors
 
