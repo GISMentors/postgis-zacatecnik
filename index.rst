@@ -22,9 +22,10 @@
               :width: 140px
               :align: left
                  
-**PostGIS** je rozšíření objektově-relačního open source databázového systému
-:wikipedia:`PostgreSQL` pro podporu geografických objektů. PostGIS
-implementuje specifikaci `Simple Features
+**PostGIS** je rozšíření objektově-relačního open source databázového
+systému :wikipedia:`PostgreSQL` umožňující uložení, správu a analýzu
+geografických dat. PostGIS implementuje v prostředí PostgreSQL
+specifikaci `Simple Features
 <http://www.opengeospatial.org/standards/sfa>`_ konsorcia
 :wikipedia:`Open Geospatial Consortium`.
 
@@ -36,7 +37,7 @@ implementuje specifikaci `Simple Features
       Logo projektu PostGIS
 
 PostGIS lze použít jako databázové uložiště dat společně s oblíbeným
-desktopovými open source GISem `QGIS <http://www.qgis.org>`_.
+desktopovým open source GISem `QGIS <http://www.qgis.org>`_.
            
 PostGIS je podobně jako QGIS multiplatformní a plně funkční na
 platformách jako GNU/Linux, MS Windows či Mac OSX.
@@ -76,12 +77,11 @@ platformách jako GNU/Linux, MS Windows či Mac OSX.
 
 **Požadavky**
 
-* PC s OS GNU/Linux (např. `OSGeoLive <http://live.osgeo.org>`_),
-  `PostgreSQL <http://www.postgresql.org>`_ a připojení k internetu,
-  volitelně `pgAdmin <http://www.pgadmin.org/>`_, `LibreOffice
+* `PostgreSQL <http://www.postgresql.org>`_, volitelně `pgAdmin
+  <http://www.pgadmin.org/>`_, `LibreOffice
   <http://www.libreoffice.org/>`_
-* `QGIS <http://www.qgis.org>`_ ideálně 2.8
-* `PostGIS 2.0 <http://www.postgis.net>`_ a vyšší
+* `QGIS <http://www.qgis.org>`_ 2.8 a vyšší
+* `PostGIS <http://www.postgis.net>`_ 2.0 a vyšší
 
 .. only:: html
 

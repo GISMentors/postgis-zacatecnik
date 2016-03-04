@@ -18,7 +18,7 @@ Feature Service>` (Web Feature Service). V případě WFS si aplikace
 vyžádá pomocí souboru ve značkovacím jazyce :wikipedia-en:`XML` data
 na vzdáleném serveru po síti. Posledním typem uložení dat, kterému je
 věnováno toto školení, je databáze. Většina současných databází, ať
-již `Open Source` nebo ryze proprietárních podporuje v nějaké míře
+již open source nebo ryze proprietárních, podporuje v nějaké míře
 ukládání a dotazování prostorových prvků.  Ať už :wikipedia:`MySQL`,
 :wikipedia:`Oracle`, nebo :wikipedia:`MSSQL` a v neposlední řadě
 :wikipedia:`PostgreSQL`, kterému je věnován tento kurz.
@@ -29,8 +29,8 @@ ukládání a dotazování prostorových prvků.  Ať už :wikipedia:`MySQL`,
    server, ovšem bez řady výhod, které poskytuje plnohodnotný
    databázový systém. Na druhou stranu se s nimi o poznání snáze
    manipuluje. Příkladem může být :wikipedia:`MS Access` nebo open
-   source :wikipedia:`SQLite` (a jeho prostorové nadstavby `OGC
-   GeoPackage <http://www.geopackage.org>`_ a
+   source :wikipedia:`SQLite` (a jeho prostorové nadstavby
+   :wikipedia-en:`OGC GeoPackage <GeoPackage>` a
    :wikipedia-en:`SpatiaLite`).
 
 Provoz databáze přináší ve srovnání s daty v souborech určité
@@ -109,19 +109,25 @@ tedy hovoříme o relační databázi).
 Tabulky
 =======
 
-V relační databázi ukládáme data do tabulek (tzv. relací). Tabulka je svisle dělena na
-jednotlivé sloupce (často označovány jako atributy nebo položky) a vodorovně na řádky (záznamy).
-Data v jednom sloupci musí mít stejný `datový typ` (datum, celé číslo, textový řetězec).
+V relační databázi ukládáme data do tabulek (tzv. relací). Tabulka je
+svisle dělena na jednotlivé sloupce (často označovány jako atributy
+nebo položky) a vodorovně na řádky (záznamy).  Data v jednom sloupci
+musí mít stejný `datový typ` (datum, celé číslo, číslo s plovoucí
+desetinnou čárkou, textový řetězec apod.).
 
 Schémata
 ========
 
-Schémata můžeme vnímat podobně jako adresářovou struktury, ovšem bez možnosti dalšího zanořování,
-případně jako `jmenný prostor`. Umožňuje nám logicky dělit databázi, což oceníme například při
-zálohování, při nastavování práv. Databázové tabulky, funkce, indexy apod. musí mít v rámci schématu (schéma je možné vnímat jako součást názvu) unikátní název. Takže můžeme mít v databázi stejně
-pojmenované tabulky v různých schématech. Příklad využití je napříkad při databázi rozdělené do
-schémat geograficky. Další výhodné využití je při historizování záznamů, kdy máme schéma `historie`
-s podobnou strukturou jako schéma s platnými daty.
+Schémata můžeme vnímat podobně jako adresářovou strukturu, ovšem bez
+možnosti dalšího zanořování, případně jako `jmenný prostor`. Umožňuje
+nám logicky dělit databázi, což oceníme například při zálohování, při
+nastavování práv. Databázové tabulky, funkce, indexy apod. musí mít v
+rámci schématu (schéma je možné vnímat jako součást názvu) unikátní
+název. Tudíž můžeme mít v databázi stejně pojmenované tabulky v
+různých schématech. Příklad využití je napříkad při databázi rozdělené
+do schémat geograficky. Další výhodné využití je při historizování
+záznamů, kdy máme schéma `historie` s podobnou strukturou jako schéma
+s platnými daty.
 
 Typy
 ====
@@ -188,7 +194,7 @@ Triggery
 :pgsqlcmd:`Trigger <sql-createtrigger>`, neboli spoušť spustí proceduru při nějaké události.
 Existují dva základní typy triggerů a to `DML` a `DDL` triggery.
 
-**DML**, tedy `Data Manipulation Language` trigger se spustí při nějaké manipulaci s daty, tedy při vložení, smazání, případně
+**DML**, tedy `Data Manipulation Language` trigger se spustí při manipulaci s daty, tedy při vložení, smazání, případně
 aktualizaci záznamu. Obvyklé využití je například archivování smazávaných hodnot, kontrolu dat při vstupu a podobně.
 Pomocí triggerů lze ošetřit také kontrolu podobně jako u omezení. Pokud nastavíme trigger tak, aby se spustil před vložením
 záznamu, můžeme eliminovat duplicitní záznamy, dříve než dojde k chybě a tím pádem nedojde k pádu transakce.
@@ -235,7 +241,7 @@ podobě.
 	  2006 adoptována jako technická norma ČSN 19125.
 
 Specifikace OGC SFA zavádí pro popis geometrie geoprvků nové datové
-typy jako je např. **Point**, **LineString** či **Polygon** a další.
+typy jako je např. *Point*, *LineString*, *Polygon* a další.
 
 .. figure:: ../images/sfa-classes.png
    :class: large
