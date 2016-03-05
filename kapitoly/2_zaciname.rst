@@ -2,10 +2,10 @@ Začínáme
 ========
 
 Na úvod si ukážeme přístup k datům uložených v databázi z prostředí
-`QGIS <http://www.qgis.org>`_.
+desktopového programu `QGIS <http://www.qgis.org>`_.
 
-.. note:: Více o programu QGIS se dozvíte na :skoleni:`školení pro
-          začátečníky <qgis-zacatecnik>`.
+.. note:: Více o tomto programu se dozvíte na :skoleni:`školení QGIS
+          pro začátečníky <qgis-zacatecnik>`.
           
 Zobrazujeme data v QGIS
 -----------------------
@@ -14,16 +14,14 @@ Zobrazujeme data v QGIS
 
 Vektorová data uložená v geodatabázi PostGIS je možné načíst buď z
 menu :menuselection:`Vrstva --> Přidat vrstvy --> Přidat vrstvu
-PostGIS` anebo z *nástrojové lišty* aplikace QGIS.
-
-.. figure:: ../images/qgis-add-pg-vector-toolbar.png
-	    :width: 150px
-
-Další možností je použít :ref:`datový katalog <DataCatalog>`.
+PostGIS` anebo z *nástrojové lišty* aplikace QGIS
+|mActionAddPostgisLayer|. Další možností je použít :ref:`datový
+katalog <DataCatalog>`.
 
 .. _db-connection:
 
-V dialogu nejprve nadefinujeme parametry připojení k databázi.
+Objeví se dialog, ve které definujeme parametry *nové* připojení k
+databázi.
 
 .. figure:: ../images/qgis-postgis-new.png
    :class: middle
@@ -38,57 +36,50 @@ Nastavíme:
 .. figure:: ../images/qgis-postgis-new-settings.png
            :width: 350px
            :scale-latex: 40
-                 
-Pro opětovné připojení je vhodné si uživatelské jméno a popřípadě i
-heslo (v tomto případě bude heslo uloženo na lokálním disku v textovém
-souboru!) uložit :fignote:`(5)`.
 
-.. figure:: ../images/qgis-pg-conn-warning.png
-	    :class: small
+.. note:: Při opětovném připojení je vhodné si uživatelské jméno a
+	  popřípadě i heslo uložit na lokální disk. V tomto případě
+	  nás QGIS upozorní, že ukládáme přihlašovací údaje do
+	  nešifrovaného souboru.
 
-Nastavení připojení k databázi nejprve otestujeme :fignote:`(6)` a
-poté potvrdíme.
+	  .. figure:: ../images/qgis-pg-conn-warning.png
+		      :class: small
 
-.. figure:: ../images/qgis-pg-conn-test.png
-            :class: small
+Nastavení připojení k databázi nejprve otestujeme a poté potvrdíme.
 
-.. notecmd:: Připojení k databázi
+.. noteadvanced:: **Připojení k databázi z příkazové řádky**
 
    .. code-block:: bash
       
       psql gismentors -U skoleni -W -h training.gismentors.eu
 
-Následně se již můžeme k databázi připojit
+Následně se již můžeme k databázi *připojit*
 
 .. figure:: ../images/qgis-postgis-connect.png
    :class: middle
    :scale-latex: 80
                  
-a vybrat vektorové vrstvy :fignote:`(1)`, které chceme z geodatabáze
-načíst :fignote:`(2)`.
+a vybrat vektorové vrstvy, které chceme z geodatabáze *načíst*.
 
 .. figure:: ../images/qgis-postgis-layers.png
            :width: 700px
 
 .. _DataCatalog:
 
-Alternativní postup (datový katalog)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Datový prohlížeč
+^^^^^^^^^^^^^^^^
 
 Připojení k databázi PostGIS je možné definovat i v rámci *datového
 katalogu (prohlížeče)*.
 
 .. figure:: ../images/../images/qgis-catalog-new.png
-            :width: 300px
-
-.. figure:: ../images/../images/qgis-postgis-new-settings.png
-           :width: 350px
-
-Vektorovou vrstvu z geodatabáze PostGIS přetáhneme z datového katalogu
-do okna *Vrstvy*.
+	    :class: small
+	   
+Po připojení k databázi vybranou vektorovou vrstvu jednoduše
+přetáhneme z datového katalogu do mapového okna.
 
 .. figure:: ../images/../images/qgis-catalog-layer.png
-	    :class: small
+	    :class: middle
 
 .. raw:: latex
 
@@ -97,17 +88,14 @@ do okna *Vrstvy*.
 Editujeme vektorová data
 ------------------------
 
-:program:`QGIS` umožňuje editaci různých formátů vektorových dat
-včetně dat uložených v geodatabázi PostGIS. Přepnout danou vektorovou
-vrstvu do *editačního módu* je možné z kontextového menu
+QGIS umožňuje editaci různých formátů vektorových dat včetně dat
+uložených v geodatabázi PostGIS. Přepnout danou vektorovou vrstvu do
+*editačního módu* je možné z kontextového menu
 
 .. figure:: ../images/qgis-edit-menu.png
             :width: 350px
 
-anebo *nástrojové lišty* QGISu.
-
-.. figure:: ../images/qgis-edit-toolbar.png
-            :width: 300px
+anebo *nástrojové lišty* QGISu |mIconEditable|.
 
 Po přepnutí do editačního módu se vektorová vrstva zobrazí včetně
 lomových bodů (červené křížky).
@@ -170,7 +158,8 @@ lomových bodů (červené křížky).
 Příklad přidání nového prvku
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Z nástrojové lišty vybereme nástroj pro *přidávání nového prvku*.
+Z nástrojové lišty vybereme nástroj pro *přidávání nového prvku*
+|mActionCapturePolygon|.
 
 Lomové body nového prvku volíme stisknutím levého tlačítka
 myši. Poslední uložený lomový bod můžeme vrátit zpět pomocí klávesy
@@ -179,13 +168,9 @@ myši. Poslední uložený lomový bod můžeme vrátit zpět pomocí klávesy
 .. figure:: ../images/qgis-edit-new-feature.png
             :width: 800px
 
-Editaci prvku ukončíme stisknutím pravého tlačítka myši. V posledním
-kroku můžeme vyplnit atributy nově přidaného prvku.
+Editaci prvku ukončíme stisknutím pravého tlačítka myši. Poté se
+objeví dialog pro zadání atributů nově přidaného prvku.
 
-.. figure:: ../images/qgis-edit-new-feature-attr.png
-            :width: 800px
-
-.. note:: Více k tématu editace v `manuálu
-          <http://docs.qgis.org/2.8/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html>`_
-          QGISu.
+.. note:: Více k tématu editace ve :skoleni:`školení QGIS pro
+          začátečníky <qgis-zacatecnik/vektorova_data/editace.html>`.
 
