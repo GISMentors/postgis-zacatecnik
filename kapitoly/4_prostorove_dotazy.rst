@@ -1,3 +1,6 @@
+.. |sqlwindow| image:: ../images/qgis-db-manager-sql-toolbar.png
+   :width: 24px
+
 =================
 Prostorové dotazy
 =================
@@ -8,41 +11,33 @@ Připojujeme se do databáze z QGIS
 Přístup do databáze umožnuje zásuvný modul QGISu :program:`DB
 Manager` (Správce databází).
 
-.. note:: Tento zásuvný modul je součástí základní instalace a je
-	  dostupný automaticky.
-
 .. _db-manager:
 
-DB Manager spustíme z menu aplikace QGIS.
+DB Manager spustíme z menu aplikace QGIS :menuselection:`Databáze -->
+Správce databází --> Správce databází`.
 
-.. figure:: ../images/qgis-db-manager-menu.png
-            :width: 350px
-
-V dialogu vybereme testovací databázi *gismentors*.
+V dialogu vybereme databázi školení "gismentors".
 
 .. figure:: ../images/qgis-db-manager-priv.png
-            :width: 700px
-
-            Uživatel ``skoleni`` má právo v databázi vytvářet vlastní schémata.
+   :class: middle
+	   
+   Uživatel má v tomto případě právo v databázi vytvářet
+   vlastní schémata a dočasné tabulky.
 
 Můžeme procházet metadata jednotlivých vrstev uložených v geodatabázi.
 
 .. figure:: ../images/qgis-db-manager-layer.png
-            :width: 700px
+   :class: middle
 
-            Uživatel ``skoleni`` má pro vrstvu `obce_polygon` ve
-            schématu *ruian* veškerá práva a data může případně
-            modifikovat.
+   Uživatel má v tomto případě pro vrstvu `obce` ve schématu *ruian*
+   veškerá práva a může ji modifikovat.
 
 Provádíme SQL dotazy
 --------------------
 
-Otevřeme dialog pro :doc:`SQL dotazy <3_jazyk_sql>`.
-
-.. figure:: ../images/qgis-db-manager-sql-toolbar.png
-   :width: 200px
-
-Tento dialog umožnuje provádět jednoduché SQL dotazy.
+Otevřeme dialog SQL okna |sqlwindow|, které nám umožní provádět
+jednoduché :doc:`SQL dotazy <3_jazyk_sql>` přímo v prostředí aplikace
+QGIS.
 
 .. figure:: ../images/qgis-db-manager-sql-window.png
    :class: middle

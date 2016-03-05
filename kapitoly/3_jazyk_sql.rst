@@ -4,8 +4,10 @@ Jazyk SQL
 
 Jazyk **SQL** je nástroj pro komunikaci uživatele s relační databází. Oproti 
 programovacím jazykům je jednodušší a bližší gramatice mluvené řeči. 
-Je standardizován jako :wikipedia:`SQL ANSI <SQL>`. V jazyce SQL vytváříme 
-`dotazy`. SQL dotazy dělíme na dva základní typy: dotazy pro manipulaci s 
+Je standardizován jako :wikipedia:`SQL ANSI <SQL>`. V jazyce SQL vytváříme tzv.
+`dotazy`.
+
+SQL dotazy dělíme na dva základní typy: dotazy pro manipulaci s 
 daty **DML** (:wikipedia-en:`data manipulation language <Data_manipulation_language>`) a
 **DDL** (:wikipedia-en:`data definition language <Data_definition_language>`)
 tedy dotazy pro definici dat. DML slouží pro manipulaci se 
@@ -21,7 +23,7 @@ První z nich slouží k nastavení přístupových práv (příkazy :sqlcmd:`GR
 .. noteadvanced:: Kromě jazyka SQL můžeme psát v PostgreSQL funkce i v
    dalších jazycích. Mimo jiné se jedná o :wikipedia:`Perl`,
    :wikipedia:`Python`, R, :wikipedia:`JavaScript` a další. Zejména
-   však :pgsqlcmd:`PL/PgSQL <plpgsql>`, procedurální jazyk PostgreSQL, syntaxí
+   však :pgsqlcmd:`PL/PgSQL <plpgsql>`, procedurální jazyk PostgreSQL svou syntaxí
    podobný jazyku používanému v databázích :wikipedia:`Oracle`.
 
 Syntax
@@ -43,7 +45,7 @@ Pro výběr dat z tabulky tedy:
    PRO KTERÉ PLATÍ
    podmínka;
 
-.. note:: Dotazy v PostgreSQL zakončujeme středníkem.
+.. note:: SQL dotazy v PostgreSQL zakončujeme středníkem.
 
 DML
 ---
@@ -51,7 +53,7 @@ DML
 SELECT
 ^^^^^^
 
-Dotaz, kterým vybíráme data z databáze uvozuje příkaz :pgsqlcmd:`SELECT <sql-select>` následovaný
+Dotaz, kterým vybíráme data z databáze, uvozuje příkaz :pgsqlcmd:`SELECT <sql-select>` následovaný
 výčtem sloupců požadovaného výstupu. Výčet sloupců může být nahrazen ``*`` pro výběr všech sloupců.
 Pokud předřadíme výčtu sloupců :sqlcmd:`DISTINCT` bude dotaz vracet pouze unikátní kombinace
 hodnot.  Klauzule :sqlcmd:`FROM` uvozuje výčet tabulek,
@@ -125,8 +127,9 @@ V překladu do češtiny by dotaz mohl znít:
 JOIN
 ^^^^
 
-Rozlišujeme dva druhy joinů, tj. spojení tabulek: :sqlcmd:`INNER JOIN` 
-a :sqlcmd:`OUTER JOIN`.
+Rozlišujeme dva typy příkazu :pgsqlcmd:`JOIN
+<queries-table-expressions>`, tj. spojení tabulek: :sqlcmd:`INNER
+JOIN` a :sqlcmd:`OUTER JOIN`.
 
 :sqlcmd:`INNER JOIN` vrátí pouze takové záznamy, 
 kde došlo k nalezení potřebné hodnoty v obou tabulkách. Naproti tomu 
@@ -233,7 +236,7 @@ V rámci dotazu můžeme dotazovat další *vnořené* dotazy uzavřené do záv
 DDL
 ---
 
-:sqlcmd:`CREATE` a :sqlcmd:`DROP` jsou základní příkazy z **Data Definition Language**.
+:sqlcmd:`CREATE` a :sqlcmd:`DROP` jsou základní příkazy z *Data Definition Language*.
 Pomocí nich vytváříme tabulky, pohledy, omezení, funkce, typy a další.
 
    :pgsqlcmd:`CREATE TABLE <sql-createtable>`
@@ -257,11 +260,11 @@ kilometrů od Pece pod Sněžkou, kde hodláme strávit dovolenou.
 V takovém případě slečna musí porovnat místo výskytu s vámi zadanou 
 lokalitou.
 
-.. noteadvanced:: Je zjevné, že k požadovanému výsledku se může slečna 
-   dobrat různými, různě efektivními způsoby. Postup, kterým bude pracovat 
-   se nazývá `prováděcí plán` (query plan). K volbě ideálního způsobu slouží 
-   statistiky, které si databáze ukládá a které jsou aktualizovány po 
-   každém dotazu.
+.. noteadvanced:: Je zjevné, že k požadovanému výsledku se může slečna
+   dobrat různými, různě efektivními způsoby. Postup, kterým bude
+   pracovat se nazývá `prováděcí plán` (:wikipedia-en:`query plan`). K
+   volbě ideálního způsobu slouží statistiky, které si databáze ukládá
+   a které jsou aktualizovány po každém dotazu.
 
 Dotaz do SQL může potom vypadat následovně:
 
