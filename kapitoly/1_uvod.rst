@@ -139,6 +139,8 @@ zdaleka nekončí. Pro prostorovou reprezentaci používáme datový typ `geomet
 možné ukládat do `nerelačních datových typů` jako je :wikipedia:`JSON`, `hstore <http://www.postgresql.org/docs/current/static/hstore.html>`_ nebo :wikipedia:`XML`
 a dalo by se dále pokračovat.
 
+.. _indexy:
+
 Indexy
 ======
 

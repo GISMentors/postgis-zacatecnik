@@ -5,34 +5,50 @@ Přehled vybraných prostorových funkcí a operátorů
 Operátory
 ---------
 
+Mezi nejpoužívanější operátory patří:
+
 * ``&&`` - překryv minimálních ohraničujících obdélníků
 
-* ``<#>`` a ``<->`` - vzdálenost minimálních ohraničujících obdélníků,
-  vzdálenost centroidů
+* ``<#>`` - vzdálenost minimálních ohraničujících obdélníků
+
+* ``<->`` - vzdálenost centroidů
+
+.. note::
+
+     Více informací v :pgiscmd2:`dokumentaci PostGIS
+     <reference.html#Operators>`.
 
 Konstruktory
 ------------
 
-Přetypování
+Kostruktory jsou funkce vytvářející v PostGISu nové geometrické objekty.
+
+:pgiscmd:`ST_GeomFromText` geometrie z WKT.
+
+:pgiscmd:`ST_GeomFromGML`, :pgiscmd:`ST_GeomFromWKB`, :pgiscmd:`ST_Point`, ...
+
+K vytvoření geometrie lze použít kromě funkcí PostGISu i přetypování z
+:wikipedia-en:`WKT <Well-known text>`:
 
 .. code-block:: sql
 
    SELECT
    'SRID=5514; POLYGON((0 0,0 1,1 1,1 0,0 0))'::geometry(POLYGON, 5514);
 
-:pgiscmd:`ST_GeomFromTEXT` geometrie z WKT.
+.. note::
 
-:pgiscmd:`ST_GeomFromGML`, :pgiscmd:`ST_GeomFromWKB`, :pgiscmd:`ST_Point`, ...
-
-Více v :pgiscmd2:`dokumentaci PostGISu <reference.html#Geometry_Constructors>`.
+     Více informací v :pgiscmd2:`dokumentaci PostGIS
+     <reference.html#Geometry_Constructors>`.
          
 Výstupy
 -------
 
+Funkce umožňující převod geometrie do jiné reprezentace.
+
 :pgiscmd:`ST_AsText`, :pgiscmd:`ST_AsGML`, :pgiscmd:`ST_AsSVG`, ...
 
-Rozměry jedné geometrie
------------------------
+Rozměr geometrie
+----------------
 
 :pgiscmd:`ST_Area` plocha.
 
@@ -40,8 +56,8 @@ Rozměry jedné geometrie
 
 :pgiscmd:`ST_Length` délka.
 
-Další operace nad jednou geometrií
-----------------------------------
+Další operace nad geometrií
+---------------------------
 
 :pgiscmd:`ST_ExteriorRing` obvodová hranice.
 
@@ -55,7 +71,7 @@ Další operace nad jednou geometrií
 
 :pgiscmd:`ST_Buffer` obalová zóna.
 
-:pgiscmd:`ST_SetSRID` nastaví SRID.
+:pgiscmd:`ST_SetSRID` nastaví SRID (ID souřadnicového systému)
 
 ...
 
@@ -114,23 +130,23 @@ Jeho struktura je následující:
 .. table:: 
    :class: border
    
-   +-------------------+------------------------+--------------+----------+-------+
-   |      Sloupec      |          Typ           | Modifikátory | Uložení  | Popis |
-   +===================+========================+==============+==========+=======+
-   | f_table_catalog   | character varying(256) |              | extended |       |
-   +-------------------+------------------------+--------------+----------+-------+
-   | f_table_schema    | character varying(256) |              | extended |       |
-   +-------------------+------------------------+--------------+----------+-------+
-   | f_table_name      | character varying(256) |              | extended |       |
-   +-------------------+------------------------+--------------+----------+-------+
-   | f_geometry_column | character varying(256) |              | extended |       |
-   +-------------------+------------------------+--------------+----------+-------+
-   | coord_dimension   | integer                |              | plain    |       |
-   +-------------------+------------------------+--------------+----------+-------+
-   | srid              | integer                |              | plain    |       |
-   +-------------------+------------------------+--------------+----------+-------+
-   | type              | character varying(30)  |              | extended |       |
-   +-------------------+------------------------+--------------+----------+-------+
+   +-------------------+------------------------+----------+
+   |      Sloupec      |          Typ           | Uložení  |
+   +===================+========================+==========+
+   | f_table_catalog   | character varying(256) | extended |
+   +-------------------+------------------------+----------+
+   | f_table_schema    | character varying(256) | extended |
+   +-------------------+------------------------+----------+
+   | f_table_name      | character varying(256) | extended |
+   +-------------------+------------------------+----------+
+   | f_geometry_column | character varying(256) | extended |
+   +-------------------+------------------------+----------+
+   | coord_dimension   | integer                | plain    |
+   +-------------------+------------------------+----------+
+   | srid              | integer                | plain    |
+   +-------------------+------------------------+----------+
+   | type              | character varying(30)  | extended |
+   +-------------------+------------------------+----------+
 
 .. noteadvanced::
 
@@ -196,44 +212,54 @@ Výsledek může vypadat například takto:
 Jednoduchý atributový dotaz
 ---------------------------
 
-#. Zkuste vybrat parcely ze schématu *ruian_praha*:
+1) Vyberte parcely ze schématu *ruian_praha*:
 
-   #. s kódem ochrany `26` (pozemek určený k plnění funkcí lesa)
+   * s kódem ochrany `26` (pozemek určený k plnění funkcí lesa)
 
-   #. s druhem pozemku `10` (les)
-
-#. Vyberte stavební objekty ze schématu *ruian_praha* vybavené
-
-   #. plynem
-
-   #. výtahem a obarvěte je podle počtu podlaží
+   * s druhem pozemku `10` (les)
 
 .. note:: Nezapomeneme zkontrolovat, zda je sloupec, který
-   dotazujeme oindexován.
-
+   dotazujeme, :ref:`oindexován <indexy>`.
 
 .. code-block:: sql
 
-   SELECT * FROM ruian_praha.parcely WHERE druhpozemkukod = 10
+   SELECT * FROM ruian_praha.parcely WHERE druhpozemkukod = 10;
 
-.. figure:: ../images/atributovy_dotaz.png
+.. figure:: ../images/atributovy-dotaz.png
+   :class: middle
+	   
+   Ukázka SQL dotazu ve správci databází, výsledek dotazu je zobrazen
+   v QGISu jako nová mapová vrstva.
 
-   Ukázka SQL dotazu ve správci databází QGIS.
+.. code-block:: sql
 
+   SELECT * FROM ruian_praha.parcely WHERE druhpozemkukod = 26;
+
+2) Vyberte stavební objekty ze schématu *ruian_praha* vybavené
+
+   * plynem
+
+   * výtahem a obarvěte je podle počtu podlaží
+
+.. code-block:: sql
+		   
+   SELECT * FROM ruian_praha.stavebniobjekty
+   WHERE pripojeniplynkod IS NOT NULL;
+   
 .. code-block:: sql
 
    SELECT * FROM ruian_praha.stavebniobjekty 
-   WHERE vybavenivytahemkod IS NOT NULL
+   WHERE vybavenivytahemkod IS NOT NULL;
+
+.. figure:: ../images/atributovy-dotaz-mapa.png
+   :class: middle
+	   
+   Budovy v Praze s výtahem obarvené podle počtu podlaží.
 
 Jednoduchý prostorový dotaz
 ---------------------------
 
-#. Vypiště název obce a rozlohu v hektarech
-
-#. Zobrazte obce větší než 130 ha
-
-#. Nasymbolizujte vrstvu :dbtable:`ruian.obce` podle poměru rozlohy a
-   čtvrtiny obvodu na druhou.
+1) Vypiště název obce a její rozlohu v hektarech
 
 .. code-block:: sql
 
@@ -243,26 +269,41 @@ Jednoduchý prostorový dotaz
    FROM ruian.obce
    ORDER BY nazev; 
 
+2) Zobrazte obce větší než 130 ha
 
-.. figure:: ../images/pomer_rozlohy_a_obvodu.png
+.. code-block:: sql
 
-.. figure:: ../images/pomer_rozlohy_a_obvodu_2.png
+   SELECT 
+   *
+   FROM ruian.obce
+   WHERE ST_Area(geom)/1e4 > 130;
+
+3) Nasymbolizujte vrstvu :dbtable:`ruian.obce` podle poměru rozlohy a
+   čtvrtiny obvodu na druhou.
+
+.. code-block:: sql
+
+   SELECT ogc_fid, nazev, geom, ST_Area(geom) / power( ST_Perimeter(geom)/4, 2) AS pomer
+   FROM ruian.obce;
+
+.. figure:: ../images/pomer-rozlohy-a-obvodu.png
+   :class: middle
+
+   Výsledek dotazu nahrajeme do QGISu jako novou mapovou vrstvu.
+	
+.. figure:: ../images/pomer-rozlohy-a-obvodu-2.png
    :class: middle
         
    Symbolizaci vrstvy provedeme v QGISu.
 
-Jednoduchý atributový JOIN
---------------------------
+Atributový JOIN
+---------------
 
-#. Obarvěte obce (:dbtable:`ruian.obce`)
+1) Obarvěte obce (:dbtable:`ruian.obce`)
 
-   #. podle počtu obyvatel (:dbtable:`csu_sldb.sldb`)
+   * podle počtu obyvatel (:dbtable:`csu_sldb.sldb`)
 
-   #. počtu obyvatel na kilometr čtvereční
-
-#. Obarvěte ORP (:dbtable:`ruian.orp`)
-
-   #. podle zastoupení jasanu (:dbtable:`slhp.slhp`)
+   * počtu obyvatel na kilometr čtvereční
 
 .. code-block:: sql
 
@@ -273,6 +314,10 @@ Jednoduchý atributový JOIN
    s.uzcis = '43' --obce
    AND s.uzkod = o.kod
    order by vse1111/(ST_Area(geom)/1e6) 
+
+2) Obarvěte ORP (:dbtable:`ruian.orp`)
+
+   * podle zastoupení jasanu (:dbtable:`slhp.slhp`)
 
 .. code-block:: sql
 
@@ -288,28 +333,38 @@ Jednoduchý atributový JOIN
 Prostorový JOIN
 ---------------
 
-#. Vyberte obce, na jejichž území je požární stanice.
+1) Vyberte obce, na jejichž území je požární stanice.
 
-#. Najděte obce, na jejichž území leží více než jedna požární stanice.
+.. code-block:: sql
 
-#. Na území které obce leží nejvíce požárních stanic?
+   SELECT o.nazev
+   FROM ruian.obce o
+   JOIN osm.pozarni_stanice p ON ST_Within(p.geom, o.geom)
+   GROUP BY o.kod, o.nazev;
 
-#. Vyberte parcely v Praze, které leží na MZCHU.
-
-#. Které z nich nemají správně kód způsobu ochrany?
-
-#. Najděte v Praze budovy ohrožené stoletou vodou.
-
+2) Najděte obce, na jejichž území leží více než jedna požární stanice.
 
 .. code-block:: sql
 
    SELECT o.nazev, count(*)
    FROM ruian.obce o
    JOIN osm.pozarni_stanice p ON ST_Within(p.geom, o.geom)
-   GROUP BY o.nazev
-   ORDER BY count(*) DESC
-   LIMIT 5
+   GROUP BY o.kod, o.nazev
+   HAVING count(*) > 1
+   ORDER BY count(*) DESC;
+   
+3) Na území které obce leží nejvíce požárních stanic?
 
+.. code-block:: sql
+
+   SELECT o.nazev, count(*)
+   FROM ruian.obce o
+   JOIN osm.pozarni_stanice p ON ST_Within(p.geom, o.geom)
+   GROUP BY o.kod, o.nazev
+   ORDER BY count(*) DESC
+   LIMIT 1;		
+
+4) Vyberte parcely v Praze, které leží na MZCHU.
 
 .. code-block:: sql
 
@@ -327,11 +382,17 @@ Prostorový JOIN
 
    COMMIT;
 
+5) Které z nich nemají správně kód způsobu ochrany?
+
+6) Najděte v Praze budovy ohrožené stoletou vodou.
+
+
 
 Buffer
 ------
 
-#. Vytvořte obalovou zónu s tloušťkou klesající s řádem kolem vodních toků (:dbtable:`dibavod.vodni_toky`)
+1) Vytvořte obalovou zónu s tloušťkou klesající s řádem kolem vodních
+   toků (:dbtable:`dibavod.vodni_toky`)
 
 
 .. code-block:: sql
@@ -350,8 +411,7 @@ Buffer
            JOIN povodi_jizery j
            ON j.tok_id = v.tokrec_id
    )
-
-   SELECT row_number() over() rid, * FROM povodi_jizery
+   SELECT row_number() over() rid, * FROM povodi_jizery;
 
 .. raw:: latex
 
@@ -410,12 +470,12 @@ Buffer
    SELECT 
    rid
    , ST_Buffer(geom, 90-(rad * 10)) geom
-   FROM jelen.povodi_jizery
+   FROM jelen.povodi_jizery;
 
 Agregace
 --------
 
-#. Vytvořte mapu POU (pověřené obce) z vrstvy obcí.
+1) Vytvořte mapu POU (pověřené obce) z vrstvy obcí.
 
 .. code-block:: sql
 
@@ -423,12 +483,12 @@ Agregace
    ST_Union(geom) geom
    , poukod 
    FROM ruian.obce 
-   GROUP BY poukod 
+   GROUP BY poukod; 
 
 Prostorové analýzy
 ------------------
 
-#. Obarvěte katastrální území podle toho, kolik procent území je v NP
+1) Obarvěte katastrální území podle toho, kolik procent území je v NP
 
 .. code-block:: sql
 

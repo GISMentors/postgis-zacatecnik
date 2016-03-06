@@ -68,7 +68,7 @@ jako novou vrstvu :map:`obce_pozarni_stanice` :fignote:`(2)`.
 
    .. code-block:: sql
                    
-      SELECT o.* FROM ruian.obce_polygon AS o JOIN osm.pozarni_stanice AS p
+      SELECT o.* FROM ruian.obce AS o JOIN osm.pozarni_stanice AS p
        ON ST_Within(p.geom, o.geom);
 
    Dotaz vracím obce, ve kterých je více než jedna požární stanice,
@@ -77,7 +77,7 @@ jako novou vrstvu :map:`obce_pozarni_stanice` :fignote:`(2)`.
 
    .. code-block:: sql
 
-      SELECT o.* FROM ruian.obce_polygon AS o WHERE EXISTS
+      SELECT o.* FROM ruian.obce AS o WHERE EXISTS
       (
        SELECT 1 FROM osm.pozarni_stanice AS p WHERE ST_Within(p.geom, o.geom)
       );
