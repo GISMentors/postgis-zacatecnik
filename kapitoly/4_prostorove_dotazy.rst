@@ -1,5 +1,9 @@
 .. |sqlwindow| image:: ../images/qgis-db-manager-sql-toolbar.png
    :width: 24px
+.. |pgNewConnection| image:: ../images/pgadmin-new-conn-toolbar.png
+   :width: 24px
+.. |pgSQLWindow| image:: ../images/pgadmin-sql-window-toolbar.png
+   :width: 24px
 
 =================
 Prostorové dotazy
@@ -73,16 +77,14 @@ jako novou vrstvu :map:`obce_pozarni_stanice` :fignote:`(2)`.
 
    .. code-block:: sql
 
-      SELECT row_number() over() id, o.* FROM ruian.obce_polygon AS o WHERE EXISTS
+      SELECT o.* FROM ruian.obce_polygon AS o WHERE EXISTS
       (
        SELECT 1 FROM osm.pozarni_stanice AS p WHERE ST_Within(p.geom, o.geom)
       );
 
-   Kvůli QGISu přidáme ještě nově vytvořený sloupec :dbcolumn:`id` s
-   jednoznačným číselným identifikátorem.
-
 .. figure:: ../images/qgis-query-new-layer.png
-
+   :class: middle
+	   
 .. note:: Alternativně můžete novou vrsvu vytvořit v databázi rovnou
           jako novou tabulku anebo pohled a zobrazit v QGISu standardní cestou.
 
@@ -103,14 +105,25 @@ jako novou vrstvu :map:`obce_pozarni_stanice` :fignote:`(2)`.
               
    Výsledek prostorového dotazu.
 
-Alternativní přístup z PgAdmin
-------------------------------
+Přístup z PgAdmin
+-----------------
 
-Přidáme nové spojení.
+SQL dotazy můžeme provádět v grafické uživatelském prostředí `PgAdmin
+<http://www.pgadmin.org/>`_.
 
-.. figure:: ../images/pgadmin-new-conn-toolbar.png
-   :class: small
-	    
+.. note::
+
+   Pokud používáte QGIS, tak Vám PgAdmin nepřinese nic nového, spíše
+   naopak. PgAdmin není GIS aplikace. Neumožní Vám zobrazit výsledky
+   prostorových dotazů v mapovém okně podobně jako QGIS. Jde o
+   grafické uživatelské rozhraní pro přístup k databázi PostgreSQL,
+   nic víc. Navíc nepodporuje našeptávání a další užitečné funkce. Pro
+   efektivní práci s databází se nejvíce hodí konzolový klient
+   :program:`psql`, více na školení :skoleni:`PostGIS pro pokročilé
+   <postgis-pokrocily>`.
+
+Přidáme nové spojení |pgNewConnection|.
+
 V následujícím dialogu vyplníme parametry připojení k databázi.
 
 .. figure:: ../images/pgadmin-new-conn-dialog.png
@@ -124,17 +137,11 @@ V následujícím dialogu vyplníme parametry připojení k databázi.
 Připojení se přidá do seznamu.
 
 .. figure:: ../images/pgadmin-new-conn.png
-   :class: small
+   :class: middle
 
-Otevřeme SQL okno, do kterého budeme moci posléze psát SQL dotazy.
-
-.. figure:: ../images/pgadmin-sql-window-toolbar.png
+Otevřeme SQL dialog, který nám umožní provádět SQL dotazy |pgSQLWindow|.
 
 .. figure:: ../images/pgadmin-sql-window.png
    :class: middle
 
    Příklad určení počtu obcí v ČR.
-
-.. note:: Narozdíl od správce databází QGIS či konzolového nástroje
-          psql nepodporuje PgAdmin našeptávání, což je z pohledu
-          uživatelského konfortu značné mínus.
