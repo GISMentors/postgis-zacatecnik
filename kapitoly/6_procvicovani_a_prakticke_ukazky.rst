@@ -2,6 +2,9 @@
 Přehled vybraných prostorových funkcí a operátorů
 =================================================
 
+.. index::
+   single: operátory
+
 Operátory
 ---------
 
@@ -17,6 +20,10 @@ Mezi nejpoužívanější operátory patří:
 
      Více informací v :pgiscmd2:`dokumentaci PostGIS
      <reference.html#Operators>`.
+
+.. index::
+   single: konstruktory
+   single: geometrie
 
 Konstruktory
 ------------
@@ -39,13 +46,19 @@ K vytvoření geometrie lze použít kromě funkcí PostGISu i přetypování z
 
      Více informací v :pgiscmd2:`dokumentaci PostGIS
      <reference.html#Geometry_Constructors>`.
-         
+
+.. index::
+   single: export dat
+
 Výstupy
 -------
 
 Funkce umožňující převod geometrie do jiné reprezentace.
 
 :pgiscmd:`ST_AsText`, :pgiscmd:`ST_AsGML`, :pgiscmd:`ST_AsSVG`, ...
+
+.. index::
+   single: vlastnosti geometrie
 
 Rozměr geometrie
 ----------------
@@ -75,6 +88,9 @@ Další operace nad geometrií
 
 ...
 
+.. index::
+   single: prostorové vztahy
+
 Vzájemná poloha dvou geometrií
 ------------------------------
 
@@ -101,6 +117,9 @@ Geometrické operace
 :pgiscmd:`ST_Difference` rozdíl.
 
 :pgiscmd:`ST_SymDifference` symetrický rozdíl.
+
+.. index::
+   single: agregace
 
 Agregace
 --------

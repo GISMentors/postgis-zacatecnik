@@ -8,6 +8,9 @@ Databáze
 Kdy ukládat data do databáze?
 =============================
 
+.. index::
+   single: zdroje dat
+	   
 V geoinformatické praxi pracujeme se třemi typy zdrojů dat. V prvé
 řadě se jedná o data uložená v souborovém systému. Hovoříme-li o
 vektorových datech, tak může jít typicky o data v zastaralém, leč
@@ -43,6 +46,8 @@ možné efektivně pracovat s daty uloženými v souborech. Naproti tomu v
 databázi můžeme pomocí indexů přistupovat přímo k jednotlivým záznamům
 tak, jak jsou uloženy na datových stránkách.
 
+.. index::
+   single: referenční integrita
 
 Referenční integrita
 ^^^^^^^^^^^^^^^^^^^^
@@ -76,6 +81,10 @@ pokročilejší a umožňuje, aby nad jednou datovou sadou mohlo pracovat více 
 najednou. V databázi je navíc možné nastavovat práva na zápis, čtení a manipulaci
 s tabulkami, schématy, funkcemi... Podobně jako v souborovém systému.
 
+.. index::
+   single: referenční integrita
+   single: ACID
+
 Transakce
 ^^^^^^^^^
 
@@ -84,10 +93,12 @@ Typická (a tím pádem pěkně otřepaný případ) je situace, kdy převádím
 účtu na účet. Tedy, nebylo by dobré, aby byly z jednoho účtu peníze odečteny, aniž by na
 cílový účet byly přidány.
 
-Seznam požadavků na transakční databázi bývá označován zkratkou :wikipedia:`ACID`. Znamená to
-`Atomic, Consistent, Isolated, Durable`. Znamená to, že transakce je nedělitelná,
-před i po jejím proběhnutí musí být platná referenční integrita, transakce se navzájem
-neovlivňují a změny jsou trvalé i po případné havárii databázového serveru.
+Seznam požadavků na transakční databázi bývá označován zkratkou
+:wikipedia:`ACID`. Znamená to `Atomic, Consistent, Isolated,
+Durable`. Znamená to, že transakce je nedělitelná, před i po jejím
+proběhnutí musí být platná referenční integrita, transakce se navzájem
+neovlivňují a změny jsou trvalé i po případné havárii databázového
+serveru.
 
 Co je databáze?
 ---------------
@@ -106,6 +117,9 @@ vyhradíme? Jak budeme nakládat s místem po vyřazených svazcích (proces
 :sqlcmd:`VACUUM`)? A tak dále. Se svými zaměstnanci komunikujeme v jazyce :doc:`SQL <3_jazyk_sql>` (pokud 
 tedy hovoříme o relační databázi).
 
+.. index::
+   single: tabulka
+
 Tabulky
 =======
 
@@ -114,6 +128,9 @@ svisle dělena na jednotlivé sloupce (často označovány jako atributy
 nebo položky) a vodorovně na řádky (záznamy).  Data v jednom sloupci
 musí mít stejný `datový typ` (datum, celé číslo, číslo s plovoucí
 desetinnou čárkou, textový řetězec apod.).
+
+.. index::
+   single: schéma
 
 Schémata
 ========
@@ -129,8 +146,11 @@ do schémat geograficky. Další výhodné využití je při historizování
 záznamů, kdy máme schéma `historie` s podobnou strukturou jako schéma
 s platnými daty.
 
-Typy
-====
+.. index::
+   single: datové typy
+
+Datové typy
+===========
 
 Datové typy odpovídají typům z programovacích jazyků typu C. Základem jsou celočíselné
 typy (`integer`, `bigint` apod.) a řetězce (`varchar`, `char`, `text` ...), tím ovšem výčet
@@ -138,6 +158,10 @@ zdaleka nekončí. Pro prostorovou reprezentaci používáme datový typ `geomet
 `geography`. Záznamu v tabulce odpovídají kompozitní typy, celé datové struktury je
 možné ukládat do `nerelačních datových typů` jako je :wikipedia:`JSON`, `hstore <http://www.postgresql.org/docs/current/static/hstore.html>`_ nebo :wikipedia:`XML`
 a dalo by se dále pokračovat.
+
+.. index::
+   single: index
+   single: B-tree
 
 .. _indexy:
 
@@ -161,6 +185,10 @@ bychom museli porovnat požadovanou hodnotu se všemi záznamy.
    položkami s takovým typem dat, který je možné porovnávat pomocí operátorů
    ``<`` a ``>``. Nehodí se tedy pro data vícedimenzionální, např. prostorová data.
 
+.. index::
+   single: omezení
+   single: constraints
+
 Omezení (constraints)
 =====================
 
@@ -174,6 +202,10 @@ s rozlohou větší než hektar apod.
 
 Zde je dobré si uvědomit, že pokud se pokusíte vložit data do sloupce a porušíte omezení, vrátí server
 chybu. Pokud tedy bude tato dávka součástí transakce, neprovede se celá transakce.
+
+.. index::
+   single: pohled
+   single: view
 
 Pohledy (views)
 ===============
@@ -189,7 +221,12 @@ pohledy vygenerován. Proto může být snadno přegenerován příkazem
 :pgsqlcmd:`REFRESH MATERIALIZE VIEW <sql-refreshmaterializedview>`.
 
 .. note:: Materializované pohledy podporuje PostgreSQL až od verze 9.3.
-                    
+
+.. index::
+   single: trigger
+   single: DML
+   single: DLL
+
 Triggery
 ========
 
@@ -208,6 +245,9 @@ Obdobou triggerů jsou :pgsqlcmd:`pravidla <sql-createrule>`, ta ovšem nedispon
 se jich příliš používat. Nicméně občas se mohou hodit, pokud chceme pracovat s pohledem jako s tabulkou a nastavit,
 co se má dít při vkládání nebo manipulaci s daty.
 
+.. index::
+   single: funkce
+
 Funkce
 ======
 
@@ -224,6 +264,9 @@ Nastavování práv k funkcím je složitější než u pohledů, je možno nast
 přistupuje funkce k tabulkám s právy svého tvůrce.
 
 .. _prostorova_db:
+
+.. index::
+   single: prostorová databáze
 
 A co prostorová databáze?
 -------------------------

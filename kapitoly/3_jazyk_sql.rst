@@ -1,3 +1,9 @@
+.. index::
+   single: 
+   single: SQL
+   single: DCL
+   single: TCL
+
 =========
 Jazyk SQL
 =========
@@ -47,8 +53,14 @@ Pro výběr dat z tabulky tedy:
 
 .. note:: SQL dotazy v PostgreSQL zakončujeme středníkem.
 
+.. index::
+   single: DML
+
 DML
 ---
+
+.. index::
+   single: SELECT
 
 SELECT
 ^^^^^^
@@ -123,6 +135,9 @@ V překladu do češtiny by dotaz mohl znít:
    Z tabulky
    [PRO KTERÉ PLATÍ 
       podmínka]
+      
+.. index::
+   single: JOIN
 
 JOIN
 ^^^^
@@ -170,6 +185,9 @@ používat, zvláště v databázích s proměnlivou strukturou.
    JOIN recept ON recept.id = r_recept.recept_id
    WHERE recept.nazev = 'smaženice';
 
+.. index::
+   single: UPDATE
+
 UPDATE
 ^^^^^^
 
@@ -183,6 +201,9 @@ Příklad nastavení výskýtu od 1.června pro všechny houhy z rodu "amanita":
 
    UPDATE smotlacha_atlas_hub SET vyskyt_od = '1.6.' WHERE rod_lat = 'amanita';
 
+.. index::
+   single: DELETE
+
 DELETE
 ^^^^^^
 
@@ -194,6 +215,9 @@ Příklad odstranění všech jedlých hub z tabulky:
 
    DELETE smotlacha_atlas_hub WHERE jedla = true;
 
+.. index::
+   single: TRUNCATE
+
 TRUNCATE
 ^^^^^^^^
 
@@ -203,6 +227,9 @@ tabulky. Je rychlejší, než použití :sqlcmd:`DELETE` bez podmínek.
 .. code-block:: sql
 
    TRUNCATE smotlacha_atlas_hub;
+
+.. index::
+   single: UNION
 
 Množinové operace
 ^^^^^^^^^^^^^^^^^
@@ -222,6 +249,9 @@ vrátí všechny záznamy, výsledkem sjednocení je tedy součet záznamů z ob
 recordsetu. :sqlcmd:`INTERSECT` vrací průnik. Tedy záznamy, které se vyskytují v obou
 recordsetech.
 
+.. index::
+   single: poddotazy
+
 Poddotazy
 ^^^^^^^^^
 
@@ -237,6 +267,11 @@ V rámci dotazu můžeme dotazovat další *vnořené* dotazy uzavřené do záv
       )
    ) recepty_na_bedly
    JOIN recepty ON recepty.id = recepty_na_bedly.recept_id;
+
+.. index::
+   single: DDL
+   single: CREATE
+   single: DROP
 
 DDL
 ---
@@ -254,8 +289,6 @@ Pomocí nich vytváříme tabulky, pohledy, omezení, funkce, typy a další.
 
    ...
 
-
-
 A co prostorová databáze?
 -------------------------
 
@@ -270,6 +303,9 @@ lokalitou.
    pracovat se nazývá `prováděcí plán` (:wikipedia-en:`query plan`). K
    volbě ideálního způsobu slouží statistiky, které si databáze ukládá
    a které jsou aktualizovány po každém dotazu.
+
+.. index::
+   single: ST_Distance
 
 Dotaz do SQL může potom vypadat následovně:
 

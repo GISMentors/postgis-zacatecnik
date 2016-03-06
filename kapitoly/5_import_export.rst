@@ -1,6 +1,10 @@
 .. |dbManagerImport| image:: ../images/qgis-db-manager-import.png
    :width: 24px
 
+.. index::
+   single: import data
+   single: QGIS
+
 ==============================
 Import a export dat z databáze
 ==============================
@@ -8,12 +12,18 @@ Import a export dat z databáze
 Nahráváme vlastní data do databáze
 ----------------------------------
 
+.. index::
+   single: správce databází
+
 Správce databází
 ^^^^^^^^^^^^^^^^
 
 Předpokládáme, že každý uživatel pracuje ve vlastní databázovém
 schématu. Toto schéma vytvoříme pomocí :ref:`správce databází
 <db-manager>` v QGISu.
+
+.. index::
+   single: schéma
 
 Vytvoření databázového schématu
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -70,6 +80,9 @@ PostgreSQL`.
 	     nijak udržován. Pro import dat se doporučuje používat
 	     *správce databází*.
 
+.. index::
+   single: pgadmin
+
 pgAdmin
 ~~~~~~~
 
@@ -90,6 +103,9 @@ Pro pokročilé uživatele
 .. tip:: Více k tomuto tématu ve školení :skoleni:`PostGIS pro
          pokročilé
          <postgis-pokrocily/kapitoly/3_shp2pgsql_a_davkove_nahrani.html>`.
+
+.. index::
+   single: shp2pgsql
 
 shp2pgsql
 ~~~~~~~~~
@@ -120,6 +136,9 @@ instalace PostGIS.
 
       psql gismentors -U skoleni -W -h training.gismentors.eu -f wc.sql
 
+.. index::
+   single: ogr2pgr
+
 .. _import-ogr2ogr:
 
 ogr2ogr
@@ -138,6 +157,10 @@ formáty podporovanými touto knihovnou.
       active_schema=skoleni" \
       FSV_VerejnaWC_b.shp \
       -a_srs EPSG:5514
+
+.. index::
+   single: export dat
+   single: QGIS
 
 Export dat z databáze
 ---------------------
@@ -168,6 +191,9 @@ GDAL.
 .. tip:: Více k tomuto tématu ve školení :skoleni:`PostGIS pro
          pokročilé <postgis-pokrocily>`.
 
+.. index::
+   single: pgsql2shp
+
 pgsql2shp
 ~~~~~~~~~
 
@@ -184,6 +210,9 @@ PostGIS kromě nástroje pro import dat ve formátu Esri Shapefile
       
       pgsql2shp -h training.gismentors.eu -u skoleni -P XXX -f obce gismentors \
       ruian.obce
+
+.. index::
+   single: ogr2ogr
 
 ogr2ogr
 ~~~~~~~

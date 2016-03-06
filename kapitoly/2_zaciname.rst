@@ -6,7 +6,11 @@ desktopového programu `QGIS <http://www.qgis.org>`_.
 
 .. note:: Více o tomto programu se dozvíte na :skoleni:`školení QGIS
           pro začátečníky <qgis-zacatecnik>`.
-          
+
+.. index::
+   single: zobrazení dat
+   single: QGIS
+
 Zobrazujeme data v QGIS
 -----------------------
 
@@ -90,7 +94,11 @@ přetáhneme z datového katalogu do mapového okna.
 .. figure:: ../images/../images/qgis-catalog-layer.png
    :class: middle
    :scale-latex: 75
-	   
+
+.. index::
+   single: editace dat
+   single: QGIS
+
 Editujeme vektorová data
 ------------------------
 

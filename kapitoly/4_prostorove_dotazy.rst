@@ -12,6 +12,11 @@ Prostorové dotazy
 Připojujeme se do databáze z QGIS
 ---------------------------------
 
+.. index::
+   single: správce databází
+   single: QGIS
+   single: schéma
+
 Přístup do databáze umožnuje zásuvný modul QGISu :program:`DB
 Manager` (Správce databází).
 
@@ -40,6 +45,9 @@ Můžeme procházet metadata jednotlivých vrstev uložených v geodatabázi.
 Provádíme SQL dotazy
 --------------------
 
+.. index::
+   single: SQL
+
 Otevřeme dialog SQL okna |sqlwindow|, které nám umožní provádět
 jednoduché :doc:`SQL dotazy <3_jazyk_sql>` přímo v prostředí aplikace
 QGIS.
@@ -53,6 +61,10 @@ QGIS.
 .. tip:: Pokročilejší uživatele ocení spíše konzolový nástroj
          :program:`psql`. Více k tomuto tématu ve školení
          :skoleni:`PostGIS pro pokročilé <postgis-pokrocily>`.
+
+.. index::
+   single: mapová vrstva
+   single: QGIS
 
 Vytváříme novou vrstvu jako výsledek prostorového dotazu
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -106,6 +118,9 @@ jako novou vrstvu :map:`obce_pozarni_stanice` :fignote:`(2)`.
    :scale-latex: 70
               
    Výsledek prostorového dotazu.
+
+.. index::
+   single: pgadmin
 
 .. _pgadmin3:
    

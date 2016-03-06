@@ -1,11 +1,21 @@
+.. index::
+   single: instalace
+
 ======================================
 Poznámky k instalaci a obnově databáze
 ======================================
+
+.. index::
+   single: GNU/Linux
 
 GNU/Linux
 ---------
 
 Z distrubičního balíčku dané Linuxové distribuce.
+
+.. index::
+   single: Ubuntu
+   single: Debian
 
 Ubuntu / Debian
 ^^^^^^^^^^^^^^^
@@ -13,6 +23,9 @@ Ubuntu / Debian
 .. code-block:: bash
 
    apt-get install postgis
+
+.. index::
+   single: MS Windows
 
 MS Windows
 ----------
@@ -118,6 +131,9 @@ naimportovat testovací databázi GISMentors.
 
    \newpage
 
+.. index::
+   single: databáze GISMentors
+
 Import databáze GISMentors
 --------------------------
 
@@ -125,6 +141,9 @@ Soubor ke stažení: http://training.gismentors.eu/geodata/postgis/gismentors.du
 
 Databázi GISMentors lze naimportovat z grafické aplikace PgAdmin anebo
 z příkazové řádky.
+
+.. index::
+   single: pgadmin
 
 PgAdmin
 ^^^^^^^
