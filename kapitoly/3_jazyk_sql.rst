@@ -149,15 +149,20 @@ používat, zvláště v databázích s proměnlivou strukturou.
 
 .. code-block:: sql
 
-   SELECT houby.rod || ' ' || houby.druh, lokalita.nazev, houby.vyskyt  -- vyber "rod druh", "lokalita", "vyskyt"
-   FROM houby                                                           -- z tabulky houby
-   JOIN lokalita ON houby.id = lokalita.houby_id                        -- spoj podle sloupečků s id houby
-   WHERE ST_Intersects(                                                 -- ale pouze tam, kde lokalita je v oblasti "Vysočina"
+   -- vyber "rod druh", "lokalita", "vyskyt"
+   SELECT houby.rod || ' ' || houby.druh, lokalita.nazev, houby.vyskyt
+   -- z tabulky houby		
+   FROM houby
+   -- spoj podle sloupečků s id houby		
+   JOIN lokalita ON houby.id = lokalita.houby_id
+   -- ale pouze tam, kde lokalita je v oblasti "Vysočina"		
+   WHERE ST_Intersects(                                                 
       (
          SELECT geom FROM oblasti WHERE nazev = 'Vysočina'
       )
       , lokalita.geom)
-   AND houby.vyskyt @> '2015-07-15'::timestamp;                         -- a pouze tam, kde výsky je "od"
+   -- a pouze tam, kde výsky je "od"
+   AND houby.vyskyt @> '2015-07-15'::timestamp;                         
 
    SELECT houby.rod || ' ' || houby.druh                    
    FROM houby

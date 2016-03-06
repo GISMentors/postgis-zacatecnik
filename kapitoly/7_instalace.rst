@@ -46,29 +46,21 @@ Stáhněte a nainstalujte `PostgreSQL from EnterpriseDB
    V dalším kroku zvolte adresář, kam se budou ukládat uživatelská
    data (mohou být velká podle toho k čemu budete databázi využívat).
 
-.. raw:: latex
-
-   \newpage
-   
-.. figure:: ../images/instalace-win-4.png
-   :width: 400px
-   :scale-latex: 48
-              
 Spusťte nástroj *StackBuilder* a z něho doinstalujte PostGIS.
       
 .. figure:: ../images/instalace-win-5.png
    :width: 400px
    :scale-latex: 48
-              
+
+.. raw:: latex
+
+   \newpage
+
 .. figure:: ../images/instalace-win-6.png
    :width: 400px
    :scale-latex: 48
               
    Zvolíme databázový server, do kterého chceme doinstalovat PostGIS.
-
-.. raw:: latex
-
-   \newpage
 
 .. figure:: ../images/instalace-win-7.png
    :width: 400px
@@ -100,9 +92,10 @@ Spusťte nástroj *StackBuilder* a z něho doinstalujte PostGIS.
 .. noteadvanced::
 
    V PostGIS lze pracovat i s rastrovými daty, viz :skoleni:`školení
-   pro pokrocilé <postgis-pokrocily>`. Pokud plánujeme pracovat i s
-   rastrovými daty v databázi PostGIS musíme tuto funkcionalitu
-   aktivovat už při instalaci.
+   PostGIS pro pokročilé
+   <postgis-pokrocily/kapitoly/9_rastry.html>`. Pokud plánujeme
+   pracovat i s rastrovými daty v databázi PostGIS musíme tuto
+   funkcionalitu aktivovat již při instalaci.
 
 
    .. figure:: ../images/instalace-win-11.png
@@ -117,36 +110,40 @@ Spusťte nástroj *StackBuilder* a z něho doinstalujte PostGIS.
       :width: 400px
       :scale-latex: 48
                  
-.. figure:: ../images/instalace-win-14.png
-   :width: 400px
-   :scale-latex: 48
-              
 Po úspěšné instalaci PostgreSQL a PostGIS doporučujeme nainstalovat
-také aplikaci `PgAdmin 3 <http://www.pgadmin.org>`_, pomocí které
-naimportujeme testovací databázi GISMentors.
+také aplikaci `PgAdmin <http://www.pgadmin.org>`_, pomocí kterého lze
+naimportovat testovací databázi GISMentors.
 
 .. raw:: latex
 
    \newpage
 
-Obnova databáze GISMentors
+Import databáze GISMentors
 --------------------------
 
 Soubor ke stažení: http://training.gismentors.eu/geodata/postgis/gismentors.dump
 
-PgAdmin 3
-^^^^^^^^^
+Databázi GISMentors lze naimportovat z grafické aplikace PgAdmin anebo
+z příkazové řádky.
+
+PgAdmin
+^^^^^^^
 
 .. figure:: ../images/restore-db-1.png
-
+   :scale-latex: 45
+	      
    Po připojení k databázovému serveru vytvoříme novou databázi.
 
 .. figure:: ../images/restore-db-2.png
    :width: 400px
-   :scale-latex: 45
+   :scale-latex: 40
               
    Databázi nazveme "gismentors".
 
+.. raw:: latex
+
+   \newpage
+   
 .. figure:: ../images/restore-db-3.png
 
    Z kontextového menu nad databázi zvolíme funkci "Obnovit".
@@ -160,7 +157,11 @@ PgAdmin 3
 .. figure:: ../images/restore-db-5.png
    :width: 400px   
    :scale-latex: 45
-              
+
+.. raw:: latex
+
+   \newpage
+
 .. figure:: ../images/restore-db-6.png
 
    V sekci "Volby obnovení" zaškrtěte "Nekládat - vlastník".
@@ -168,7 +169,7 @@ PgAdmin 3
 .. warning:: Tato volba je důležitá, jinak skončí import chybou!
 
 .. figure:: ../images/restore-db-7.png
-   :scale-latex: 70
+   :scale-latex: 55
               
 Z příkazové řádky
 ^^^^^^^^^^^^^^^^^            
@@ -179,5 +180,5 @@ Z příkazové řádky
    createdb gismentors
    pg_restore gismentors.dump | psql gismentors
 
-Kompletní skript pro Bash `zde
-<https://raw.githubusercontent.com/GISMentors/dataset/master/postgis/create_gismentors.sh>`_.
+Kompletní skript pro Bash ke stažení `zde
+<https://raw.githubusercontent.com/GISMentors/dataset/master/postgis/create_db_from_dump.sh>`_.

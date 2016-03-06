@@ -23,10 +23,11 @@ nejprve toto schéma vytvoříme :menuselection:`Schéma --> Vytvořit
 schéma`.
 
 .. figure:: ../images/qgis-db-manager-new-schema-prop.png
-            :width: 700px
-
-            V nově vytvořeném schématu již má uživatel "skoleni" právo
-            zápisu.
+   :width: 700px
+   :scale-latex: 65
+		    
+   V nově vytvořeném schématu již má uživatel "skoleni" právo
+   zápisu.
 
 Import dat
 ~~~~~~~~~~
@@ -45,7 +46,7 @@ cílového souřadnicového systému :fignote:`(3)`.
 
 .. figure:: ../images/qgis-db-manager-create-table.png
 	    :width: 400px
-            :scale-latex: 50
+            :scale-latex: 60
 
 .. note:: Ve níže uvedeném případě importujeme vrstvu veřejných toalet
           z `otevřené datové sady IPR
@@ -138,10 +139,6 @@ formáty podporovanými touto knihovnou.
       FSV_VerejnaWC_b.shp \
       -a_srs EPSG:5514
 
-.. raw:: latex
-
-   \newpage
-
 Export dat z databáze
 ---------------------
 
@@ -154,7 +151,8 @@ V následujícím dialogu zvolíme požadovaný výstupní formát a připadně
 další volby, kterou jsou již závislé na zvoleném formátu.
 
 .. figure:: ../images/qgis-export-dialog.png
-
+   :scale-latex: 45
+	      
    Příklad exportu vektorových dat z databáze do formátu OGC GML.
 
 

@@ -148,6 +148,10 @@ Jeho struktura je následující:
    | type              | character varying(30)  | extended |
    +-------------------+------------------------+----------+
 
+.. raw:: latex
+
+   \vskip 1em
+
 .. noteadvanced::
 
    PostGIS definuje pohled :dbtable:`geometry_columns` následovně:
@@ -253,7 +257,8 @@ Jednoduchý atributový dotaz
 
 .. figure:: ../images/atributovy-dotaz-mapa.png
    :class: middle
-	   
+   :scale-latex: 65
+	      
    Budovy v Praze s výtahem obarvené podle počtu podlaží.
 
 Jednoduchý prostorový dotaz
@@ -283,17 +288,26 @@ Jednoduchý prostorový dotaz
 
 .. code-block:: sql
 
-   SELECT ogc_fid, nazev, geom, ST_Area(geom) / power( ST_Perimeter(geom)/4, 2) AS pomer
+   SELECT ogc_fid
+   , nazev
+   , geom
+   , ST_Area(geom) / power( ST_Perimeter(geom)/4, 2) AS pomer
    FROM ruian.obce;
 
 .. figure:: ../images/pomer-rozlohy-a-obvodu.png
    :class: middle
-
+   :scale-latex: 85
+	      
    Výsledek dotazu nahrajeme do QGISu jako novou mapovou vrstvu.
-	
+
+.. raw:: latex
+
+   \newpage
+   
 .. figure:: ../images/pomer-rozlohy-a-obvodu-2.png
    :class: middle
-        
+   :scale-latex: 65
+	      
    Symbolizaci vrstvy provedeme v QGISu.
 
 Atributový JOIN
@@ -413,10 +427,6 @@ Buffer
    )
    SELECT row_number() over() rid, * FROM povodi_jizery;
 
-.. raw:: latex
-
-   \newpage
-
 .. noteadvanced::
       
     .. code-block:: sql
@@ -514,8 +524,12 @@ Prostorové analýzy
    ) vzchu
    USING(ogc_fid)
 
+.. raw:: latex
+
+   \newpage
+   
 .. figure:: ../images/katastry_podle_np.png
    :class: middle
-   :scale-latex: 45
+   :scale-latex: 85
 
    Vizualizace výsledku v QGISu.

@@ -25,7 +25,8 @@ databázi.
 
 .. figure:: ../images/qgis-postgis-new.png
    :class: middle
-        
+   :scale-latex: 65
+	      
 Nastavíme:
 
 * název spojení :fignote:`(1)`
@@ -33,9 +34,13 @@ Nastavíme:
 * databáze, ke které se chceme připojit :fignote:`(3)`
 * uživatelské jméno a heslo pro připojení k databázi :fignote:`(4)`
 
+.. raw:: latex
+
+   \newpage
+
 .. figure:: ../images/qgis-postgis-new-settings.png
            :width: 350px
-           :scale-latex: 40
+           :scale-latex: 50
 
 .. note:: Při opětovném připojení je vhodné si uživatelské jméno a
 	  popřípadě i heslo uložit na lokální disk. V tomto případě
@@ -64,6 +69,10 @@ a vybrat vektorové vrstvy, které chceme z geodatabáze *načíst*.
 .. figure:: ../images/qgis-postgis-layers.png
            :width: 700px
 
+.. raw:: latex
+
+   \newpage
+
 .. _DataCatalog:
 
 Datový prohlížeč
@@ -73,18 +82,15 @@ Připojení k databázi PostGIS je možné definovat i v rámci *datového
 katalogu (prohlížeče)*.
 
 .. figure:: ../images/../images/qgis-catalog-new.png
-	    :class: small
+   :class: small
 	   
 Po připojení k databázi vybranou vektorovou vrstvu jednoduše
 přetáhneme z datového katalogu do mapového okna.
 
 .. figure:: ../images/../images/qgis-catalog-layer.png
-	    :class: middle
-
-.. raw:: latex
-
-   \newpage
-
+   :class: middle
+   :scale-latex: 75
+	   
 Editujeme vektorová data
 ------------------------
 
@@ -101,8 +107,9 @@ Po přepnutí do editačního módu se vektorová vrstva zobrazí včetně
 lomových bodů (červené křížky).
 
 .. figure:: ../images/qgis-edit-mode.png
-            :width: 800px
-
+   :width: 800px
+   :scale-latex: 85
+	      
 **Editační nástrojová lišta** QGISu umožňuje
 
 .. figure:: ../images/qgis-edit-toolbar.png
@@ -166,8 +173,9 @@ myši. Poslední uložený lomový bod můžeme vrátit zpět pomocí klávesy
 :kbd:`Backspace`.
 
 .. figure:: ../images/qgis-edit-new-feature.png
-            :width: 800px
-
+   :width: 800px
+   :scale-latex: 85
+	      
 Editaci prvku ukončíme stisknutím pravého tlačítka myši. Poté se
 objeví dialog pro zadání atributů nově přidaného prvku.
 

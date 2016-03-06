@@ -32,7 +32,8 @@ Můžeme procházet metadata jednotlivých vrstev uložených v geodatabázi.
 
 .. figure:: ../images/qgis-db-manager-layer.png
    :class: middle
-
+   :scale-latex: 65
+	      
    Uživatel má v tomto případě pro vrstvu `obce` ve schématu *ruian*
    veškerá práva a může ji modifikovat.
 
@@ -45,7 +46,7 @@ QGIS.
 
 .. figure:: ../images/qgis-db-manager-sql-window.png
    :class: middle
-   :scale-latex: 60
+   :scale-latex: 75
               
    Příklad určení počtu obcí v ČR.
 
@@ -84,7 +85,8 @@ jako novou vrstvu :map:`obce_pozarni_stanice` :fignote:`(2)`.
 
 .. figure:: ../images/qgis-query-new-layer.png
    :class: middle
-	   
+   :scale-latex: 85
+	      
 .. note:: Alternativně můžete novou vrsvu vytvořit v databázi rovnou
           jako novou tabulku anebo pohled a zobrazit v QGISu standardní cestou.
 
@@ -130,12 +132,8 @@ V následujícím dialogu vyplníme parametry připojení k databázi.
 
 .. figure:: ../images/pgadmin-new-conn-dialog.png
    :width: 400px
-   :scale-latex: 40
+   :scale-latex: 35
 
-.. raw:: latex
-
-   \newpage
-                          
 Připojení se přidá do seznamu.
 
 .. figure:: ../images/pgadmin-new-conn.png
