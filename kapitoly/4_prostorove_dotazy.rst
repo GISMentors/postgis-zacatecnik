@@ -105,6 +105,8 @@ jako novou vrstvu :map:`obce_pozarni_stanice` :fignote:`(2)`.
               
    Výsledek prostorového dotazu.
 
+.. _pgadmin3:
+   
 Přístup z PgAdmin
 -----------------
 

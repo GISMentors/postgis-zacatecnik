@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg10136"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="qgis-db-manager-new-schema-prop.svg"
+   inkscape:export-filename="/home/landa/git/gismentors/postgis-zacatecnik/images/qgis-db-manager-new-schema-prop.png"
+   inkscape:export-xdpi="99.900002"
+   inkscape:export-ydpi="99.900002">
+  <defs
+     id="defs10138" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="87.506249"
+     inkscape:cy="488.45671"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1680"
+     inkscape:window-height="986"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata10141">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <image
+       sodipodi:absref="/home/landa/git/gismentors/postgis-zacatecnik/images/qgis-db-manager-new-schema-prop.png"
+       xlink:href="qgis-db-manager-new-schema-prop.png"
+       width="774.375"
+       height="508.125"
+       preserveAspectRatio="none"
+       id="image10743"
+       x="-330.04465"
+       y="312.58542" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#db5252;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect10765"
+       width="316.17773"
+       height="88.893425"
+       x="-82.832512"
+       y="639.20984" />
+  </g>
+</svg>

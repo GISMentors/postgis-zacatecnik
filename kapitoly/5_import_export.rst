@@ -1,3 +1,6 @@
+.. |dbManagerImport| image:: ../images/qgis-db-manager-import.png
+   :width: 24px
+
 ==============================
 Import a export dat z databáze
 ==============================
@@ -5,125 +8,87 @@ Import a export dat z databáze
 Nahráváme vlastní data do databáze
 ----------------------------------
 
-Import dat ve formátu Esri Shapefile
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Správce databází
+^^^^^^^^^^^^^^^^
 
 Předpokládáme, že každý uživatel pracuje ve vlastní databázovém
-schématu. Toto schéma vytvoříme pomocí :ref:`správce databází QGIS
-<db-manager>`.
+schématu. Toto schéma vytvoříme pomocí :ref:`správce databází
+<db-manager>` v QGISu.
 
 Vytvoření databázového schématu
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 V našem případě uložíme vektorová data do *vlastního schématu*,
-nejprve toto schéma vytvoříme.
-
-.. figure:: ../images/qgis-db-manager-new-schema.png
-            :width: 300px
-
-.. figure:: ../images/qgis-db-manager-create-schema.png
-            :width: 225px
+nejprve toto schéma vytvoříme :menuselection:`Schéma --> Vytvořit
+schéma`.
 
 .. figure:: ../images/qgis-db-manager-new-schema-prop.png
             :width: 700px
 
-            V nově vytvořeném schématu již má uživatel ``landa``
-            právo zápisu.
+            V nově vytvořeném schématu již má uživatel "skoleni" právo
+            zápisu.
 
 Import dat
 ~~~~~~~~~~
 
-Import vektorových dat ve formátu Esri Shapefile umožňuje zásuvný
-modul *Spit (Shapefile import)* dostupný z menu aplikace QGIS.
-
-.. figure:: ../images/qgis-spit-menu.png
-            :width: 350px
-
-.. note:: Pokud není nástroj v QGISu dostupný, je nutné ho aktivovat z menu
-          :menuselection:`Zásuvné moduly --> Spravovat a instalovat
-          zásuvné moduly`.
-
-	  .. figure:: ../images/qgis-spit-plugin.png
-
-.. note:: Použijeme otevřená data poskytovaná IPR, konkrétně
-          `občanskou vybavenost - toalety
-          <http://opendata.iprpraha.cz/CUR/FSV/FSV_VerejnaWC_b/S_JTSK/FSV_VerejnaWC_b_shp.zip>`_.
-
-V dialogu zvolíme databázi :fignote:`(1)`, ke které se
-připojíme :fignote:`(2)`. Přidáme soubor ve formátu Esri Shapefile
-:fignote:`(3)` určený k importu, definujeme název pro výstupní
-databázovou tabulku a schéma :fignote:`(4)`. Jako poslední určíme kód
-souřadnicového systému (v tomto případě S-JTSK, tj. :epsg:`5514`)
-vektorových dat :fignote:`(5)`.
-
-.. figure:: ../images/qgis-spit-dialog.png
-            :class: middle 
-            :scale-latex: 50
-
-..                          
-   .. figure:: ../images/qgis-spit-progress.png
-	       :width: 200px
-
-Naimportovaná vrstva z geodatabáze PostGIS se nezobrazí automaticky,
-musíme ji :ref:`přidat manuálně <qgis-add-pg-layer>`.
-
-.. figure:: ../images/qgis-add-pg-so.png
-            :class: large
-            :scale-latex: 70
-                 
-Další možnosti
-^^^^^^^^^^^^^^
-
-DB Manager
-~~~~~~~~~~
-
-Nahrání dat ve formátu Esri Shapefile do geodatabáze PostGIS umožňuje
-v QGISu i samotný správce databází. Soubor ve formátu Esri Shapefile
-naimportujeme z menu
-
-.. figure:: ../images/shp-import-menu.png
-           :width: 200px
-
-anebo z nástrojové lišty DB Manageru.
-
-.. figure:: ../images/shp-import.png
-           :width: 250px
+Nahrání geodat do databáze PostGIS umožňuje v QGISu samotný *správce
+databází*. Soubor s geodaty anebo načtenou vrstvu v QGISu
+naimportujeme z menu :menuselection:`Tabulka --> Importovat
+vrstvu/soubor` anebo z nástrojové lišty správce databází |dbManagerImport|.
 
 V dialogu vybereme soubor pro import do geodatabáze
 :fignote:`(1)`. Dále můžeme změnit cílové schéma a název výsledné
 tabulky v databázi :fignote:`(2)`. Dialog nabízí další možnosti včetně
-transformace do jiného souřadnicového systému :fignote:`(3)`.
+transformace do jiného souřadnicového systému (pokud je zadán současně
+zdrojový a cílový souřadnicivový systém) anebo prosté vynucení
+cílového souřadnicového systému :fignote:`(3)`.
 
 .. figure:: ../images/qgis-db-manager-create-table.png
 	    :width: 400px
             :scale-latex: 50
 
+.. note:: Ve níže uvedeném případě importujeme vrstvu veřejných toalet
+          z `otevřené datové sady IPR
+          <http://www.geoportalpraha.cz/cs/opendata/B5E575FB-AE56-4928-8C4F-AD0B97308093#.Vtwe5kKi7MU>`_.
+	  
+Naimportovaná vrstva z geodatabáze PostGIS se nezobrazí automaticky,
+musíte ji do mapového okna :ref:`přidat manuálně <qgis-add-pg-layer>`.
+
+Další možnosti
+^^^^^^^^^^^^^^
+
+Spit
+~~~~
+
+Import vektorových dat ve formátu *Esri Shapefile* umožňuje také
+zásuvný modul *Spit (Shapefile import)* dostupný z menu aplikace QGIS
+:menuselection:`Spit (Shapefile import) --> Import Shapefile do
+PostgreSQL`.
+
+.. warning:: Zásuvný modul Spit není od verze QGIS 2.14 podporován a
+	     nijak udržován. Pro import dat se doporučuje používat
+	     *správce databází*.
+
 pgAdmin
 ~~~~~~~
 
-Vektorová data ve formátu Esri Shapefile lze do databáze PostGIS
-naimportovat pomocí zásuvného modulu *PostGIS Shapefile and DBF loader*
-aplikace `pgAdmin <http://www.pgadmin.org/>`_.
+Vektorová data ve formátu *Esri Shapefile* lze do databáze PostGIS
+naimportovat pomocí zásuvného modulu *PostGIS Shapefile and DBF
+loader* aplikace :ref:`PgAdmin <pgadmin3>` :menuselection:`Zásuvné
+moduly --> PostGIS Shapefile and DBF loader`.
 
-.. figure:: ../images/pgadmin-import.png
-            :width: 350px
-            :scale-latex: 40
-      
-Nejprve definujeme soubor ve formátu Esri Shapefile :fignote:`(1)`,
-cílové databázové schéma a cílovou tabulku :fignote:`(2)` a případně i
-souřadnicový systém :fignote:`(3)`.
+V dialogu pro import definujeme vstupní soubor ve formátu Esri
+Shapefile :fignote:`(1)`, cílové databázové schéma a cílovou tabulku
+:fignote:`(2)` a případně i souřadnicový systém :fignote:`(3)`.
 
 .. figure:: ../images/pgadmin-create.png
 
-.. figure:: ../images/pgadmin-new-layer.png
-            :class: large
-            :scale-latex: 75
-                 
 Pro pokročilé uživatele
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 .. tip:: Více k tomuto tématu ve školení :skoleni:`PostGIS pro
-         pokročilé <postgis-pokrocily>`.
+         pokročilé
+         <postgis-pokrocily/kapitoly/3_shp2pgsql_a_davkove_nahrani.html>`.
 
 shp2pgsql
 ~~~~~~~~~
@@ -131,7 +96,7 @@ shp2pgsql
 `shp2pgsql
 <http://postgis.net/docs/using_postgis_dbmanagement.html#shp2pgsql_usage>`_
 je konzolový nástroj, který umožňuje import vektorových dat ve formátu
-Esri Shapefile do geodatabáze PostGIS. Tento nástroj je součástí
+*Esri Shapefile* do geodatabáze PostGIS. Tento nástroj je součástí
 instalace PostGIS.
 
 .. notecmd:: Import dat do databáze pomocí shp2pgsql
@@ -140,14 +105,15 @@ instalace PostGIS.
 
    .. code-block:: bash
 
-      shp2pgsql -s 5514 FSV_VerejnaWC_b.shp landa.toalety > wc.sql
+      shp2pgsql -s 5514 FSV_VerejnaWC_b.shp skoleni.toalety > wc.sql
 
-   * ``-s`` definuje souřadnicový systém,
+   * ``-s`` definuje souřadnicový systém (v tomto případě :epsg:`5514`),
    * ``FSV_VerejnaWC_b.shp`` je název vstupního souboru ve formátu Esri Shapefile,
-   * ``landa.toalety`` je název výstupního databázového schématu a tabulky,
+   * ``landa.toalety`` je název výstupního databázového schématu a tabulky (oddělené tečkou),
    * ``> wc.sql`` dávka je uložena do souboru ``wc.sql``.
 
-   Vytvořenou SQL dávku nahrajeme do databáze *gismentors*:
+   Vytvořenou SQL dávku nahrajeme do databáze *gismentors* přes
+   nástroj :program:`psql` a jeho parametr :option:`-f`:
 
    .. code-block:: bash
 
@@ -168,7 +134,7 @@ formáty podporovanými touto knihovnou.
 
       ogr2ogr -f PostgreSQL \
       PG:"dbname=gismentors host=training.gismentors.eu user=skoleni password=XXX \
-      active_schema=landa" \
+      active_schema=skoleni" \
       FSV_VerejnaWC_b.shp \
       -a_srs EPSG:5514
 
@@ -182,26 +148,24 @@ Export dat z databáze
 Data můžeme exportovat z databáze v prostředí QGIS naprosto stejně
 jako u jiných formátů. Načteme si do QGIS vrstvu, kterou si přejeme
 vyexportovat a z kontextového menu nad vrstvou zvolíme volbu
-:menuselection:`Save As`.
+:item:`Save As`.
 
-.. figure:: ../images/qgis-export-menu.png
-   :class: small
-
-V dialogu zvolíme požadovaný formát a připadně další volby, kterou
-jsou již závislé na zvoleném formátu.
+V následujícím dialogu zvolíme požadovaný výstupní formát a připadně
+další volby, kterou jsou již závislé na zvoleném formátu.
 
 .. figure:: ../images/qgis-export-dialog.png
 
-   Příklad exportu vektorových dat z databáze do formátu Esri Shapefile.
+   Příklad exportu vektorových dat z databáze do formátu OGC GML.
 
 
 Pro pokročilé uživatele
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Podobně jako v případě importu dat, lze použít pokročilejší nástroje,
-které lze použít ve skriptech při automatizaci a pod. Ukážeme si
-použití nástroje :program:`pgsql2shp`, který umožňuje export dat do
-formátu Esri Shapefile a :program:`ogr2ogr` knihovny GDAL.
+Podobně jako v případě importu dat, lze použít pokročilejší konzolové
+nástroje. Ty je možné volat ve skriptech při automatizaci
+apod. Ukážeme si použití nástroje :program:`pgsql2shp`, který umožňuje
+export dat do formátu Esri Shapefile a :program:`ogr2ogr` knihovny
+GDAL.
 
 .. tip:: Více k tomuto tématu ve školení :skoleni:`PostGIS pro
          pokročilé <postgis-pokrocily>`.
@@ -215,19 +179,19 @@ PostGIS kromě nástroje pro import dat ve formátu Esri Shapefile
 
 .. notecmd:: Export do formátu Esri Shapefile pomocí pgsql2shp
 
-   V níže uvedeném příkladě vyexportujeme tabulku
-   :dbtable:`obce_polygon` ze schéma *ruain* do souboru ``obce.shp``.
+   V níže uvedeném příkladě vyexportujeme tabulku :dbtable:`obce` ze
+   schéma *ruain* do souboru `obce.shp`.
 
    .. code-block:: sql
       
       pgsql2shp -h training.gismentors.eu -u skoleni -P XXX -f obce gismentors \
-      ruian.obce_polygon
+      ruian.obce
 
 ogr2ogr
 ~~~~~~~
 
 :program:`ogr2ogr` slouží obecně ke konverzi dat, lze jej tedy použít
-jak pro :ref:`import-ogr2ogr`, tak pro export.
+jak pro import tak export dat.
 
 .. notecmd:: Export do formátu Esri Shapefile pomocí ogr2ogr
 
@@ -237,10 +201,12 @@ jak pro :ref:`import-ogr2ogr`, tak pro export.
       -lco 'ENCODING=UTF-8' \
       obce.shp \
       PG:"dbname=gismentors host=training.gismentors.eu user=skoleni password=XXX" \
-      ruian.obce_polygon
+      ruian.obce
 
 Na rozdíl od nástroje :program:`pgsql2shp` umožňuje :program:`ogr2ogr`
-export nejen do formátu Esri Shapefile.
+export nejen do formátu Esri Shapefile, ale do `celé řady formátů
+<http://gdal.org/ogr_formats.html>`_, které knihovna GDAL porpodruje v
+režimu zápisu.
 
 .. notecmd:: Export do formátu GML pomocí ogr2ogr
 
