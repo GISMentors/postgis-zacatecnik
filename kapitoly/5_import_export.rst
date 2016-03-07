@@ -137,7 +137,7 @@ instalace PostGIS.
       psql gismentors -U skoleni -W -h training.gismentors.eu -f wc.sql
 
 .. index::
-   single: ogr2pgr
+   single: ogr2ogr
 
 .. _import-ogr2ogr:
 
