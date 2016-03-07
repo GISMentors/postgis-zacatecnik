@@ -320,4 +320,4 @@ Dotaz do SQL může potom vypadat následovně:
       rod = 'muchomůrka'
       AND jedla = true
       AND ST_Distance(vyskyt_lokalita,
-      '5514;POINT(-641455 -987918)'::geometry) < 3e4;
+      'SRID=5514;POINT(-641455 -987918)'::geometry) < 3e4;
