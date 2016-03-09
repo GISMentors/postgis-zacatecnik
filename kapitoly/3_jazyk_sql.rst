@@ -1,5 +1,4 @@
 .. index::
-   single: 
    single: SQL
    single: DCL
    single: TCL
