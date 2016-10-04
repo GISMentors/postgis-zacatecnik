@@ -10,8 +10,7 @@ from utils import get_year
 
 # General information about the project.
 project = u'Školení PostGIS pro začátečníky'
-#copyright = u'2014, Martin Landa (GISMentors.eu)'
-copyright = u'2014-%d, Jan JELEN Michálek a Martin Landa (GISMentors.eu)' % get_year()
+copyright = u'2014-%d GISMentors' % get_year()
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
