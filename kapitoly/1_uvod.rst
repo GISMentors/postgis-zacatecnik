@@ -238,7 +238,7 @@ aktualizaci záznamu. Obvyklé využití je například archivování smazávan�
 Pomocí triggerů lze ošetřit také kontrolu podobně jako u omezení. Pokud nastavíme trigger tak, aby se spustil před vložením
 záznamu, můžeme eliminovat duplicitní záznamy, dříve než dojde k chybě a tím pádem nedojde k pádu transakce.
 
-**DDL**, tedy `Data Definition Language` trigger je v `PostgreSQL` relativně čerstvá novinka a spustí se při změně ve struktuře,
+**DDL**, tedy `Data Definition Language` trigger je v PostgreSQL relativně čerstvá novinka a spustí se při změně ve struktuře,
 například při přidání tabulky může nastavit práva, replikace apod.
 
 Obdobou triggerů jsou :pgsqlcmd:`pravidla <sql-createrule>`, ta ovšem nedisponují všemi možnostmi triggerů a nedoporučuje
