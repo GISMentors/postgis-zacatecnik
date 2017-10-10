@@ -24,7 +24,7 @@ prohlížeč <DataCatalog>`.
 
 .. _db-connection:
 
-Objeví se dialog, ve které definujeme parametry *nové* připojení k
+Objeví se dialog, ve kterém definujeme parametry *nového* připojení k
 databázi.
 
 .. figure:: ../images/qgis-postgis-new.png
@@ -187,6 +187,6 @@ myši. Poslední uložený lomový bod můžeme vrátit zpět pomocí klávesy
 Editaci prvku ukončíme stisknutím pravého tlačítka myši. Poté se
 objeví dialog pro zadání atributů nově přidaného prvku.
 
-.. note:: Více k tématu editace ve :skoleni:`školení QGIS pro
-          začátečníky <qgis-zacatecnik/vektorova_data/editace.html>`.
+.. tip:: Více k tématu editace ve :skoleni:`školení QGIS pro
+         začátečníky <qgis-zacatecnik/vektorova_data/editace.html>`.
 
