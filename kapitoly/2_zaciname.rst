@@ -20,7 +20,7 @@ Vektorová data uložená v geodatabázi PostGIS je možné načíst buď z
 menu :menuselection:`Vrstva --> Přidat vrstvy --> Přidat vrstvu
 PostGIS` anebo z *nástrojové lišty* aplikace QGIS
 |mActionAddPostgisLayer|. Další možností je použít :ref:`datový
-katalog <DataCatalog>`.
+prohlížeč <DataCatalog>`.
 
 .. _db-connection:
 
@@ -83,13 +83,13 @@ Datový prohlížeč
 ^^^^^^^^^^^^^^^^
 
 Připojení k databázi PostGIS je možné definovat i v rámci *datového
-katalogu (prohlížeče)*.
+prohlížeče*.
 
 .. figure:: ../images/../images/qgis-catalog-new.png
    :class: small
 	   
 Po připojení k databázi vybranou vektorovou vrstvu jednoduše
-přetáhneme z datového katalogu do mapového okna.
+přetáhneme z datového prohlížeče do mapového okna.
 
 .. figure:: ../images/../images/qgis-catalog-layer.png
    :class: middle
