@@ -34,7 +34,7 @@ schéma`.
 
 .. figure:: ../images/qgis-db-manager-new-schema-prop.png
    :width: 700px
-   :scale-latex: 65
+   :scale-latex: 55
 		    
    V nově vytvořeném schématu již má uživatel "skoleni" právo
    zápisu.
@@ -55,8 +55,8 @@ zdrojový a cílový souřadnicivový systém) anebo prosté vynucení
 cílového souřadnicového systému :fignote:`(3)`.
 
 .. figure:: ../images/qgis-db-manager-create-table.png
-	    :width: 400px
-            :scale-latex: 60
+   :width: 400px
+   :scale-latex: 55
 
 .. note:: Ve níže uvedeném případě importujeme vrstvu veřejných toalet
           z `otevřené datové sady IPR
@@ -96,7 +96,8 @@ Shapefile :fignote:`(1)`, cílové databázové schéma a cílovou tabulku
 :fignote:`(2)` a případně i souřadnicový systém :fignote:`(3)`.
 
 .. figure:: ../images/pgadmin-create.png
-
+   :scale-latex: 65
+		 
 Pro pokročilé uživatele
 ^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -178,7 +179,10 @@ další volby, kterou jsou již závislé na zvoleném formátu.
 	      
    Příklad exportu vektorových dat z databáze do formátu OGC GML.
 
+.. raw:: latex
 
+   \newpage
+   
 Pro pokročilé uživatele
 ^^^^^^^^^^^^^^^^^^^^^^^
 

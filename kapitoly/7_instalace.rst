@@ -164,7 +164,8 @@ PgAdmin
    \newpage
    
 .. figure:: ../images/restore-db-3.png
-
+   :scale-latex: 50
+		 
    Z kontextového menu nad databázi zvolíme funkci "Obnovit".
 
 .. figure:: ../images/restore-db-4.png
@@ -177,15 +178,11 @@ PgAdmin
    :width: 400px   
    :scale-latex: 45
 
-.. raw:: latex
-
-   \newpage
-
 .. figure:: ../images/restore-db-6.png
 
    V sekci "Volby obnovení" zaškrtěte "Nekládat - vlastník".
 
-.. warning:: Tato volba je důležitá, jinak skončí import chybou!
+.. important:: Tato volba je důležitá, jinak skončí import chybou!
 
 .. figure:: ../images/restore-db-7.png
    :scale-latex: 55

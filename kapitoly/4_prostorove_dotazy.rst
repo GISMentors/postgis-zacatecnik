@@ -97,7 +97,7 @@ jako novou vrstvu :map:`obce_pozarni_stanice` :fignote:`(2)`.
 
 .. figure:: ../images/qgis-query-new-layer.png
    :class: middle
-   :scale-latex: 85
+   :scale-latex: 83
 	      
 .. note:: Alternativně můžete novou vrsvu vytvořit v databázi rovnou
           jako novou tabulku anebo pohled a zobrazit v QGISu standardní cestou.
@@ -141,9 +141,8 @@ SQL dotazy můžeme provádět v grafické uživatelském prostředí `PgAdmin
    :program:`psql`, více na školení :skoleni:`PostGIS pro pokročilé
    <postgis-pokrocily>`.
 
-Přidáme nové spojení |pgNewConnection|.
-
-V následujícím dialogu vyplníme parametry připojení k databázi.
+Přidáme nové spojení |pgNewConnection|. V následujícím dialogu
+vyplníme parametry připojení k databázi.
 
 .. figure:: ../images/pgadmin-new-conn-dialog.png
    :width: 400px

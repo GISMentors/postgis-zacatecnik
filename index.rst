@@ -34,7 +34,7 @@ specifikaci `Simple Features
 .. only:: latex
 
    .. figure:: images/postgis-logo.png
-      :scale-latex: 40
+      :scale-latex: 20
 
       Logo projektu PostGIS
 
@@ -82,7 +82,7 @@ platformách jako GNU/Linux, MS Windows či Mac OSX.
 * `PostgreSQL <http://www.postgresql.org>`_, volitelně `pgAdmin
   <http://www.pgadmin.org/>`_, `LibreOffice
   <http://www.libreoffice.org/>`_
-* `QGIS <http://www.qgis.org>`_ 2.8 a vyšší
+* `QGIS <http://www.qgis.org>`_ 2.14 a vyšší
 * `PostGIS <http://www.postgis.net>`_ 2.0 a vyšší
 
 .. only:: html
@@ -114,7 +114,7 @@ Attribution-ShareAlike 4.0 International License
 
 .. figure:: images/cc-by-sa.png 
 	    :width: 130px
-	    :scale-latex: 120
+	    :scale-latex: 20
               
 *Verze textu dokumentu:* |release| (sestaveno |today|)
 

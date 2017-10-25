@@ -280,6 +280,10 @@ Jednoduchý atributový dotaz
 	      
    Budovy v Praze s výtahem obarvené podle počtu podlaží.
 
+.. raw:: latex
+
+   \newpage
+   
 Jednoduchý prostorový dotaz
 ---------------------------
 
@@ -319,15 +323,15 @@ Jednoduchý prostorový dotaz
 	      
    Výsledek dotazu nahrajeme do QGISu jako novou mapovou vrstvu.
 
-.. raw:: latex
-
-   \newpage
-   
 .. figure:: ../images/pomer-rozlohy-a-obvodu-2.png
    :class: middle
    :scale-latex: 65
 	      
    Symbolizaci vrstvy provedeme v QGISu.
+
+.. raw:: latex
+
+   \newpage
 
 Atributový JOIN
 ---------------
@@ -514,6 +518,10 @@ Agregace
    FROM ruian.obce 
    GROUP BY poukod; 
 
+.. raw:: latex
+
+   \newpage
+   
 Prostorové analýzy
 ------------------
 
@@ -543,12 +551,8 @@ Prostorové analýzy
    ) vzchu
    USING(ogc_fid)
 
-.. raw:: latex
-
-   \newpage
-   
 .. figure:: ../images/katastry_podle_np.png
    :class: middle
-   :scale-latex: 85
+   :scale-latex: 75
 
    Vizualizace výsledku v QGISu.

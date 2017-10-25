@@ -38,10 +38,6 @@ Nastavíme:
 * databáze, ke které se chceme připojit :fignote:`(3)`
 * uživatelské jméno a heslo pro připojení k databázi :fignote:`(4)`
 
-.. raw:: latex
-
-   \newpage
-
 .. figure:: ../images/qgis-postgis-new-settings.png
            :width: 350px
            :scale-latex: 50
@@ -62,6 +58,10 @@ Nastavení připojení k databázi nejprve otestujeme a poté potvrdíme.
       
       psql gismentors -U skoleni -W -h training.gismentors.eu
 
+.. raw:: latex
+
+   \newpage
+
 Následně se již můžeme k databázi *připojit*
 
 .. figure:: ../images/qgis-postgis-connect.png
@@ -73,10 +73,6 @@ a vybrat vektorové vrstvy, které chceme z geodatabáze *načíst*.
 .. figure:: ../images/qgis-postgis-layers.png
            :width: 700px
 
-.. raw:: latex
-
-   \newpage
-
 .. _DataCatalog:
 
 Datový prohlížeč
@@ -87,7 +83,7 @@ prohlížeče*.
 
 .. figure:: ../images/../images/qgis-catalog-new.png
    :class: small
-	   
+		 
 Po připojení k databázi vybranou vektorovou vrstvu jednoduše
 přetáhneme z datového prohlížeče do mapového okna.
 
@@ -107,7 +103,8 @@ uložených v geodatabázi PostGIS. Přepnout danou vektorovou vrstvu do
 *editačního módu* je možné z kontextového menu
 
 .. figure:: ../images/qgis-edit-menu.png
-            :width: 350px
+   :width: 350px
+   :scale-latex: 40
 
 anebo *nástrojové lišty* QGISu |mIconEditable|.
 
@@ -117,7 +114,11 @@ lomových bodů (červené křížky).
 .. figure:: ../images/qgis-edit-mode.png
    :width: 800px
    :scale-latex: 85
-	      
+
+.. raw:: latex
+
+   \newpage
+   
 **Editační nástrojová lišta** QGISu umožňuje
 
 .. figure:: ../images/qgis-edit-toolbar.png
