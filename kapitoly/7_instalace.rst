@@ -168,8 +168,8 @@ Import databáze GISMentors
 
 Soubor ke stažení: http://training.gismentors.eu/geodata/postgis/gismentors.dump
 
-Databázi GISMentors lze naimportovat z grafické aplikace PgAdmin anebo
-z příkazové řádky.
+Databázi GISMentors lze naimportovat z grafické aplikace PgAdmin 4
+anebo z příkazové řádky.
 
 .. index::
    single: pgadmin
@@ -179,7 +179,8 @@ PgAdmin
 
 .. figure:: ../images/restore-db-1.png
    :scale-latex: 45
-	      
+   :class: small
+   
    Po připojení k databázovému serveru vytvoříme novou databázi.
 
 .. figure:: ../images/restore-db-2.png
@@ -194,27 +195,29 @@ PgAdmin
    
 .. figure:: ../images/restore-db-3.png
    :scale-latex: 50
-		 
+   :class: small
+	   
    Z kontextového menu nad databázi zvolíme funkci "Obnovit".
 
 .. figure:: ../images/restore-db-4.png
    :scale-latex: 60
               
-   V dialogu pro výběr souboru zvolíme dávku "gismentors.dump" (je
-   potřeba nastavit masku na "Všechny soubory").
-
 .. figure:: ../images/restore-db-5.png
    :width: 400px   
    :scale-latex: 45
 
+   V dialogu pro výběr souboru zvolíme dávku "gismentors.dump" (je
+   potřeba nastavit masku na "All files").
+
 .. figure:: ../images/restore-db-6.png
 
-   V sekci "Volby obnovení" zaškrtěte "Nekládat - vlastník".
+   V sekci "Volby obnovení" zaškrtěte "Do not save - owner".
 
 .. important:: Tato volba je důležitá, jinak skončí import chybou!
 
 .. figure:: ../images/restore-db-7.png
    :scale-latex: 55
+   :class: small
               
 Z příkazové řádky
 ^^^^^^^^^^^^^^^^^            
