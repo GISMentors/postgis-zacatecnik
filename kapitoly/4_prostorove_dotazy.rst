@@ -1,7 +1,5 @@
 .. |sqlwindow| image:: ../images/qgis-db-manager-sql-toolbar.png
    :width: 24px
-.. |pgNewConnection| image:: ../images/pgadmin-new-conn-toolbar.png
-   :width: 24px
 .. |pgSQLWindow| image:: ../images/pgadmin-sql-window-toolbar.png
    :width: 24px
 
@@ -43,7 +41,7 @@ Můžeme procházet metadata jednotlivých vrstev uložených v geodatabázi.
    veškerá práva a může ji modifikovat.
 
 Provádíme SQL dotazy
---------------------
+^^^^^^^^^^^^^^^^^^^^
 
 .. index::
    single: SQL
@@ -67,7 +65,7 @@ QGIS.
    single: QGIS
 
 Vytváříme novou vrstvu jako výsledek prostorového dotazu
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Na základě prostorového dotazu můžeme pomocí dialogu *správce
 databází* vytvářet nové datové vrstvy.
@@ -128,7 +126,8 @@ Přístup z PgAdmin
 -----------------
 
 SQL dotazy můžeme provádět v grafické uživatelském prostředí `PgAdmin
-<http://www.pgadmin.org/>`_.
+<http://www.pgadmin.org/>`__. V následujícím textu předpokládáme verzi
+PgAdmin 4.
 
 .. note::
 
@@ -141,21 +140,31 @@ SQL dotazy můžeme provádět v grafické uživatelském prostředí `PgAdmin
    :program:`psql`, více na školení :skoleni:`PostGIS pro pokročilé
    <postgis-pokrocily>`.
 
-Přidáme nové spojení |pgNewConnection|. V následujícím dialogu
-vyplníme parametry připojení k databázi.
+.. figure:: ../images/pgadmin-new-conn.png
+   :scale-latex: 35
+   :class: small
+           
+   Přidáme nové spojení.
 
 .. figure:: ../images/pgadmin-new-conn-dialog.png
    :width: 400px
    :scale-latex: 35
 
-Připojení se přidá do seznamu.
+.. figure:: ../images/pgadmin-new-conn-dialog-1.png
+   :width: 400px
+   :scale-latex: 35
+                 
+   V následujícím dialogu zadáme název připojení a především parametry
+   připojení k databázi.
+                 
+Do seznamu se přidá nová položka.
 
-.. figure:: ../images/pgadmin-new-conn.png
-   :class: middle
+.. figure:: ../images/pgadmin-new-conn-added.png
 
-Otevřeme SQL dialog, který nám umožní provádět SQL dotazy |pgSQLWindow|.
+Z menu :menuselection:`Tools --> Query Tool` otevřeme nástroj, který
+nám umožní provádět SQL dotazy.
 
 .. figure:: ../images/pgadmin-sql-window.png
-   :class: middle
+   :class: large
 
    Příklad určení počtu obcí v ČR.
