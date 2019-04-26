@@ -11,7 +11,7 @@ Poznámky k instalaci a obnově databáze
 GNU/Linux
 ---------
 
-Z distrubičního balíčku dané Linuxové distribuce.
+Z distribučního balíčku dané Linuxové distribuce.
 
 .. index::
    single: Ubuntu
@@ -22,7 +22,7 @@ Ubuntu / Debian
 
 .. code-block:: bash
 
-   apt-get install postgis
+   sudo apt install postgis
 
 .. index::
    single: MS Windows
@@ -228,5 +228,5 @@ Z příkazové řádky
    createdb gismentors
    pg_restore gismentors.dump | psql gismentors
 
-Kompletní skript pro Bash ke stažení `zde
-<https://raw.githubusercontent.com/GISMentors/dataset/master/postgis/create_db_from_dump.sh>`_.
+.. tip:: Kompletní skript pro Bash ke stažení `zde
+         <https://raw.githubusercontent.com/GISMentors/dataset/master/postgis/create_db_from_dump.sh>`__.
