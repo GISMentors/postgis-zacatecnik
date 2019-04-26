@@ -58,7 +58,7 @@ platformách jako GNU/Linux, MS Windows či Mac OSX.
 
    Datová sada je stažitelná pro PostgreSQL ve `formátu dump
    <http://training.gismentors.eu/geodata/postgis/gismentors.dump>`_
-   (525 MB). Další informace v kapitole :doc:`kapitoly/7_instalace`.
+   (595 MB). Další informace v kapitole :doc:`kapitoly/7_instalace`.
 
 .. warning:: :red:`Toto je pracovní verze školení, která je aktuálně
              ve vývoji!`
