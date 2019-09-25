@@ -16,8 +16,7 @@ V geoinformatické praxi pracujeme se třemi typy zdrojů dat. V prvé
 vektorových datech, tak může jít typicky o data v zastaralém, leč
 stále nejpoužívanějším formátu :wikipedia-en:`Esri Shapefile`,
 případně :wikipedia-en:`OGC GML <Geography Markup Language>`. Dalším
-typem jsou webové služby, jmenovitě :wikipedia-en:`OGC WFS <Web
-Feature Service>` (Web Feature Service). V případě WFS si aplikace
+typem jsou webové služby, jmenovitě :skoleni:`OGC WFS <open-source-gis/standardy/ogc/wfs.html>` (Web Feature Service). V případě WFS si aplikace
 vyžádá pomocí souboru ve značkovacím jazyce :wikipedia-en:`XML` data
 na vzdáleném serveru po síti. Posledním typem uložení dat, kterému je
 věnováno toto školení, je databáze. Většina současných databází, ať
@@ -220,7 +219,7 @@ Zde je výstup dotazu uložen do tabulky a zároveň je uložen dotaz, kterým b
 pohledy vygenerován. Proto může být snadno přegenerován příkazem
 :pgsqlcmd:`REFRESH MATERIALIZE VIEW <sql-refreshmaterializedview>`.
 
-.. note:: Materializované pohledy podporuje PostgreSQL až od verze 9.3.
+.. note:: Materializované pohledy podporuje PostgreSQL od verze 9.3.
 
 .. index::
    single: trigger
@@ -253,7 +252,7 @@ Funkce
 
 :pgsqlcmd:`Funkce <sql-createfunction>` je v databázi uložená procedura, kterou spustíme dotazem. V PostgreSQL může
 být napsaná v jazyce SQL, v procedurálním jazyce PosgreSQL PL/pgSQL :pgsqlcmd:`plpgsql` či v dalším z jazyků, které
-PostgreSQL podporuje jako je Python, Perl, R, Javascript. Případně může být importovaná z externího modulu napsaného
+PostgreSQL podporuje jako je Python, Perl, R, Javascript a další. Případně může být importovaná z externího modulu napsaného
 například v jazyce C.
 
 Funkce tedy spouští nějaký kód, může vracet jednu hodnotu, jednu hodnotu z více záznamů (agregační funkce), případně
@@ -282,7 +281,7 @@ Features Access <http://www.opengeospatial.org/standards/sfa>`_
 podobě.
 
 .. note:: V roce 2004 byla specifikace OGC SFA přijata jako
-	  mezinárodní norma označovaná jako ISO 19125 a~později v roce
+	  mezinárodní norma označovaná jako ISO 19125 a později v roce
 	  2006 adoptována jako technická norma ČSN 19125.
 
 Specifikace OGC SFA zavádí pro popis geometrie geoprvků nové datové
@@ -291,4 +290,4 @@ typy jako je např. *Point*, *LineString*, *Polygon* a další.
 .. figure:: ../images/sfa-classes.png
    :class: large
    
-   Přehled jednotlivých typů geometrie specifikace OGC SFA.
+   Přehled jednotlivých typů geometrie dle specifikace OGC SFA.
