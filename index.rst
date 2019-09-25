@@ -74,8 +74,8 @@ platformách jako GNU/Linux, MS Windows či Mac OSX.
   editovat
 * Uživatel je schopen z prostředí QGIS provádět v databázi jednodušší
   prostorové dotazy a další základní operace
-* Uživatel zvládne naimportovat do databáze vlastní data a data z
-  databáze exportovat do ostatních GIS formátů
+* Uživatel zvládne naimportovat do databáze vlastní data a dále je
+  exportovat z databáze do ostatních GIS formátů
 
 **Požadavky**
 
@@ -125,6 +125,7 @@ Za `GISMentors <http://www.gismentors.cz/>`_:
 
 * `Jan Michálek <http://www.gismentors.cz/mentors/michalek>`_ ``<godzilalalala gmail.com>``
 * `Martin Landa <http://www.gismentors.cz/mentors/landa>`_ ``<martin.landa opengeolabs.cz>``
+* `Jan Růžička <http://www.gismentors.cz/mentors/ruzicka>`_ ``<jan.ruzicka opengeolabs.cz>``
 
 Text dokumentu
 --------------
