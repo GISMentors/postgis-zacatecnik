@@ -28,8 +28,8 @@ První z nich slouží k nastavení přístupových práv (příkazy :sqlcmd:`GR
 .. noteadvanced:: Kromě jazyka SQL můžeme psát v PostgreSQL funkce i v
    dalších jazycích. Mimo jiné se jedná o :wikipedia:`Perl`,
    :wikipedia:`Python`, R, :wikipedia:`JavaScript` a další. Zejména
-   však :pgsqlcmd:`PL/PgSQL <plpgsql>`, procedurální jazyk PostgreSQL svou syntaxí
-   podobný jazyku používanému v databázích :wikipedia:`Oracle`.
+   však v :pgsqlcmd:`PL/PgSQL <plpgsql>`, procedurálním jazyku PostgreSQL svou syntaxí
+   podobného jazyku používanému v databázích :wikipedia:`Oracle`.
 
 Syntax
 ------
@@ -245,7 +245,7 @@ vrátí všechny záznamy, výsledkem sjednocení je tedy součet záznamů z ob
    obou výstupních recordsetů.
 
 :sqlcmd:`EXCEPT` vrací rozdíl, tedy pouze takové záznamy, které se vyskytují pouze v prvním
-recordsetu. :sqlcmd:`INTERSECT` vrací průnik. Tedy záznamy, které se vyskytují v obou
+recordsetu. :sqlcmd:`INTERSECT` vrací jejich průnik. Tedy záznamy, které se vyskytují v obou
 recordsetech.
 
 .. index::
