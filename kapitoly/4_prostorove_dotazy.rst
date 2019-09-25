@@ -56,7 +56,7 @@ QGIS.
               
    Příklad určení počtu obcí v ČR.
 
-.. tip:: Pokročilejší uživatele ocení spíše konzolový nástroj
+.. tip:: Pokročilejší uživatelé ocení spíše konzolový nástroj
          :program:`psql`. Více k tomuto tématu ve školení
          :skoleni:`PostGIS pro pokročilé <postgis-pokrocily>`.
 
@@ -132,13 +132,15 @@ PgAdmin 4.
 .. note::
 
    Pokud používáte QGIS, tak Vám PgAdmin nepřinese nic nového, spíše
-   naopak. PgAdmin není GIS aplikace. Neumožní Vám zobrazit výsledky
-   prostorových dotazů v mapovém okně podobně jako QGIS. Jde o
-   grafické uživatelské rozhraní pro přístup k databázi PostgreSQL,
-   nic víc. Navíc nepodporuje našeptávání a další užitečné funkce. Pro
-   efektivní práci s databází se nejvíce hodí konzolový klient
-   :program:`psql`, více na školení :skoleni:`PostGIS pro pokročilé
-   <postgis-pokrocily>`.
+   naopak. PgAdmin není GIS aplikace (od verze 3.3 PgAdmin4 nabízí
+   alespoň `jednoduchou problížečku geografických dat
+   <https://www.bostongis.com/blog/index.php?/archives/272-pgAdmin4-now-offers-PostGIS-geometry-viewer.html>`__). Neumožní
+   Vám zobrazit výsledky prostorových dotazů v mapovém okně podobně
+   jako QGIS. Jde o grafické uživatelské rozhraní pro přístup k
+   databázi PostgreSQL, nic víc. Navíc nepodporuje našeptávání a další
+   užitečné funkce. Pro efektivní práci s databází se nejvíce hodí
+   konzolový klient :program:`psql`, více na školení :skoleni:`PostGIS
+   pro pokročilé <postgis-pokrocily>`.
 
 .. figure:: ../images/pgadmin-new-conn.png
    :scale-latex: 35
