@@ -60,7 +60,7 @@ cílového souřadnicového systému :fignote:`(3)`.
 
 .. note:: Ve níže uvedeném případě importujeme vrstvu veřejných toalet
           z `otevřené datové sady IPR
-          <http://www.geoportalpraha.cz/cs/opendata/B5E575FB-AE56-4928-8C4F-AD0B97308093#.Vtwe5kKi7MU>`_.
+          <http://www.geoportalpraha.cz/cs/opendata/27028B3A-9442-44BC-9EA2-4DF8A2DF9940>`_.
 	  
 Naimportovaná vrstva z geodatabáze PostGIS se nezobrazí automaticky,
 musíte ji do mapového okna :ref:`přidat manuálně <qgis-add-pg-layer>`.
