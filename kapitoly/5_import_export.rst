@@ -169,7 +169,7 @@ Export dat z databáze
 Data můžeme exportovat z databáze v prostředí QGIS naprosto stejně
 jako u jiných formátů. Načteme si do QGIS vrstvu, kterou si přejeme
 vyexportovat a z kontextového menu nad vrstvou zvolíme volbu
-:item:`Save As`.
+:item:`Export/Uložit prvky jako`.
 
 V následujícím dialogu zvolíme požadovaný výstupní formát a připadně
 další volby, kterou jsou již závislé na zvoleném formátu.
