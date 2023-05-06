@@ -33,10 +33,10 @@ databázi.
 	      
 Nastavíme:
 
-* název spojení :fignote:`(1)`
-* hostitel (adresa serveru, pokud je to localhost, nemusíme vyplňovat) :fignote:`(2)`
-* databáze, ke které se chceme připojit :fignote:`(3)`
-* uživatelské jméno a heslo pro připojení k databázi :fignote:`(4)`
+* název spojení
+* hostitel (adresa serveru, pokud je to localhost, nemusíme vyplňovat)
+* databáze, ke které se chceme připojit
+* uživatelské jméno a heslo pro připojení k databázi
 
 .. figure:: ../images/qgis-postgis-new-settings.png
            :width: 350px
@@ -81,13 +81,13 @@ Datový prohlížeč
 Připojení k databázi PostGIS je možné definovat i v rámci *datového
 prohlížeče*.
 
-.. figure:: ../images/../images/qgis-catalog-new.png
+.. figure:: ../images/qgis-catalog-new.png
    :class: small
 		 
 Po připojení k databázi vybranou vektorovou vrstvu jednoduše
 přetáhneme z datového prohlížeče do mapového okna.
 
-.. figure:: ../images/../images/qgis-catalog-layer.png
+.. figure:: ../images/qgis-catalog-layer.png
    :class: middle
    :scale-latex: 75
 
@@ -109,7 +109,7 @@ uložených v geodatabázi PostGIS. Přepnout danou vektorovou vrstvu do
 anebo *nástrojové lišty* QGISu |mIconEditable|.
 
 Po přepnutí do editačního módu se vektorová vrstva zobrazí včetně
-lomových bodů (červené křížky).
+lomových bodů (červené křížky) u vybraných objektů.
 
 .. figure:: ../images/qgis-edit-mode.png
    :width: 800px
@@ -130,8 +130,6 @@ lomových bodů (červené křížky).
    +-----+-------------------------------------------------+
    | |A| |  přidávat nové prvky                            |
    +-----+-------------------------------------------------+
-   | |M| |  přesunovat existující prvky                    |
-   +-----+-------------------------------------------------+
    | |N| |  modifikovat uzly (přidávat, mazat a přesunovat)|
    +-----+-------------------------------------------------+
    | |D| |  smazat vybrané prvky                           |
@@ -144,10 +142,6 @@ lomových bodů (červené křížky).
    +-----+-------------------------------------------------+
 
 .. |A| image:: ../images/qgis-edit-add.png
-               :width: 32px
-               :align: middle
-
-.. |M| image:: ../images/qgis-edit-move.png
                :width: 32px
                :align: middle
 
@@ -170,6 +164,8 @@ lomových bodů (červené křížky).
 .. |P| image:: ../images/qgis-edit-paste.png
                :width: 32px
                :align: middle
+
+Další nástroje jsou pak k dispozici v nástrojové liště **Pokročilá editace**.
 
 Příklad přidání nového prvku
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^

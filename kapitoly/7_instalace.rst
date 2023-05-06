@@ -226,7 +226,7 @@ Z příkazové řádky
 
    wget http://training.gismentors.eu/geodata/postgis/gismentors.dump
    createdb gismentors
-   pg_restore gismentors.dump | psql gismentors
+   pg_restore -xO -d gismentors gismentors.dump
 
 .. tip:: Kompletní skript pro Bash ke stažení `zde
          <https://raw.githubusercontent.com/GISMentors/dataset/master/postgis/create_db_from_dump.sh>`__.
