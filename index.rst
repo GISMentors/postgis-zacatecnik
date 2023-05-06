@@ -60,9 +60,6 @@ platformách jako GNU/Linux, MS Windows či Mac OSX.
    <http://training.gismentors.eu/geodata/postgis/gismentors.dump>`_
    (595 MB). Další informace v kapitole :doc:`kapitoly/7_instalace`.
 
-.. warning:: :red:`Toto je pracovní verze školení, která je aktuálně
-             ve vývoji!`
-
 **Vstupní znalost**
 
 * Uživatel má základní znalosti GIS
@@ -82,8 +79,8 @@ platformách jako GNU/Linux, MS Windows či Mac OSX.
 * `PostgreSQL <http://www.postgresql.org>`_, volitelně `pgAdmin
   <http://www.pgadmin.org/>`_, `LibreOffice
   <http://www.libreoffice.org/>`_
-* `QGIS <http://www.qgis.org>`_ 2.14 a vyšší
-* `PostGIS <http://www.postgis.net>`_ 2.0 a vyšší
+* `QGIS <http://www.qgis.org>`_ 3.4 a vyšší
+* `PostGIS <http://www.postgis.net>`_ 3.0 a vyšší
 
 .. only:: html
 
