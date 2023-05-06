@@ -142,6 +142,9 @@ PgAdmin 4.
    konzolový klient :program:`psql`, více na školení :skoleni:`PostGIS
    pro pokročilé <postgis-pokrocily>`.
 
+.. figure:: ../images/pgadmin-geometry-view.png
+   :class: large
+
 .. figure:: ../images/pgadmin-new-conn.png
    :scale-latex: 35
    :class: small
@@ -170,3 +173,25 @@ nám umožní provádět SQL dotazy.
    :class: large
 
    Příklad určení počtu obcí v ČR.
+
+Přístup z DbEaver
+-----------------
+
+SQL dotazy můžeme provádět v grafické uživatelském prostředí `DbEaver
+<https://dbeaver.io/>`__.
+
+Tento nástroj nabízí přístup nejen k PostgreSQL, ale i jiným typům databází.
+
+Také má integrovaný prohlížeč geodat, včetně zobrazení podkladu v podobě OSM
+nebo jiných služeb.
+
+.. figure:: ../images/dbeaver-new-connection.png
+   :width: 400px
+   :scale-latex: 35
+
+.. figure:: ../images/dbeaver-new-connection-2.png
+   :width: 400px
+   :scale-latex: 35
+
+.. figure:: ../images/dbeaver.png
+   :class: large
