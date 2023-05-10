@@ -106,7 +106,7 @@ jako novou vrstvu :map:`obce_pozarni_stanice` :fignote:`(2)`.
              CREATE SCHEMA uzivatel;
              
              CREATE VIEW uzivatel.obce_pozarni_stanice AS
-             SELECT o.* FROM ruian.obce_polygon AS o WHERE EXISTS
+             SELECT o.* FROM ruian.obce AS o WHERE EXISTS
              (
               SELECT 1 FROM osm.pozarni_stanice AS p WHERE ST_Within(p.geom, o.geom)
              );
