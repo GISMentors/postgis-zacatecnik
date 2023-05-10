@@ -68,39 +68,6 @@ musíte ji do mapového okna :ref:`přidat manuálně <qgis-add-pg-layer>`.
 Další možnosti
 ^^^^^^^^^^^^^^
 
-Spit
-~~~~
-
-Import vektorových dat ve formátu *Esri Shapefile* umožňuje také
-zásuvný modul *Spit (Shapefile import)* dostupný z menu aplikace QGIS
-:menuselection:`Spit (Shapefile import) --> Import Shapefile do
-PostgreSQL`.
-
-.. warning:: Zásuvný modul Spit není od verze QGIS 2.14 podporován a
-	     nijak udržován. Pro import dat se doporučuje používat
-	     *správce databází*.
-
-.. index::
-   single: pgadmin
-
-pgAdmin
-~~~~~~~
-
-Vektorová data ve formátu *Esri Shapefile* lze do databáze PostGIS
-naimportovat pomocí zásuvného modulu *PostGIS Shapefile and DBF
-loader* aplikace :ref:`PgAdmin <pgadmin3>` :menuselection:`Zásuvné
-moduly --> PostGIS Shapefile and DBF loader`.
-
-V dialogu pro import definujeme vstupní soubor ve formátu Esri
-Shapefile :fignote:`(1)`, cílové databázové schéma a cílovou tabulku
-:fignote:`(2)` a případně i souřadnicový systém :fignote:`(3)`.
-
-.. figure:: ../images/pgadmin-create.png
-   :scale-latex: 65
-		 
-Pro pokročilé uživatele
-^^^^^^^^^^^^^^^^^^^^^^^
-
 .. tip:: Více k tomuto tématu ve školení :skoleni:`PostGIS pro
          pokročilé
          <postgis-pokrocily/kapitoly/3_shp2pgsql_a_davkove_nahrani.html>`.

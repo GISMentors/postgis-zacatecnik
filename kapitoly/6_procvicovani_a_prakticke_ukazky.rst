@@ -409,7 +409,7 @@ Prostorový JOIN
    CREATE TABLE jelen.parcely_mzchu AS
    SELECT * FROM ruian_praha.parcely p
    WHERE EXISTS (
-      SELECT * FROM ochrana_uzemi.maloplosna_uzemi m
+      SELECT * FROM aopk.maloplosna_chranena_uzemi m
       WHERE ST_Intersects(p.geom, m.geom)
    );
 
@@ -435,7 +435,7 @@ Buffer
 .. code-block:: sql
 
    --vybere povodi Jizery pomoci rekurze
-   CREATE TABLE jelen.povodi_jizery AS
+   CREATE TABLE jizera.povodi_jizery AS
    WITH RECURSIVE povodi_jizery AS (
            SELECT 
            * , 1 rad
@@ -462,7 +462,7 @@ Buffer
        INSERT INTO jelen.jize (geom)
        SELECT (ST_Dump(geom)).geom FROM
        (
-          SELECT ST_Union(geom) geom FROM jelen.povodi_jizery
+          SELECT ST_Union(geom) geom FROM jizera.povodi_jizery
        ) uni
        ;
 
@@ -503,7 +503,7 @@ Buffer
    SELECT 
    rid
    , ST_Buffer(geom, 90-(rad * 10)) geom
-   FROM jelen.povodi_jizery;
+   FROM jizera.povodi_jizery;
 
 Agregace
 --------
@@ -544,7 +544,7 @@ Prostorové analýzy
            , ST_Union(vzchu.geom) geom
            FROM
            ruian.katastralniuzemi k
-           JOIN ochrana_uzemi.velkoplosna_uzemi vzchu
+           JOIN aopk.velkoplosna_chranena_uzemi vzchu
            ON vzchu.geom && k.geom
            AND vzchu.kat = 'NP'
            GROUP BY k.ogc_fid
