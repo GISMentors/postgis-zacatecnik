@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Začínáme &#8212; Školení PostGIS pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Jazyk SQL" href="3_jazyk_sql.html" />
+    <link rel="prev" title="Úvod" href="1_uvod.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení PostGIS pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="1_uvod.html" title="Úvod"
+             accesskey="P">předchozí</a> |
+          <a href="3_jazyk_sql.html" title="Jazyk SQL"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="zaciname">
+<h1>Začínáme<a class="headerlink" href="#zaciname" title="Permalink to this heading">¶</a></h1>
+<p>Na úvod si ukážeme přístup k datům uložených v databázi z prostředí
+desktopového programu <a class="reference external" href="http://www.qgis.org">QGIS</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Více o tomto programu se dozvíte na <a class="reference external" href="http://training.gismentors.eu/qgis-zacatecnik">školení QGIS
+pro začátečníky</a>.</p>
+</div>
+<section id="zobrazujeme-data-v-qgis">
+<span id="index-0"></span><h2>Zobrazujeme data v QGIS<a class="headerlink" href="#zobrazujeme-data-v-qgis" title="Permalink to this heading">¶</a></h2>
+<p id="qgis-add-pg-layer">Vektorová data uložená v geodatabázi PostGIS je možné načíst buď z
+menu <span class="menuselection">Vrstva ‣ Přidat vrstvy ‣ Přidat vrstvu
+PostGIS</span> anebo z <em>nástrojové lišty</em> aplikace QGIS
+<a class="reference internal" href="../_images/mActionAddPostgisLayer.png"><img alt="mActionAddPostgisLayer" src="../_images/mActionAddPostgisLayer.png" style="width: 1.5em;" /></a>. Další možností je použít <a class="reference internal" href="#datacatalog"><span class="std std-ref">datový
+prohlížeč</span></a>.</p>
+<p id="db-connection">Objeví se dialog, ve kterém definujeme parametry <em>nového</em> připojení k
+databázi.</p>
+<figure class="align-center">
+<img alt="../_images/qgis-postgis-new.png" class="middle" src="../_images/qgis-postgis-new.png" />
+</figure>
+<p>Nastavíme:</p>
+<ul class="simple">
+<li><p>název spojení</p></li>
+<li><p>hostitel (adresa serveru, pokud je to localhost, nemusíme vyplňovat)</p></li>
+<li><p>databáze, ke které se chceme připojit</p></li>
+<li><p>uživatelské jméno a heslo pro připojení k databázi</p></li>
+</ul>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/qgis-postgis-new-settings.png"><img alt="../_images/qgis-postgis-new-settings.png" src="../_images/qgis-postgis-new-settings.png" style="width: 350px;" /></a>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Při opětovném připojení je vhodné si uživatelské jméno a
+popřípadě i heslo uložit na lokální disk. V tomto případě
+nás QGIS upozorní, že ukládáme přihlašovací údaje do
+nešifrovaného souboru.</p>
+<figure class="align-center">
+<img alt="../_images/qgis-pg-conn-warning.png" class="small" src="../_images/qgis-pg-conn-warning.png" />
+</figure>
+</div>
+<p>Nastavení připojení k databázi nejprve otestujeme a poté potvrdíme.</p>
+<div class="noteadvanced admonition">
+<p class="admonition-title">Poznámka pro pokročilé</p>
+<p><strong>Připojení k databázi z příkazové řádky</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>psql<span class="w"> </span>gismentors<span class="w"> </span>-U<span class="w"> </span>skoleni<span class="w"> </span>-W<span class="w"> </span>-h<span class="w"> </span>training.gismentors.eu
+</pre></div>
+</div>
+</div>
+<p>Následně se již můžeme k databázi <em>připojit</em></p>
+<figure class="align-center">
+<img alt="../_images/qgis-postgis-connect.png" class="middle" src="../_images/qgis-postgis-connect.png" />
+</figure>
+<p>a vybrat vektorové vrstvy, které chceme z geodatabáze <em>načíst</em>.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/qgis-postgis-layers.png"><img alt="../_images/qgis-postgis-layers.png" src="../_images/qgis-postgis-layers.png" style="width: 700px;" /></a>
+</figure>
+<section id="datovy-prohlizec">
+<span id="datacatalog"></span><h3>Datový prohlížeč<a class="headerlink" href="#datovy-prohlizec" title="Permalink to this heading">¶</a></h3>
+<p>Připojení k databázi PostGIS je možné definovat i v rámci <em>datového
+prohlížeče</em>.</p>
+<figure class="align-center">
+<img alt="../_images/qgis-catalog-new.png" class="small" src="../_images/qgis-catalog-new.png" />
+</figure>
+<p>Po připojení k databázi vybranou vektorovou vrstvu jednoduše
+přetáhneme z datového prohlížeče do mapového okna.</p>
+<figure class="align-center">
+<img alt="../_images/qgis-catalog-layer.png" class="middle" src="../_images/qgis-catalog-layer.png" />
+</figure>
+</section>
+</section>
+<section id="editujeme-vektorova-data">
+<span id="index-1"></span><h2>Editujeme vektorová data<a class="headerlink" href="#editujeme-vektorova-data" title="Permalink to this heading">¶</a></h2>
+<p>QGIS umožňuje editaci různých formátů vektorových dat včetně dat
+uložených v geodatabázi PostGIS. Přepnout danou vektorovou vrstvu do
+<em>editačního módu</em> je možné z kontextového menu</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/qgis-edit-menu.png"><img alt="../_images/qgis-edit-menu.png" src="../_images/qgis-edit-menu.png" style="width: 350px;" /></a>
+</figure>
+<p>anebo <em>nástrojové lišty</em> QGISu <a class="reference internal" href="../_images/mIconEditable.png"><img alt="mIconEditable" src="../_images/mIconEditable.png" style="width: 1.5em;" /></a>.</p>
+<p>Po přepnutí do editačního módu se vektorová vrstva zobrazí včetně
+lomových bodů (červené křížky) u vybraných objektů.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/qgis-edit-mode.png"><img alt="../_images/qgis-edit-mode.png" src="../_images/qgis-edit-mode.png" style="width: 800px;" /></a>
+</figure>
+<p><strong>Editační nástrojová lišta</strong> QGISu umožňuje</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/qgis-edit-toolbar.png"><img alt="../_images/qgis-edit-toolbar.png" src="../_images/qgis-edit-toolbar.png" style="width: 350px;" /></a>
+</figure>
+<table class="toc docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_images/qgis-edit-add.png"><img alt="A" class="align-middle" src="../_images/qgis-edit-add.png" style="width: 32px;" /></a></p></td>
+<td><p>přidávat nové prvky</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../_images/qgis-edit-node.png"><img alt="N" class="align-middle" src="../_images/qgis-edit-node.png" style="width: 32px;" /></a></p></td>
+<td><p>modifikovat uzly (přidávat, mazat a přesunovat)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_images/qgis-edit-delete.png"><img alt="D" class="align-middle" src="../_images/qgis-edit-delete.png" style="width: 32px;" /></a></p></td>
+<td><p>smazat vybrané prvky</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../_images/qgis-edit-cut.png"><img alt="C" class="align-middle" src="../_images/qgis-edit-cut.png" style="width: 32px;" /></a></p></td>
+<td><p>vyjmout vybrané prvky</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../_images/qgis-edit-copy.png"><img alt="O" class="align-middle" src="../_images/qgis-edit-copy.png" style="width: 32px;" /></a></p></td>
+<td><p>kopírovat vybrané prvky</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../_images/qgis-edit-paste.png"><img alt="P" class="align-middle" src="../_images/qgis-edit-paste.png" style="width: 32px;" /></a></p></td>
+<td><p>vložit prvky</p></td>
+</tr>
+</tbody>
+</table>
+<p>Další nástroje jsou pak k dispozici v nástrojové liště <strong>Pokročilá editace</strong>.</p>
+<section id="priklad-pridani-noveho-prvku">
+<h3>Příklad přidání nového prvku<a class="headerlink" href="#priklad-pridani-noveho-prvku" title="Permalink to this heading">¶</a></h3>
+<p>Z nástrojové lišty vybereme nástroj pro <em>přidávání nového prvku</em>
+<a class="reference internal" href="../_images/mActionCapturePolygon.png"><img alt="mActionCapturePolygon" src="../_images/mActionCapturePolygon.png" style="width: 1.5em;" /></a>.</p>
+<p>Lomové body nového prvku volíme stisknutím levého tlačítka
+myši. Poslední uložený lomový bod můžeme vrátit zpět pomocí klávesy
+<kbd class="kbd docutils literal notranslate">Backspace</kbd>.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/qgis-edit-new-feature.png"><img alt="../_images/qgis-edit-new-feature.png" src="../_images/qgis-edit-new-feature.png" style="width: 800px;" /></a>
+</figure>
+<p>Editaci prvku ukončíme stisknutím pravého tlačítka myši. Poté se
+objeví dialog pro zadání atributů nově přidaného prvku.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Více k tématu editace ve <a class="reference external" href="http://training.gismentors.eu/qgis-zacatecnik/vektorova_data/editace.html">školení QGIS pro
+začátečníky</a>.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_uvod.html">Úvod</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Začínáme</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#zobrazujeme-data-v-qgis">Zobrazujeme data v QGIS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#datovy-prohlizec">Datový prohlížeč</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#editujeme-vektorova-data">Editujeme vektorová data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#priklad-pridani-noveho-prvku">Příklad přidání nového prvku</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3_jazyk_sql.html">Jazyk SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_prostorove_dotazy.html">Prostorové dotazy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_import_export.html">Import a export dat z databáze</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_procvicovani_a_prakticke_ukazky.html">Přehled vybraných prostorových funkcí a operátorů</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_procvicovani_a_prakticke_ukazky.html#prakticke-ukazky">Praktické ukázky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_instalace.html">Poznámky k instalaci a obnově databáze</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="1_uvod.html" title="Úvod"
+              >předchozí</a> |
+            <a href="3_jazyk_sql.html" title="Jazyk SQL"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Prostorové dotazy &#8212; Školení PostGIS pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Import a export dat z databáze" href="5_import_export.html" />
+    <link rel="prev" title="Jazyk SQL" href="3_jazyk_sql.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení PostGIS pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="3_jazyk_sql.html" title="Jazyk SQL"
+             accesskey="P">předchozí</a> |
+          <a href="5_import_export.html" title="Import a export dat z databáze"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="prostorove-dotazy">
+<h1>Prostorové dotazy<a class="headerlink" href="#prostorove-dotazy" title="Permalink to this heading">¶</a></h1>
+<section id="pripojujeme-se-do-databaze-z-qgis">
+<h2>Připojujeme se do databáze z QGIS<a class="headerlink" href="#pripojujeme-se-do-databaze-z-qgis" title="Permalink to this heading">¶</a></h2>
+<p id="index-0">Přístup do databáze umožnuje zásuvný modul QGISu <strong class="program">DB
+Manager</strong> (Správce databází).</p>
+<p id="db-manager">DB Manager spustíme z menu aplikace QGIS <span class="menuselection">Databáze ‣
+Správce databází ‣ Správce databází</span>.</p>
+<p>V dialogu vybereme databázi školení „gismentors“.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/qgis-db-manager-priv.png" class="middle" src="../_images/qgis-db-manager-priv.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 3 </span><span class="caption-text">Uživatel má v tomto případě právo v databázi vytvářet
+vlastní schémata a dočasné tabulky.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Můžeme procházet metadata jednotlivých vrstev uložených v geodatabázi.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/qgis-db-manager-layer.png" class="middle" src="../_images/qgis-db-manager-layer.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 4 </span><span class="caption-text">Uživatel má v tomto případě pro vrstvu <cite>obce</cite> ve schématu <em>ruian</em>
+veškerá práva a může ji modifikovat.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<section id="provadime-sql-dotazy">
+<h3>Provádíme SQL dotazy<a class="headerlink" href="#provadime-sql-dotazy" title="Permalink to this heading">¶</a></h3>
+<p id="index-1">Otevřeme dialog SQL okna <a class="reference internal" href="../_images/qgis-db-manager-sql-toolbar.png"><img alt="sqlwindow" src="../_images/qgis-db-manager-sql-toolbar.png" style="width: 24px;" /></a>, které nám umožní provádět
+jednoduché <a class="reference internal" href="3_jazyk_sql.html"><span class="doc">SQL dotazy</span></a> přímo v prostředí aplikace
+QGIS.</p>
+<figure class="align-center" id="id3">
+<img alt="../_images/qgis-db-manager-sql-window.png" class="middle" src="../_images/qgis-db-manager-sql-window.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 5 </span><span class="caption-text">Příklad určení počtu obcí v ČR.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Pokročilejší uživatelé ocení spíše konzolový nástroj
+<strong class="program">psql</strong>. Více k tomuto tématu ve školení
+<a class="reference external" href="http://training.gismentors.eu/postgis-pokrocily">PostGIS pro pokročilé</a>.</p>
+</div>
+<section id="vytvarime-novou-vrstvu-jako-vysledek-prostoroveho-dotazu">
+<span id="index-2"></span><h4>Vytváříme novou vrstvu jako výsledek prostorového dotazu<a class="headerlink" href="#vytvarime-novou-vrstvu-jako-vysledek-prostoroveho-dotazu" title="Permalink to this heading">¶</a></h4>
+<p>Na základě prostorového dotazu můžeme pomocí dialogu <em>správce
+databází</em> vytvářet nové datové vrstvy.</p>
+<p>V nasledujícím příkladě vybereme <span class="fignote">(1)</span> obce
+(<span class="dbtable">ruian.obce_polygon</span>), které obsahují alespoň jednu pořární
+stanici (<span class="dbtable">osm.pozarni_stanice</span>). Výsledek zobrazíme v QGISu
+jako novou vrstvu <span class="map">obce_pozarni_stanice</span> <span class="fignote">(2)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">ruian</span><span class="p">.</span><span class="n">obce</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">osm</span><span class="p">.</span><span class="n">pozarni_stanice</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">p</span>
+<span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">ST_Within</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Dotaz vracím obce, ve kterých je více než jedna požární stanice,
+jako duplicitní. Správně by tento dotaz mohl vypadat
+např. následovně:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">ruian</span><span class="p">.</span><span class="n">obce</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">EXISTS</span>
+<span class="p">(</span>
+<span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">osm</span><span class="p">.</span><span class="n">pozarni_stanice</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_Within</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<figure class="align-center">
+<img alt="../_images/qgis-query-new-layer.png" class="middle" src="../_images/qgis-query-new-layer.png" />
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Alternativně můžete novou vrsvu vytvořit v databázi rovnou
+jako novou tabulku anebo pohled a zobrazit v QGISu standardní cestou.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- nejprve vytvoříme vlastní schéma</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="n">uzivatel</span><span class="p">;</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">uzivatel</span><span class="p">.</span><span class="n">obce_pozarni_stanice</span><span class="w"> </span><span class="k">AS</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">ruian</span><span class="p">.</span><span class="n">obce</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">EXISTS</span>
+<span class="p">(</span>
+<span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">osm</span><span class="p">.</span><span class="n">pozarni_stanice</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_Within</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<figure class="align-center" id="id4">
+<img alt="../_images/qgis-query-new-layer-disp.png" class="large" src="../_images/qgis-query-new-layer-disp.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 6 </span><span class="caption-text">Výsledek prostorového dotazu.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+<section id="pristup-z-pgadmin">
+<span id="pgadmin3"></span><span id="index-3"></span><h2>Přístup z PgAdmin<a class="headerlink" href="#pristup-z-pgadmin" title="Permalink to this heading">¶</a></h2>
+<p>SQL dotazy můžeme provádět v grafické uživatelském prostředí <a class="reference external" href="http://www.pgadmin.org/">PgAdmin</a>. V následujícím textu předpokládáme verzi
+PgAdmin 4.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Pokud používáte QGIS, tak Vám PgAdmin nepřinese nic nového, spíše
+naopak. PgAdmin není GIS aplikace (od verze 3.3 PgAdmin4 nabízí
+alespoň <a class="reference external" href="https://www.bostongis.com/blog/index.php?/archives/272-pgAdmin4-now-offers-PostGIS-geometry-viewer.html">jednoduchou problížečku geografických dat</a>). Neumožní
+Vám zobrazit výsledky prostorových dotazů v mapovém okně podobně
+jako QGIS. Jde o grafické uživatelské rozhraní pro přístup k
+databázi PostgreSQL, nic víc. Navíc nepodporuje našeptávání a další
+užitečné funkce. Pro efektivní práci s databází se nejvíce hodí
+konzolový klient <strong class="program">psql</strong>, více na školení <a class="reference external" href="http://training.gismentors.eu/postgis-pokrocily">PostGIS
+pro pokročilé</a>.</p>
+</div>
+<figure class="align-center">
+<img alt="../_images/pgadmin-geometry-view.png" class="large" src="../_images/pgadmin-geometry-view.png" />
+</figure>
+<figure class="align-center" id="id5">
+<img alt="../_images/pgadmin-new-conn.png" class="small" src="../_images/pgadmin-new-conn.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 7 </span><span class="caption-text">Přidáme nové spojení.</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/pgadmin-new-conn-dialog.png"><img alt="../_images/pgadmin-new-conn-dialog.png" src="../_images/pgadmin-new-conn-dialog.png" style="width: 400px;" /></a>
+</figure>
+<figure class="align-center" id="id6">
+<a class="reference internal image-reference" href="../_images/pgadmin-new-conn-dialog-1.png"><img alt="../_images/pgadmin-new-conn-dialog-1.png" src="../_images/pgadmin-new-conn-dialog-1.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Obr. 8 </span><span class="caption-text">V následujícím dialogu zadáme název připojení a především parametry
+připojení k databázi.</span><a class="headerlink" href="#id6" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<p>Do seznamu se přidá nová položka.</p>
+<figure class="align-center">
+<img alt="../_images/pgadmin-new-conn-added.png" src="../_images/pgadmin-new-conn-added.png" />
+</figure>
+<p>Z menu <span class="menuselection">Tools ‣ Query Tool</span> otevřeme nástroj, který
+nám umožní provádět SQL dotazy.</p>
+<figure class="align-center" id="id7">
+<img alt="../_images/pgadmin-sql-window.png" class="large" src="../_images/pgadmin-sql-window.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 9 </span><span class="caption-text">Příklad určení počtu obcí v ČR.</span><a class="headerlink" href="#id7" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="pristup-z-dbeaver">
+<h2>Přístup z DbEaver<a class="headerlink" href="#pristup-z-dbeaver" title="Permalink to this heading">¶</a></h2>
+<p>SQL dotazy můžeme provádět v grafické uživatelském prostředí <a class="reference external" href="https://dbeaver.io/">DbEaver</a>.</p>
+<p>Tento nástroj nabízí přístup nejen k PostgreSQL, ale i jiným typům databází.</p>
+<p>Také má integrovaný prohlížeč geodat, včetně zobrazení podkladu v podobě OSM
+nebo jiných služeb.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/dbeaver-new-connection.png"><img alt="../_images/dbeaver-new-connection.png" src="../_images/dbeaver-new-connection.png" style="width: 400px;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/dbeaver-new-connection-2.png"><img alt="../_images/dbeaver-new-connection-2.png" src="../_images/dbeaver-new-connection-2.png" style="width: 400px;" /></a>
+</figure>
+<figure class="align-center">
+<img alt="../_images/dbeaver.png" class="large" src="../_images/dbeaver.png" />
+</figure>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_zaciname.html">Začínáme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_jazyk_sql.html">Jazyk SQL</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Prostorové dotazy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pripojujeme-se-do-databaze-z-qgis">Připojujeme se do databáze z QGIS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#provadime-sql-dotazy">Provádíme SQL dotazy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pristup-z-pgadmin">Přístup z PgAdmin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pristup-z-dbeaver">Přístup z DbEaver</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="5_import_export.html">Import a export dat z databáze</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_procvicovani_a_prakticke_ukazky.html">Přehled vybraných prostorových funkcí a operátorů</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_procvicovani_a_prakticke_ukazky.html#prakticke-ukazky">Praktické ukázky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_instalace.html">Poznámky k instalaci a obnově databáze</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="3_jazyk_sql.html" title="Jazyk SQL"
+              >předchozí</a> |
+            <a href="5_import_export.html" title="Import a export dat z databáze"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Jazyk SQL &#8212; Školení PostGIS pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Prostorové dotazy" href="4_prostorove_dotazy.html" />
+    <link rel="prev" title="Začínáme" href="2_zaciname.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení PostGIS pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="2_zaciname.html" title="Začínáme"
+             accesskey="P">předchozí</a> |
+          <a href="4_prostorove_dotazy.html" title="Prostorové dotazy"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="jazyk-sql">
+<span id="index-0"></span><h1>Jazyk SQL<a class="headerlink" href="#jazyk-sql" title="Permalink to this heading">¶</a></h1>
+<p>Jazyk <strong>SQL</strong> je nástroj pro komunikaci uživatele s relační databází. Oproti
+programovacím jazykům je jednodušší a bližší gramatice mluvené řeči.
+Je standardizován jako <a class="reference external" href="http://cs.wikipedia.org/wiki/SQL">SQL ANSI</a>. V jazyce SQL vytváříme tzv.
+<cite>dotazy</cite>.</p>
+<p>SQL dotazy dělíme na dva základní typy: dotazy pro manipulaci s
+daty <strong>DML</strong> (<a class="reference external" href="http://en.wikipedia.org/wiki/Data_manipulation_language">data manipulation language</a>) a
+<strong>DDL</strong> (<a class="reference external" href="http://en.wikipedia.org/wiki/Data_definition_language">data definition language</a>)
+tedy dotazy pro definici dat. DML slouží pro manipulaci se
+záznamy v tabulkách, tedy pro vyptání dat, mazání záznamů,
+vyprazdňování tabulek, vkládání a aktualizování záznamů. DDL naopak slouží
+pro definici databázových struktur. Pro tvorbu databází, tabulek, indexů,
+pohledů, funkcí, triggerů atd. Dále rozlišujeme <strong>DCL</strong> a <strong>TCL</strong>, tedy
+<a class="reference external" href="http://en.wikipedia.org/wiki/Data_control_language">data control language</a> a
+<a class="reference external" href="http://en.wikipedia.org/wiki/Transaction_Control_Language">transaction control language</a>.
+První z nich slouží k nastavení přístupových práv (příkazy <span class="sqlcmd">GRANT</span> a
+<span class="sqlcmd">REVOKE</span>), druhý pak k práci s transakcemi.</p>
+<div class="noteadvanced admonition">
+<p class="admonition-title">Poznámka pro pokročilé</p>
+<p>Kromě jazyka SQL můžeme psát v PostgreSQL funkce i v
+dalších jazycích. Mimo jiné se jedná o <a class="reference external" href="http://cs.wikipedia.org/wiki/Perl">Perl</a>,
+<a class="reference external" href="http://cs.wikipedia.org/wiki/Python">Python</a>, R, <a class="reference external" href="http://cs.wikipedia.org/wiki/JavaScript">JavaScript</a> a další. Zejména
+však v <a class="reference external" href="http://www.postgresql.org/docs/current/static/plpgsql.html">PL/PgSQL</a>, procedurálním jazyku PostgreSQL svou syntaxí
+podobného jazyku používanému v databázích <a class="reference external" href="http://cs.wikipedia.org/wiki/Oracle">Oracle</a>.</p>
+</div>
+<section id="syntax">
+<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this heading">¶</a></h2>
+<p>Základní kostra jazyka SQL vypadá zhruba následovně:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PROVEĎ</span>
+<span class="n">S</span> <span class="n">ČÍM</span>
+<span class="n">ZA</span> <span class="n">JAKÝCH</span> <span class="n">PODMÍNEK</span>
+</pre></div>
+</div>
+<p>Pro výběr dat z tabulky tedy:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">VYBER</span>
+<span class="n">seznam</span> <span class="n">položek</span>
+<span class="n">Z</span> <span class="n">tabulky</span>
+<span class="n">PRO</span> <span class="n">KTERÉ</span> <span class="n">PLATÍ</span>
+<span class="n">podmínka</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>SQL dotazy v PostgreSQL zakončujeme středníkem.</p>
+</div>
+</section>
+<section id="dml">
+<span id="index-1"></span><h2>DML<a class="headerlink" href="#dml" title="Permalink to this heading">¶</a></h2>
+<section id="select">
+<span id="index-2"></span><h3>SELECT<a class="headerlink" href="#select" title="Permalink to this heading">¶</a></h3>
+<p>Dotaz, kterým vybíráme data z databáze, uvozuje příkaz <a class="reference external" href="http://www.postgresql.org/docs/current/static/sql-select.html">SELECT</a> následovaný
+výčtem sloupců požadovaného výstupu. Výčet sloupců může být nahrazen <code class="docutils literal notranslate"><span class="pre">*</span></code> pro výběr všech sloupců.
+Pokud předřadíme výčtu sloupců <span class="sqlcmd">DISTINCT</span> bude dotaz vracet pouze unikátní kombinace
+hodnot.  Klauzule <span class="sqlcmd">FROM</span> uvozuje výčet tabulek,
+ze kterých budeme vybírat a které mohou (ale nemusí) být propojeny klauzulí <span class="sqlcmd">JOIN</span>.
+Následovat může výčet podmínek uvedený klauzulí <span class="sqlcmd">WHERE</span>. Podmínky můžeme řetězit
+booleovskou logikou pomocí <span class="sqlcmd">AND</span>, <span class="sqlcmd">OR</span>, případně vylučovat pomocí
+<span class="sqlcmd">NOT</span>.</p>
+<p>Nakonec můžeme použít <span class="sqlcmd">GROUP BY</span> pro sdružování při
+agregacích, <span class="sqlcmd">ORDER BY</span> pro sezaření záznamů či
+případně <span class="sqlcmd">LIMIT</span> a <span class="sqlcmd">OFFSET</span> pro omezení řádků výstupu,
+eventuálně další, méně obvyklé klauzule.</p>
+<section id="jak-to-funguje-v-praxi">
+<h4>Jak to funguje v praxi?<a class="headerlink" href="#jak-to-funguje-v-praxi" title="Permalink to this heading">¶</a></h4>
+<p>Dejme tomu, že chcete zjistit, které muchomůrky jsou vhodné k jídlu.
+Přijdete do knihovny a zeptáte se:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Dobrý den, slečno, prosím Vás,
+podívala byste se mi do Smotlachova atlasu hub a
+zjistila,
+které muchomůrky jsou jedlé?
+</pre></div>
+</div>
+<p>Slečna půjde, vytáhne z regálu „Smotlachu“, podívá se do rejstříku a
+najde všechny muchomůrky, každou nalistuje a zjistí, které jsou jedlé. Ty
+pro Vás vypíše.</p>
+<p>V relační databázi by to vypadalo nějak takto.</p>
+<p>Máme <strong>tabulku</strong> nazvanou <em>smotlacha_atlas_hub</em>. Vypadá nějak takto:</p>
+<table class="border docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>rod</p></th>
+<th class="head"><p>druh</p></th>
+<th class="head"><p>rod_lat</p></th>
+<th class="head"><p>druh_lat</p></th>
+<th class="head"><p>popis</p></th>
+<th class="head"><p>foto</p></th>
+<th class="head"><p>jedla</p></th>
+<th class="head"><p>vyskyt_lokalita</p></th>
+<th class="head"><p>vyskyt_od</p></th>
+<th class="head"><p>vyskyt_do</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>muchomůrka</p></td>
+<td><p>růžovka</p></td>
+<td><p>amanita</p></td>
+<td><p>rubescens</p></td>
+<td><p>…</p></td>
+<td><p>ruzovka.jpg</p></td>
+<td><p>true</p></td>
+<td><p>MULTIPOLYGON(((…</p></td>
+<td><p>1.6.</p></td>
+<td><p>31.10.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>SQL dotaz potom bude vypadat následovně:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="w">   </span><span class="n">rod</span>
+<span class="w">   </span><span class="p">,</span><span class="w"> </span><span class="n">druh</span>
+<span class="w">   </span><span class="p">,</span><span class="w"> </span><span class="n">foto</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">smotlacha_atlas_hub</span>
+<span class="k">WHERE</span>
+<span class="w">   </span><span class="n">rod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;muchomůrka&#39;</span>
+<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">jedla</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>V překladu do češtiny by dotaz mohl znít:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">VYBER</span>
+   <span class="n">seznam</span> <span class="n">požadovaných</span> <span class="n">údajů</span>
+<span class="n">Z</span> <span class="n">tabulky</span>
+<span class="p">[</span><span class="n">PRO</span> <span class="n">KTERÉ</span> <span class="n">PLATÍ</span>
+   <span class="n">podmínka</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="join">
+<span id="index-3"></span><h3>JOIN<a class="headerlink" href="#join" title="Permalink to this heading">¶</a></h3>
+<p>Rozlišujeme dva typy příkazu <a class="reference external" href="http://www.postgresql.org/docs/current/static/queries-table-expressions.html">JOIN</a>, tj. spojení tabulek: <span class="sqlcmd">INNER
+JOIN</span> a <span class="sqlcmd">OUTER JOIN</span>.</p>
+<p><span class="sqlcmd">INNER JOIN</span> vrátí pouze takové záznamy,
+kde došlo k nalezení potřebné hodnoty v obou tabulkách. Naproti tomu
+<span class="sqlcmd">OUTER JOIN</span> vrací pro jednu, případně obě tabulky všechny záznamy.
+<span class="sqlcmd">OUTER JOIN</span> dělíme na <span class="sqlcmd">LEFT JOIN</span>, <span class="sqlcmd">RIGHT JOIN</span> a
+<span class="sqlcmd">FULL JOIN</span>. <span class="sqlcmd">LEFT</span> a <span class="sqlcmd">RIGHT JOIN</span> vrací všechny záznamy z levé nebo
+pravé tabulky. <span class="sqlcmd">FULL JOIN</span> vrátí všechny záznamy z obou tabulek.
+Speciální situací je <span class="sqlcmd">CROSS JOIN</span>, který vrací kartézský součin
+záznamů v obou tabulkách.</p>
+<p>Záznamy obvykle párujeme pomocí klauzule <span class="sqlcmd">ON</span>, za kterou následují
+podmínky propojení podobně jako za klauzulí <span class="sqlcmd">WHERE</span>. Alternativou
+je použití klauzule <span class="sqlcmd">USING</span>, kde je uveden název sloupce, který
+musí být v obou tabulkách. Další možností je <span class="sqlcmd">NATURAL JOIN</span>,
+který použije stejně pojmenované sloupce. Ten však nedoporučeme příliš
+používat, zvláště v databázích s proměnlivou strukturou.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- vyber &quot;rod druh&quot;, &quot;lokalita&quot;, &quot;vyskyt&quot;</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">houby</span><span class="p">.</span><span class="n">rod</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">houby</span><span class="p">.</span><span class="n">druh</span><span class="p">,</span><span class="w"> </span><span class="n">lokalita</span><span class="p">.</span><span class="n">nazev</span><span class="p">,</span><span class="w"> </span><span class="n">houby</span><span class="p">.</span><span class="n">vyskyt</span>
+<span class="c1">-- z tabulky houby</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">houby</span>
+<span class="c1">-- spoj podle sloupečků s id houby</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">lokalita</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">houby</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lokalita</span><span class="p">.</span><span class="n">houby_id</span>
+<span class="c1">-- ale pouze tam, kde lokalita je v oblasti &quot;Vysočina&quot;</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">ST_Intersects</span><span class="p">(</span>
+<span class="w">   </span><span class="p">(</span>
+<span class="w">      </span><span class="k">SELECT</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">oblasti</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">nazev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Vysočina&#39;</span>
+<span class="w">   </span><span class="p">)</span>
+<span class="w">   </span><span class="p">,</span><span class="w"> </span><span class="n">lokalita</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="c1">-- a pouze tam, kde výsky je &quot;od&quot;</span>
+<span class="k">AND</span><span class="w"> </span><span class="n">houby</span><span class="p">.</span><span class="n">vyskyt</span><span class="w"> </span><span class="o">@&gt;</span><span class="w"> </span><span class="s1">&#39;2015-07-15&#39;</span><span class="p">::</span><span class="k">timestamp</span><span class="p">;</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">houby</span><span class="p">.</span><span class="n">rod</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">houby</span><span class="p">.</span><span class="n">druh</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">houby</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">r_recept</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">r_recept</span><span class="p">.</span><span class="n">houby_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">houby</span><span class="p">.</span><span class="n">id</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">recept</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">recept</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r_recept</span><span class="p">.</span><span class="n">recept_id</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">recept</span><span class="p">.</span><span class="n">nazev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;smaženice&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="update">
+<span id="index-4"></span><h3>UPDATE<a class="headerlink" href="#update" title="Permalink to this heading">¶</a></h3>
+<p><a class="reference external" href="http://www.postgresql.org/docs/current/static/sql-update.html">UPDATE</a> slouží k aktualizování hodnot vybraných
+sloupců. Používá se klauzule <span class="sqlcmd">WHERE</span> a výrazy. Také je možno použít
+klauzuli <span class="sqlcmd">FROM</span> a aktualizovat tabulku hodnotami z jiných tabulek.</p>
+<p>Příklad nastavení výskýtu od 1.června pro všechny houhy z rodu „amanita“:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">smotlacha_atlas_hub</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">vyskyt_od</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;1.6.&#39;</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">rod_lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;amanita&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="delete">
+<span id="index-5"></span><h3>DELETE<a class="headerlink" href="#delete" title="Permalink to this heading">¶</a></h3>
+<p><a class="reference external" href="http://www.postgresql.org/docs/current/static/sql-delete.html">DELETE</a> slouží k mazání vybraných záznamů z tabulek.</p>
+<p>Příklad odstranění všech jedlých hub z tabulky:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">DELETE</span><span class="w"> </span><span class="n">smotlacha_atlas_hub</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">jedla</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="truncate">
+<span id="index-6"></span><h3>TRUNCATE<a class="headerlink" href="#truncate" title="Permalink to this heading">¶</a></h3>
+<p><a class="reference external" href="http://www.postgresql.org/docs/current/static/sql-truncate.html">TRUNCATE</a> slouží k okamžitému vyprázdnění celé
+tabulky. Je rychlejší, než použití <span class="sqlcmd">DELETE</span> bez podmínek.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">TRUNCATE</span><span class="w"> </span><span class="n">smotlacha_atlas_hub</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="mnozinove-operace">
+<span id="index-7"></span><h3>Množinové operace<a class="headerlink" href="#mnozinove-operace" title="Permalink to this heading">¶</a></h3>
+<p>Množinové operace pracují s výsledky více poddotazů. Jedná se o <span class="sqlcmd">UNION</span>,
+<span class="sqlcmd">UNION ALL</span>, <span class="sqlcmd">EXCEPT</span> a <span class="sqlcmd">INTERSECT</span>.</p>
+<p><span class="sqlcmd">UNION</span> vrací sjednocení záznamů z obou dotazů. Záznamy, které jsou výsledkem (tvz. <em>recordset</em>) obou
+dotazů, jsou po sjednocení obsaženy pouze jednou. Naproti tomu <span class="sqlcmd">UNION ALL</span>
+vrátí všechny záznamy, výsledkem sjednocení je tedy součet záznamů z obou recordsetů.</p>
+<div class="noteadvanced admonition">
+<p class="admonition-title">Poznámka pro pokročilé</p>
+<p>Pokud víme, že záznamy se mezi dotazy neduplikují, je lepší použít
+<span class="sqlcmd">UNION ALL</span>. Provádění pak bude efektivnější, protože si ušetříme porovnávání
+obou výstupních recordsetů.</p>
+</div>
+<p><span class="sqlcmd">EXCEPT</span> vrací rozdíl, tedy pouze takové záznamy, které se vyskytují pouze v prvním
+recordsetu. <span class="sqlcmd">INTERSECT</span> vrací jejich průnik. Tedy záznamy, které se vyskytují v obou
+recordsetech.</p>
+</section>
+<section id="poddotazy">
+<span id="index-8"></span><h3>Poddotazy<a class="headerlink" href="#poddotazy" title="Permalink to this heading">¶</a></h3>
+<p>V rámci dotazu můžeme dotazovat další <em>vnořené</em> dotazy uzavřené do závorek.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">recepty</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span>
+<span class="p">(</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">recept_id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">r_recept</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">houby_id</span><span class="w"> </span><span class="k">IN</span>
+<span class="w">   </span><span class="p">(</span>
+<span class="w">      </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">houby</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">rod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;bedla&#39;</span>
+<span class="w">   </span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="n">recepty_na_bedly</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">recepty</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">recepty</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">recepty_na_bedly</span><span class="p">.</span><span class="n">recept_id</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="ddl">
+<span id="index-9"></span><h2>DDL<a class="headerlink" href="#ddl" title="Permalink to this heading">¶</a></h2>
+<p><span class="sqlcmd">CREATE</span> a <span class="sqlcmd">DROP</span> jsou základní příkazy z <em>Data Definition Language</em>.
+Pomocí nich vytváříme tabulky, pohledy, omezení, funkce, typy a další.</p>
+<blockquote>
+<div><p><a class="reference external" href="http://www.postgresql.org/docs/current/static/sql-createtable.html">CREATE TABLE</a></p>
+<p><a class="reference external" href="http://www.postgresql.org/docs/current/static/sql-createview.html">CREATE VIEW</a></p>
+<p><a class="reference external" href="http://www.postgresql.org/docs/current/static/sql-createfunction.html">CREATE FUNCTION</a></p>
+<p><a class="reference external" href="http://www.postgresql.org/docs/current/static/sql-createlanguage.html">CREATE LANGUAGE</a></p>
+<p>…</p>
+</div></blockquote>
+</section>
+<section id="a-co-prostorova-databaze">
+<h2>A co prostorová databáze?<a class="headerlink" href="#a-co-prostorova-databaze" title="Permalink to this heading">¶</a></h2>
+<p>Dejme tomu, že nás zajímají jen ty houby, které rostou v okruhu třiceti
+kilometrů od Pece pod Sněžkou, kde hodláme strávit dovolenou.</p>
+<p>V takovém případě slečna musí porovnat místo výskytu s vámi zadanou
+lokalitou.</p>
+<div class="noteadvanced admonition">
+<p class="admonition-title">Poznámka pro pokročilé</p>
+<p>Je zjevné, že k požadovanému výsledku se může slečna
+dobrat různými, různě efektivními způsoby. Postup, kterým bude
+pracovat se nazývá <cite>prováděcí plán</cite> (<a class="reference external" href="http://en.wikipedia.org/wiki/query plan">query plan</a>). K
+volbě ideálního způsobu slouží statistiky, které si databáze ukládá
+a které jsou aktualizovány po každém dotazu.</p>
+</div>
+<p id="index-10">Dotaz do SQL může potom vypadat následovně:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="w">   </span><span class="n">rod</span>
+<span class="w">   </span><span class="p">,</span><span class="w"> </span><span class="n">druh</span>
+<span class="w">   </span><span class="p">,</span><span class="w"> </span><span class="n">foto</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">smotlacha_atlas_hub</span>
+<span class="k">WHERE</span>
+<span class="w">   </span><span class="n">rod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;muchomůrka&#39;</span>
+<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">jedla</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span>
+<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">ST_Distance</span><span class="p">(</span><span class="n">vyskyt_lokalita</span><span class="p">,</span>
+<span class="w">   </span><span class="s1">&#39;SRID=5514;POINT(-641455 -987918)&#39;</span><span class="p">::</span><span class="n">geometry</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="n">e4</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_zaciname.html">Začínáme</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Jazyk SQL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#syntax">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dml">DML</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#select">SELECT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#join">JOIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#update">UPDATE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#delete">DELETE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#truncate">TRUNCATE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mnozinove-operace">Množinové operace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#poddotazy">Poddotazy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ddl">DDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-co-prostorova-databaze">A co prostorová databáze?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="4_prostorove_dotazy.html">Prostorové dotazy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_import_export.html">Import a export dat z databáze</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_procvicovani_a_prakticke_ukazky.html">Přehled vybraných prostorových funkcí a operátorů</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_procvicovani_a_prakticke_ukazky.html#prakticke-ukazky">Praktické ukázky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_instalace.html">Poznámky k instalaci a obnově databáze</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="2_zaciname.html" title="Začínáme"
+              >předchozí</a> |
+            <a href="4_prostorove_dotazy.html" title="Prostorové dotazy"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,630 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Přehled vybraných prostorových funkcí a operátorů &#8212; Školení PostGIS pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Poznámky k instalaci a obnově databáze" href="7_instalace.html" />
+    <link rel="prev" title="Import a export dat z databáze" href="5_import_export.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení PostGIS pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="5_import_export.html" title="Import a export dat z databáze"
+             accesskey="P">předchozí</a> |
+          <a href="7_instalace.html" title="Poznámky k instalaci a obnově databáze"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="prehled-vybranych-prostorovych-funkci-a-operatoru">
+<h1>Přehled vybraných prostorových funkcí a operátorů<a class="headerlink" href="#prehled-vybranych-prostorovych-funkci-a-operatoru" title="Permalink to this heading">¶</a></h1>
+<section id="operatory">
+<span id="index-0"></span><h2>Operátory<a class="headerlink" href="#operatory" title="Permalink to this heading">¶</a></h2>
+<p>Mezi nejpoužívanější operátory patří:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> - překryv minimálních ohraničujících obdélníků</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;#&gt;</span></code> - vzdálenost minimálních ohraničujících obdélníků</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;-&gt;</span></code> - vzdálenost centroidů</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Více informací v <a class="reference external" href="http://postgis.net/docs/reference.html#Operators">dokumentaci PostGIS</a>.</p>
+</div>
+</section>
+<section id="konstruktory">
+<span id="index-1"></span><h2>Konstruktory<a class="headerlink" href="#konstruktory" title="Permalink to this heading">¶</a></h2>
+<p>Kostruktory jsou funkce vytvářející v PostGISu nové geometrické objekty.</p>
+<p><a class="reference external" href="http://postgis.net/docs/ST_GeomFromText.html">ST_GeomFromText</a> geometrie z WKT.</p>
+<p><a class="reference external" href="http://postgis.net/docs/ST_GeomFromGML.html">ST_GeomFromGML</a>, <a class="reference external" href="http://postgis.net/docs/ST_GeomFromWKB.html">ST_GeomFromWKB</a>, <a class="reference external" href="http://postgis.net/docs/ST_Point.html">ST_Point</a>, …</p>
+<p>K vytvoření geometrie lze použít kromě funkcí PostGISu i přetypování z
+<a class="reference external" href="http://en.wikipedia.org/wiki/Well-known text">WKT</a>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="s1">&#39;SRID=5514; POLYGON((0 0,0 1,1 1,1 0,0 0))&#39;</span><span class="p">::</span><span class="n">geometry</span><span class="p">(</span><span class="n">POLYGON</span><span class="p">,</span><span class="w"> </span><span class="mi">5514</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Více informací v <a class="reference external" href="http://postgis.net/docs/reference.html#Geometry_Constructors">dokumentaci PostGIS</a>.</p>
+</div>
+</section>
+<section id="vystupy">
+<span id="index-2"></span><h2>Výstupy<a class="headerlink" href="#vystupy" title="Permalink to this heading">¶</a></h2>
+<p>Funkce umožňující převod geometrie do jiné reprezentace.</p>
+<p><a class="reference external" href="http://postgis.net/docs/ST_AsText.html">ST_AsText</a>, <a class="reference external" href="http://postgis.net/docs/ST_AsGML.html">ST_AsGML</a>, <a class="reference external" href="http://postgis.net/docs/ST_AsSVG.html">ST_AsSVG</a>, …</p>
+</section>
+<section id="rozmer-geometrie">
+<span id="index-3"></span><h2>Rozměr geometrie<a class="headerlink" href="#rozmer-geometrie" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Area.html">ST_Area</a> plocha.</p>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Perimeter.html">ST_Perimeter</a> obvod.</p>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Length.html">ST_Length</a> délka.</p>
+</section>
+<section id="dalsi-operace-nad-geometrii">
+<h2>Další operace nad geometrií<a class="headerlink" href="#dalsi-operace-nad-geometrii" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="http://postgis.net/docs/ST_ExteriorRing.html">ST_ExteriorRing</a> obvodová hranice.</p>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Dump.html">ST_Dump</a> rozdělí multipart geometrii.</p>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Polygonize.html">ST_Polygonize</a> zaplochování.</p>
+<p><a class="reference external" href="http://postgis.net/docs/ST_ConvexHull.html">ST_ConvexHull</a> konvexní obal.</p>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Translate.html">ST_Translate</a> posun.</p>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Buffer.html">ST_Buffer</a> obalová zóna.</p>
+<p><a class="reference external" href="http://postgis.net/docs/ST_SetSRID.html">ST_SetSRID</a> nastaví SRID (ID souřadnicového systému)</p>
+<p>…</p>
+</section>
+<section id="vzajemna-poloha-dvou-geometrii">
+<span id="index-4"></span><h2>Vzájemná poloha dvou geometrií<a class="headerlink" href="#vzajemna-poloha-dvou-geometrii" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Relate.html">ST_Relate</a> devítiprvková matice.</p>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Intersects.html">ST_Intersects</a> existuje průnik (i jeden bod).</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="n">ST_Intersects</span><span class="p">(</span>
+<span class="w">   </span><span class="s1">&#39;POLYGON((0 0,0 1,1 1,1 0,0 0))&#39;</span><span class="p">::</span><span class="n">geometry</span>
+<span class="w">   </span><span class="p">,</span><span class="w"> </span><span class="n">ST_Translate</span><span class="p">(</span><span class="s1">&#39;POLYGON((0 0,0 1,1 1,1 0,0 0))&#39;</span><span class="p">::</span><span class="n">geometry</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Disjoint.html">ST_Disjoint</a>, <a class="reference external" href="http://postgis.net/docs/ST_Overlaps.html">ST_Overlaps</a>, <a class="reference external" href="http://postgis.net/docs/ST_Crosses.html">ST_Crosses</a>,
+<a class="reference external" href="http://postgis.net/docs/ST_Within.html">ST_Within</a>, <a class="reference external" href="http://postgis.net/docs/ST_DWithin.html">ST_DWithin</a>, <a class="reference external" href="http://postgis.net/docs/ST_Touches.html">ST_Touches</a></p>
+</section>
+<section id="geometricke-operace">
+<h2>Geometrické operace<a class="headerlink" href="#geometricke-operace" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Intersection.html">ST_Intersection</a> průnik.</p>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Difference.html">ST_Difference</a> rozdíl.</p>
+<p><a class="reference external" href="http://postgis.net/docs/ST_SymDifference.html">ST_SymDifference</a> symetrický rozdíl.</p>
+</section>
+<section id="agregace">
+<span id="index-5"></span><h2>Agregace<a class="headerlink" href="#agregace" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="http://postgis.net/docs/ST_Union.html">ST_Union</a> sjednocení.</p>
+</section>
+</section>
+<section id="prakticke-ukazky">
+<h1>Praktické ukázky<a class="headerlink" href="#prakticke-ukazky" title="Permalink to this heading">¶</a></h1>
+<section id="jak-vypsat-vsechny-tabulky-s-geometrii">
+<h2>Jak vypsat všechny tabulky s geometrií<a class="headerlink" href="#jak-vypsat-vsechny-tabulky-s-geometrii" title="Permalink to this heading">¶</a></h2>
+<p>Nejdříve si ukážeme, jak rychle zjistit, které tabulky v databázi
+obsahují prostorová data.</p>
+<p>Tuto informaci získáme z pohledu
+<span class="dbtable">geometry_columns</span>. Ten zobrazuje data ze
+systémových tabulek (data o typech a omezeních) a přehledně
+je zobrazuje.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Ve verzích PostGIS 1.x byl <span class="dbtable">geometry_columns</span>
+definován jako tabulka a nikoliv jako pohled.</p>
+</div>
+<p>Jeho struktura je následující:</p>
+<table class="border docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sloupec</p></th>
+<th class="head"><p>Typ</p></th>
+<th class="head"><p>Uložení</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>f_table_catalog</p></td>
+<td><p>character varying(256)</p></td>
+<td><p>extended</p></td>
+</tr>
+<tr class="row-odd"><td><p>f_table_schema</p></td>
+<td><p>character varying(256)</p></td>
+<td><p>extended</p></td>
+</tr>
+<tr class="row-even"><td><p>f_table_name</p></td>
+<td><p>character varying(256)</p></td>
+<td><p>extended</p></td>
+</tr>
+<tr class="row-odd"><td><p>f_geometry_column</p></td>
+<td><p>character varying(256)</p></td>
+<td><p>extended</p></td>
+</tr>
+<tr class="row-even"><td><p>coord_dimension</p></td>
+<td><p>integer</p></td>
+<td><p>plain</p></td>
+</tr>
+<tr class="row-odd"><td><p>srid</p></td>
+<td><p>integer</p></td>
+<td><p>plain</p></td>
+</tr>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>character varying(30)</p></td>
+<td><p>extended</p></td>
+</tr>
+</tbody>
+</table>
+<div class="noteadvanced admonition">
+<p class="admonition-title">Poznámka pro pokročilé</p>
+<p>PostGIS definuje pohled <span class="dbtable">geometry_columns</span> následovně:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">current_database</span><span class="p">()::</span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">f_table_catalog</span><span class="p">,</span>
+<span class="w">  </span><span class="n">n</span><span class="p">.</span><span class="n">nspname</span><span class="p">::</span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">f_table_schema</span><span class="p">,</span>
+<span class="w">  </span><span class="k">c</span><span class="p">.</span><span class="n">relname</span><span class="p">::</span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">f_table_name</span><span class="p">,</span>
+<span class="w">  </span><span class="n">a</span><span class="p">.</span><span class="n">attname</span><span class="p">::</span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">f_geometry_column</span><span class="p">,</span>
+<span class="w">  </span><span class="k">COALESCE</span><span class="p">(</span><span class="k">NULLIF</span><span class="p">(</span><span class="n">postgis_typmod_dims</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">atttypmod</span><span class="p">),</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="w">     </span><span class="p">,</span><span class="w"> </span><span class="n">postgis_constraint_dims</span><span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">nspname</span><span class="p">::</span><span class="nb">text</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">relname</span><span class="p">::</span><span class="nb">text</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">attname</span><span class="p">::</span><span class="nb">text</span><span class="p">)</span>
+<span class="w">     </span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">coord_dimension</span><span class="p">,</span>
+<span class="w">  </span><span class="k">COALESCE</span><span class="p">(</span><span class="k">NULLIF</span><span class="p">(</span><span class="n">postgis_typmod_srid</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">atttypmod</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">     </span><span class="p">,</span><span class="w"> </span><span class="n">postgis_constraint_srid</span><span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">nspname</span><span class="p">::</span><span class="nb">text</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">relname</span><span class="p">::</span><span class="nb">text</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">attname</span><span class="p">::</span><span class="nb">text</span><span class="p">)</span>
+<span class="w">     </span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">srid</span><span class="p">,</span>
+<span class="w">  </span><span class="k">replace</span><span class="p">(</span><span class="k">replace</span><span class="p">(</span><span class="k">COALESCE</span><span class="p">(</span><span class="k">NULLIF</span><span class="p">(</span><span class="k">upper</span><span class="p">(</span><span class="n">postgis_typmod_type</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">atttypmod</span><span class="p">)),</span>
+<span class="w">     </span><span class="s1">&#39;GEOMETRY&#39;</span><span class="p">::</span><span class="nb">text</span><span class="p">)</span>
+<span class="w">     </span><span class="p">,</span><span class="w"> </span><span class="n">postgis_constraint_type</span><span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">nspname</span><span class="p">::</span><span class="nb">text</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">relname</span><span class="p">::</span><span class="nb">text</span><span class="p">,</span>
+<span class="w">       </span><span class="n">a</span><span class="p">.</span><span class="n">attname</span><span class="p">::</span><span class="nb">text</span><span class="p">)::</span><span class="nb">text</span>
+<span class="w">     </span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;GEOMETRY&#39;</span><span class="p">::</span><span class="nb">text</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;ZM&#39;</span><span class="p">::</span><span class="nb">text</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">::</span><span class="nb">text</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;Z&#39;</span><span class="p">::</span><span class="nb">text</span><span class="p">,</span>
+<span class="w">       </span><span class="s1">&#39;&#39;</span><span class="p">::</span><span class="nb">text</span><span class="p">)::</span><span class="nb">character</span><span class="w"> </span><span class="nb">varying</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">type</span>
+<span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">pg_class</span><span class="w"> </span><span class="k">c</span><span class="p">,</span>
+<span class="w">  </span><span class="n">pg_attribute</span><span class="w"> </span><span class="n">a</span><span class="p">,</span>
+<span class="w">  </span><span class="n">pg_type</span><span class="w"> </span><span class="n">t</span><span class="p">,</span>
+<span class="w">  </span><span class="n">pg_namespace</span><span class="w"> </span><span class="n">n</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">typname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;geometry&#39;</span><span class="p">::</span><span class="n">name</span>
+<span class="k">AND</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">attisdropped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">atttypid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">oid</span><span class="w"> </span><span class="k">AND</span>
+<span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">attrelid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">oid</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">relnamespace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="n">oid</span>
+<span class="k">AND</span><span class="w"> </span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">relkind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;r&#39;</span><span class="p">::</span><span class="ss">&quot;char&quot;</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">relkind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;v&#39;</span><span class="p">::</span><span class="ss">&quot;char&quot;</span><span class="w"> </span><span class="k">OR</span>
+<span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">relkind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="p">::</span><span class="ss">&quot;char&quot;</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">relkind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;f&#39;</span><span class="p">::</span><span class="ss">&quot;char&quot;</span><span class="p">)</span>
+<span class="k">AND</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">pg_is_other_temp_schema</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">relnamespace</span><span class="p">)</span>
+<span class="k">AND</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">.</span><span class="n">nspname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;public&#39;</span><span class="p">::</span><span class="n">name</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">relname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;raster_columns&#39;</span><span class="p">::</span><span class="n">name</span><span class="p">)</span>
+<span class="k">AND</span><span class="w"> </span><span class="n">has_table_privilege</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">oid</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;SELECT&#39;</span><span class="p">::</span><span class="nb">text</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p>Provedeme jednoduchý dotaz do tohoto pohledu.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">geometry_columns</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">f_table_schema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;dibavod&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Vybíráme tedy všechny záznamy vztažené k tabulkám ze schématu
+<em>dibavod</em>.</p>
+<p>Výsledek může vypadat například takto:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f_table_catalog</span>   <span class="o">|</span> <span class="n">gismentors</span>
+<span class="n">f_table_schema</span>    <span class="o">|</span> <span class="n">dibavod</span>
+<span class="n">f_table_name</span>      <span class="o">|</span> <span class="n">povodi_iii</span>
+<span class="n">f_geometry_column</span> <span class="o">|</span> <span class="n">geom</span>
+<span class="n">coord_dimension</span>   <span class="o">|</span> <span class="mi">2</span>
+<span class="n">srid</span>              <span class="o">|</span> <span class="mi">5514</span>
+<span class="nb">type</span>              <span class="o">|</span> <span class="n">MULTIPOLYGON</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</section>
+<section id="jednoduchy-atributovy-dotaz">
+<h2>Jednoduchý atributový dotaz<a class="headerlink" href="#jednoduchy-atributovy-dotaz" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Vyberte parcely ze schématu <em>ruian_praha</em>:</p>
+<ul class="simple">
+<li><p>s kódem ochrany <cite>26</cite> (pozemek určený k plnění funkcí lesa)</p></li>
+<li><p>s druhem pozemku <cite>10</cite> (les)</p></li>
+</ul>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Nezapomeneme zkontrolovat, zda je sloupec, který
+dotazujeme, <a class="reference internal" href="1_uvod.html#indexy"><span class="std std-ref">oindexován</span></a>.</p>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">ruian_praha</span><span class="p">.</span><span class="n">parcely</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">druhpozemkukod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id2">
+<img alt="../_images/atributovy-dotaz.png" class="middle" src="../_images/atributovy-dotaz.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 12 </span><span class="caption-text">Ukázka SQL dotazu ve správci databází, výsledek dotazu je zobrazen
+v QGISu jako nová mapová vrstva.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">ruian_praha</span><span class="p">.</span><span class="n">parcely</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">druhpozemkukod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">26</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Vyberte stavební objekty ze schématu <em>ruian_praha</em> vybavené</p>
+<ul class="simple">
+<li><p>plynem</p></li>
+<li><p>výtahem a obarvěte je podle počtu podlaží</p></li>
+</ul>
+</li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">ruian_praha</span><span class="p">.</span><span class="n">stavebniobjekty</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">pripojeniplynkod</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">ruian_praha</span><span class="p">.</span><span class="n">stavebniobjekty</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">vybavenivytahemkod</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id3">
+<img alt="../_images/atributovy-dotaz-mapa.png" class="middle" src="../_images/atributovy-dotaz-mapa.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 13 </span><span class="caption-text">Budovy v Praze s výtahem obarvené podle počtu podlaží.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="jednoduchy-prostorovy-dotaz">
+<h2>Jednoduchý prostorový dotaz<a class="headerlink" href="#jednoduchy-prostorovy-dotaz" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Vypiště název obce a její rozlohu v hektarech</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="n">nazev</span>
+<span class="p">,</span><span class="w"> </span><span class="n">ST_Area</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="o">/</span><span class="mi">1</span><span class="n">e4</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">rozloha</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">ruian</span><span class="p">.</span><span class="n">obce</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">nazev</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Zobrazte obce větší než 130 ha</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">ruian</span><span class="p">.</span><span class="n">obce</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">ST_Area</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="o">/</span><span class="mi">1</span><span class="n">e4</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">130</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Nasymbolizujte vrstvu <span class="dbtable">ruian.obce</span> podle poměru rozlohy a
+čtvrtiny obvodu na druhou.</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ogc_fid</span>
+<span class="p">,</span><span class="w"> </span><span class="n">nazev</span>
+<span class="p">,</span><span class="w"> </span><span class="n">geom</span>
+<span class="p">,</span><span class="w"> </span><span class="n">ST_Area</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">power</span><span class="p">(</span><span class="w"> </span><span class="n">ST_Perimeter</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">pomer</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">ruian</span><span class="p">.</span><span class="n">obce</span><span class="p">;</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id4">
+<img alt="../_images/pomer-rozlohy-a-obvodu.png" class="middle" src="../_images/pomer-rozlohy-a-obvodu.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 14 </span><span class="caption-text">Výsledek dotazu nahrajeme do QGISu jako novou mapovou vrstvu.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id5">
+<img alt="../_images/pomer-rozlohy-a-obvodu-2.png" class="middle" src="../_images/pomer-rozlohy-a-obvodu-2.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 15 </span><span class="caption-text">Symbolizaci vrstvy provedeme v QGISu.</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="atributovy-join">
+<h2>Atributový JOIN<a class="headerlink" href="#atributovy-join" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Obarvěte obce (<span class="dbtable">ruian.obce</span>)</p>
+<ul class="simple">
+<li><p>podle počtu obyvatel (<span class="dbtable">csu_sldb.sldb</span>)</p></li>
+<li><p>počtu obyvatel na kilometr čtvereční</p></li>
+</ul>
+</li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="n">ogc_fid</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">nazev</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">vse1111</span><span class="o">/</span><span class="p">(</span><span class="n">ST_Area</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="o">/</span><span class="mi">1</span><span class="n">e6</span><span class="p">)</span><span class="w"> </span><span class="n">pocet_obyv_na_km</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">ruian</span><span class="p">.</span><span class="n">obce</span><span class="w"> </span><span class="n">o</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">csu_sldb</span><span class="p">.</span><span class="n">sldb</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="k">ON</span>
+<span class="n">s</span><span class="p">.</span><span class="n">uzcis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;43&#39;</span><span class="w"> </span><span class="c1">--obce</span>
+<span class="k">AND</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">uzkod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">kod</span>
+<span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">vse1111</span><span class="o">/</span><span class="p">(</span><span class="n">ST_Area</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="o">/</span><span class="mi">1</span><span class="n">e6</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Obarvěte ORP (<span class="dbtable">ruian.orp</span>)</p>
+<ul class="simple">
+<li><p>podle zastoupení jasanu (<span class="dbtable">slhp.slhp</span>)</p></li>
+</ul>
+</li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">ogc_fid</span>
+<span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">nazev</span>
+<span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">geom</span>
+<span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">plocha_proc</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">ruian</span><span class="p">.</span><span class="n">orp</span><span class="w"> </span><span class="n">o</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">slhp</span><span class="p">.</span><span class="n">slhp</span><span class="w"> </span><span class="n">s</span>
+<span class="k">ON</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">orp_kod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">kod</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">drevina</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;jasan&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="prostorovy-join">
+<h2>Prostorový JOIN<a class="headerlink" href="#prostorovy-join" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Vyberte obce, na jejichž území je požární stanice.</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">nazev</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">ruian</span><span class="p">.</span><span class="n">obce</span><span class="w"> </span><span class="n">o</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">osm</span><span class="p">.</span><span class="n">pozarni_stanice</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">ST_Within</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">kod</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">nazev</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Najděte obce, na jejichž území leží více než jedna požární stanice.</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">nazev</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">ruian</span><span class="p">.</span><span class="n">obce</span><span class="w"> </span><span class="n">o</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">osm</span><span class="p">.</span><span class="n">pozarni_stanice</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">ST_Within</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">kod</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">nazev</span>
+<span class="k">HAVING</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Na území které obce leží nejvíce požárních stanic?</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">nazev</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">ruian</span><span class="p">.</span><span class="n">obce</span><span class="w"> </span><span class="n">o</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">osm</span><span class="p">.</span><span class="n">pozarni_stanice</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">ST_Within</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">kod</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">nazev</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">DESC</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Vyberte parcely v Praze, které leží na MZCHU.</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">BEGIN</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">jelen</span><span class="p">.</span><span class="n">parcely_mzchu</span><span class="w"> </span><span class="k">AS</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">ruian_praha</span><span class="p">.</span><span class="n">parcely</span><span class="w"> </span><span class="n">p</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">   </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">aopk</span><span class="p">.</span><span class="n">maloplosna_chranena_uzemi</span><span class="w"> </span><span class="n">m</span>
+<span class="w">   </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_Intersects</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">jelen</span><span class="p">.</span><span class="n">parcely_mzchu</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ogc_fid</span><span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">jelen</span><span class="p">.</span><span class="n">parcely_mzchu</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="n">GIST</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
+
+<span class="k">COMMIT</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Které z nich nemají správně kód způsobu ochrany?</p></li>
+<li><p>Najděte v Praze budovy ohrožené stoletou vodou.</p></li>
+</ol>
+</section>
+<section id="buffer">
+<h2>Buffer<a class="headerlink" href="#buffer" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Vytvořte obalovou zónu s tloušťkou klesající s řádem kolem vodních
+toků (<span class="dbtable">dibavod.vodni_toky</span>)</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">--vybere povodi Jizery pomoci rekurze</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">jizera</span><span class="p">.</span><span class="n">povodi_jizery</span><span class="w"> </span><span class="k">AS</span>
+<span class="k">WITH</span><span class="w"> </span><span class="k">RECURSIVE</span><span class="w"> </span><span class="n">povodi_jizery</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="k">SELECT</span>
+<span class="w">        </span><span class="o">*</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">rad</span>
+<span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">dibavod</span><span class="p">.</span><span class="n">vodni_toky</span>
+<span class="w">        </span><span class="k">WHERE</span><span class="w"> </span><span class="n">tok_id</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="mi">110740000100</span>
+<span class="w">        </span><span class="k">UNION</span><span class="w"> </span><span class="k">ALL</span>
+<span class="w">        </span><span class="k">SELECT</span>
+<span class="w">        </span><span class="n">v</span><span class="p">.</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">.</span><span class="n">rad</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">dibavod</span><span class="p">.</span><span class="n">vodni_toky</span><span class="w"> </span><span class="n">v</span>
+<span class="w">        </span><span class="k">JOIN</span><span class="w"> </span><span class="n">povodi_jizery</span><span class="w"> </span><span class="n">j</span>
+<span class="w">        </span><span class="k">ON</span><span class="w"> </span><span class="n">j</span><span class="p">.</span><span class="n">tok_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">tokrec_id</span>
+<span class="p">)</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">row_number</span><span class="p">()</span><span class="w"> </span><span class="n">over</span><span class="p">()</span><span class="w"> </span><span class="n">rid</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">povodi_jizery</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="noteadvanced admonition">
+<p class="admonition-title">Poznámka pro pokročilé</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>BEGIN;
+
+CREATE TABLE jelen.jize (ogc_fid serial primary key,
+ geom geometry(LINESTRING, 5514));
+
+INSERT INTO jelen.jize (geom)
+SELECT (ST_Dump(geom)).geom FROM
+(
+   SELECT ST_Union(geom) geom FROM jizera.povodi_jizery
+) uni
+;
+
+CREATE INDEX ON jize USING gist(geom);
+
+ALTER TABLE jize ADD rad smallint, ADD parent int;
+
+UPDATE jize
+SET parent = 0, rad = 1 WHERE ogc_fid = 2040;
+
+
+DO $$
+   DECLARE i int;
+   BEGIN
+      WHILE (SELECT count(*) FROM jize WHERE rad IS NULL) &gt; 0
+         LOOP
+            UPDATE jize j
+            SET rad = r.rad+1, parent = r.ogc_fid
+            FROM jize r
+            WHERE r.rad IS NOT NULL
+            AND j.rad IS NULL
+            AND ST_Touches(j.geom, r.geom)
+            ;
+
+            RAISE NOTICE &#39;%&#39;, count(*) FROM jize WHERE rad IS NULL;
+
+
+
+         END LOOP;
+   END
+   $$;
+
+COMMIT;
+</pre></div>
+</div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="n">rid</span>
+<span class="p">,</span><span class="w"> </span><span class="n">ST_Buffer</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="mi">90</span><span class="o">-</span><span class="p">(</span><span class="n">rad</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">10</span><span class="p">))</span><span class="w"> </span><span class="n">geom</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">jizera</span><span class="p">.</span><span class="n">povodi_jizery</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h2>Agregace<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Vytvořte mapu POU (pověřené obce) z vrstvy obcí.</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="n">ST_Union</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="n">geom</span>
+<span class="p">,</span><span class="w"> </span><span class="n">poukod</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">ruian</span><span class="p">.</span><span class="n">obce</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">poukod</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="prostorove-analyzy">
+<h2>Prostorové analýzy<a class="headerlink" href="#prostorove-analyzy" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Obarvěte katastrální území podle toho, kolik procent území je v NP</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="n">katuze</span><span class="p">.</span><span class="o">*</span>
+<span class="p">,</span><span class="w"> </span><span class="k">COALESCE</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="p">(</span><span class="n">ST_Area</span><span class="p">(</span><span class="n">ST_Intersection</span><span class="p">(</span><span class="n">katuze</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">vzchu</span><span class="p">.</span><span class="n">geom</span><span class="p">))</span><span class="o">/</span>
+<span class="w">        </span><span class="n">ST_Area</span><span class="p">(</span><span class="n">katuze</span><span class="p">.</span><span class="n">geom</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span>
+<span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">v_np</span>
+<span class="k">FROM</span>
+<span class="n">ruian</span><span class="p">.</span><span class="n">katastralniuzemi</span><span class="w"> </span><span class="n">katuze</span>
+<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span>
+<span class="p">(</span>
+<span class="w">        </span><span class="k">SELECT</span>
+<span class="w">        </span><span class="n">k</span><span class="p">.</span><span class="n">ogc_fid</span>
+<span class="w">        </span><span class="p">,</span><span class="w"> </span><span class="n">ST_Union</span><span class="p">(</span><span class="n">vzchu</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="n">geom</span>
+<span class="w">        </span><span class="k">FROM</span>
+<span class="w">        </span><span class="n">ruian</span><span class="p">.</span><span class="n">katastralniuzemi</span><span class="w"> </span><span class="n">k</span>
+<span class="w">        </span><span class="k">JOIN</span><span class="w"> </span><span class="n">aopk</span><span class="p">.</span><span class="n">velkoplosna_chranena_uzemi</span><span class="w"> </span><span class="n">vzchu</span>
+<span class="w">        </span><span class="k">ON</span><span class="w"> </span><span class="n">vzchu</span><span class="p">.</span><span class="n">geom</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">k</span><span class="p">.</span><span class="n">geom</span>
+<span class="w">        </span><span class="k">AND</span><span class="w"> </span><span class="n">vzchu</span><span class="p">.</span><span class="n">kat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;NP&#39;</span>
+<span class="w">        </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">k</span><span class="p">.</span><span class="n">ogc_fid</span>
+<span class="p">)</span><span class="w"> </span><span class="n">vzchu</span>
+<span class="k">USING</span><span class="p">(</span><span class="n">ogc_fid</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id6">
+<img alt="../_images/katastry_podle_np.png" class="middle" src="../_images/katastry_podle_np.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 16 </span><span class="caption-text">Vizualizace výsledku v QGISu.</span><a class="headerlink" href="#id6" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_zaciname.html">Začínáme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_jazyk_sql.html">Jazyk SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_prostorove_dotazy.html">Prostorové dotazy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_import_export.html">Import a export dat z databáze</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Přehled vybraných prostorových funkcí a operátorů</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#operatory">Operátory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#konstruktory">Konstruktory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vystupy">Výstupy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rozmer-geometrie">Rozměr geometrie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dalsi-operace-nad-geometrii">Další operace nad geometrií</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vzajemna-poloha-dvou-geometrii">Vzájemná poloha dvou geometrií</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#geometricke-operace">Geometrické operace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#agregace">Agregace</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#prakticke-ukazky">Praktické ukázky</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#jak-vypsat-vsechny-tabulky-s-geometrii">Jak vypsat všechny tabulky s geometrií</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jednoduchy-atributovy-dotaz">Jednoduchý atributový dotaz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jednoduchy-prostorovy-dotaz">Jednoduchý prostorový dotaz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#atributovy-join">Atributový JOIN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prostorovy-join">Prostorový JOIN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#buffer">Buffer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Agregace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prostorove-analyzy">Prostorové analýzy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="7_instalace.html">Poznámky k instalaci a obnově databáze</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="5_import_export.html" title="Import a export dat z databáze"
+              >předchozí</a> |
+            <a href="7_instalace.html" title="Poznámky k instalaci a obnově databáze"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

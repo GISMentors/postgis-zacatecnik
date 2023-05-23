@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Poznámky k instalaci a obnově databáze &#8212; Školení PostGIS pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="prev" title="Přehled vybraných prostorových funkcí a operátorů" href="6_procvicovani_a_prakticke_ukazky.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení PostGIS pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="6_procvicovani_a_prakticke_ukazky.html" title="Přehled vybraných prostorových funkcí a operátorů"
+             accesskey="P">předchozí</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="poznamky-k-instalaci-a-obnove-databaze">
+<span id="index-0"></span><h1>Poznámky k instalaci a obnově databáze<a class="headerlink" href="#poznamky-k-instalaci-a-obnove-databaze" title="Permalink to this heading">¶</a></h1>
+<section id="gnu-linux">
+<span id="index-1"></span><h2>GNU/Linux<a class="headerlink" href="#gnu-linux" title="Permalink to this heading">¶</a></h2>
+<p>Z distribučního balíčku dané Linuxové distribuce.</p>
+<section id="ubuntu-debian">
+<span id="index-2"></span><h3>Ubuntu / Debian<a class="headerlink" href="#ubuntu-debian" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>postgis
+</pre></div>
+</div>
+</section>
+</section>
+<section id="ms-windows">
+<span id="index-3"></span><h2>MS Windows<a class="headerlink" href="#ms-windows" title="Permalink to this heading">¶</a></h2>
+<p>Ukážeme si doporučený postup instalace pomocí <a class="reference external" href="http://www.enterprisedb.com/products-services-training/pgdownload">PostgreSQL from
+EnterpriseDB</a>
+instalátoru.</p>
+<figure class="align-center" id="id1">
+<img alt="../_images/instalace-win-0.png" class="middle" src="../_images/instalace-win-0.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 17 </span><span class="caption-text">Zvolíme verzi PostgreSQL k instalaci.</span><a class="headerlink" href="#id1" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Instalátor může ještě před svým startem vynutit instalaci
+<em>Microsoft Visual C++ Redistributable</em>, pokud není na hostitelském
+počítači dostupný.</p>
+</div>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/instalace-win-1.png"><img alt="../_images/instalace-win-1.png" src="../_images/instalace-win-1.png" style="width: 400px;" /></a>
+</figure>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/instalace-win-2.png"><img alt="../_images/instalace-win-2.png" src="../_images/instalace-win-2.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Obr. 18 </span><span class="caption-text">Určíme adresář na disku, kam se PostgreSQL nainstaluje.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="../_images/instalace-win-3.png"><img alt="../_images/instalace-win-3.png" src="../_images/instalace-win-3.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Obr. 19 </span><span class="caption-text">Doporučujeme nainstalovat všechny kompomenty včetně konzolových
+nástrojů a PgAdmin 4. Stack Builder je nutností pro navazující
+instalaci PostGIS.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="../_images/instalace-win-4.png"><img alt="../_images/instalace-win-4.png" src="../_images/instalace-win-4.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Obr. 20 </span><span class="caption-text">V dalším kroku zvolíme adresář, kam se budou ukládat uživatelská
+data (mohou být velká podle toho k čemu budete databázi využívat).</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="pg-admin-passwd">
+<a class="reference internal image-reference" href="../_images/instalace-win-5.png"><img alt="../_images/instalace-win-5.png" src="../_images/instalace-win-5.png" style="width: 400px;" /></a>
+</figure>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="../_images/instalace-win-6.png"><img alt="../_images/instalace-win-6.png" src="../_images/instalace-win-6.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Obr. 21 </span><span class="caption-text">Nastavíme heslo administrátora a port, na kterém databázový server
+poběží.</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id6">
+<a class="reference internal image-reference" href="../_images/instalace-win-7.png"><img alt="../_images/instalace-win-7.png" src="../_images/instalace-win-7.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Obr. 22 </span><span class="caption-text">Doporučujeme nastavit locales. Instalaci dokončíme, dalším krokem
+bude instalace PostGIS.</span><a class="headerlink" href="#id6" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id7">
+<a class="reference internal image-reference" href="../_images/instalace-win-9.png"><img alt="../_images/instalace-win-9.png" src="../_images/instalace-win-9.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Obr. 23 </span><span class="caption-text">Nástroj <em>StackBuilder</em> se spustí automaticky.</span><a class="headerlink" href="#id7" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id8">
+<a class="reference internal image-reference" href="../_images/instalace-win-10.png"><img alt="../_images/instalace-win-10.png" src="../_images/instalace-win-10.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Obr. 24 </span><span class="caption-text">Zvolíme databázový server, do kterého chceme doinstalovat PostGIS.</span><a class="headerlink" href="#id8" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id9">
+<a class="reference internal image-reference" href="../_images/instalace-win-11.png"><img alt="../_images/instalace-win-11.png" src="../_images/instalace-win-11.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Obr. 25 </span><span class="caption-text">V prostředí Stack Builderu v sekci Spatial Extensions zvolíme verzi
+PostGIS podle toho, zda jste nainstalovali 32 anebo 64bitovou verzi
+PostgreSQL. Adresář s nainstalovaným PostgreSQL by měl instalátor
+detekován automaticky.</span><a class="headerlink" href="#id9" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/instalace-win-12.png"><img alt="../_images/instalace-win-12.png" src="../_images/instalace-win-12.png" style="width: 400px;" /></a>
+</figure>
+<figure class="align-center" id="id10">
+<a class="reference internal image-reference" href="../_images/instalace-win-13.png"><img alt="../_images/instalace-win-13.png" src="../_images/instalace-win-13.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Obr. 26 </span><span class="caption-text">Volitelně můžete vytvořit databázi PostGIS se vzorovými daty. Tento
+krok není ale nutný.</span><a class="headerlink" href="#id10" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id11">
+<a class="reference internal image-reference" href="../_images/instalace-win-15.png"><img alt="../_images/instalace-win-15.png" src="../_images/instalace-win-15.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Obr. 27 </span><span class="caption-text">Před samotnou instalací PostGIS musíme zadat již dříve definováné
+administrátorské heslo, viz <code class="xref std std-numref docutils literal notranslate"><span class="pre">pg_admin_passwd</span></code>.</span><a class="headerlink" href="#id11" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>V PostGIS lze pracovat i s rastrovými daty, viz <a class="reference external" href="http://training.gismentors.eu/postgis-pokrocily/kapitoly/9_rastry.html">školení
+PostGIS pro pokročilé</a>. Pokud plánujeme s
+takovými daty pracovat, tak musíme tuto funkcionalitu aktivovat již
+při instalaci PostGIS.</p>
+<figure class="align-center">
+<img alt="../_images/instalace-win-16.png" class="small" src="../_images/instalace-win-16.png" />
+</figure>
+<figure class="align-center">
+<img alt="../_images/instalace-win-17.png" class="small" src="../_images/instalace-win-17.png" />
+</figure>
+<figure class="align-center">
+<img alt="../_images/instalace-win-18.png" class="small" src="../_images/instalace-win-18.png" />
+</figure>
+</div>
+<p>Po úspěšné instalaci PostgreSQL a PostGIS spustíme aplikaci <em>PgAdmin 4</em>,
+pomocí které lze naimportovat školící databázi GISMentors.</p>
+</section>
+<section id="import-databaze-gismentors">
+<span id="index-4"></span><h2>Import databáze GISMentors<a class="headerlink" href="#import-databaze-gismentors" title="Permalink to this heading">¶</a></h2>
+<p>Soubor ke stažení: <a class="reference external" href="http://training.gismentors.eu/geodata/postgis/gismentors.dump">http://training.gismentors.eu/geodata/postgis/gismentors.dump</a></p>
+<p>Databázi GISMentors lze naimportovat z grafické aplikace PgAdmin 4
+anebo z příkazové řádky.</p>
+<section id="pgadmin">
+<span id="index-5"></span><h3>PgAdmin<a class="headerlink" href="#pgadmin" title="Permalink to this heading">¶</a></h3>
+<figure class="align-center" id="id12">
+<img alt="../_images/restore-db-1.png" class="small" src="../_images/restore-db-1.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 28 </span><span class="caption-text">Po připojení k databázovému serveru vytvoříme novou databázi.</span><a class="headerlink" href="#id12" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id13">
+<a class="reference internal image-reference" href="../_images/restore-db-2.png"><img alt="../_images/restore-db-2.png" src="../_images/restore-db-2.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Obr. 29 </span><span class="caption-text">Databázi nazveme „gismentors“.</span><a class="headerlink" href="#id13" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id14">
+<img alt="../_images/restore-db-3.png" class="small" src="../_images/restore-db-3.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 30 </span><span class="caption-text">Z kontextového menu nad databázi zvolíme funkci „Obnovit“.</span><a class="headerlink" href="#id14" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center">
+<img alt="../_images/restore-db-4.png" src="../_images/restore-db-4.png" />
+</figure>
+<figure class="align-center" id="id15">
+<a class="reference internal image-reference" href="../_images/restore-db-5.png"><img alt="../_images/restore-db-5.png" src="../_images/restore-db-5.png" style="width: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Obr. 31 </span><span class="caption-text">V dialogu pro výběr souboru zvolíme dávku „gismentors.dump“ (je
+potřeba nastavit masku na „All files“).</span><a class="headerlink" href="#id15" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id16">
+<img alt="../_images/restore-db-6.png" src="../_images/restore-db-6.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 32 </span><span class="caption-text">V sekci „Volby obnovení“ zaškrtěte „Do not save - owner“.</span><a class="headerlink" href="#id16" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition important">
+<p class="admonition-title">Důležité</p>
+<p>Tato volba je důležitá, jinak skončí import chybou!</p>
+</div>
+<figure class="align-center">
+<img alt="../_images/restore-db-7.png" class="small" src="../_images/restore-db-7.png" />
+</figure>
+</section>
+<section id="z-prikazove-radky">
+<h3>Z příkazové řádky<a class="headerlink" href="#z-prikazove-radky" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>http://training.gismentors.eu/geodata/postgis/gismentors.dump
+createdb<span class="w"> </span>gismentors
+pg_restore<span class="w"> </span>-xO<span class="w"> </span>-d<span class="w"> </span>gismentors<span class="w"> </span>gismentors.dump
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Kompletní skript pro Bash ke stažení <a class="reference external" href="https://raw.githubusercontent.com/GISMentors/dataset/master/postgis/create_db_from_dump.sh">zde</a>.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_zaciname.html">Začínáme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_jazyk_sql.html">Jazyk SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_prostorove_dotazy.html">Prostorové dotazy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_import_export.html">Import a export dat z databáze</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_procvicovani_a_prakticke_ukazky.html">Přehled vybraných prostorových funkcí a operátorů</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_procvicovani_a_prakticke_ukazky.html#prakticke-ukazky">Praktické ukázky</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Poznámky k instalaci a obnově databáze</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#gnu-linux">GNU/Linux</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ubuntu-debian">Ubuntu / Debian</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ms-windows">MS Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#import-databaze-gismentors">Import databáze GISMentors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pgadmin">PgAdmin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#z-prikazove-radky">Z příkazové řádky</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="6_procvicovani_a_prakticke_ukazky.html" title="Přehled vybraných prostorových funkcí a operátorů"
+              >předchozí</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

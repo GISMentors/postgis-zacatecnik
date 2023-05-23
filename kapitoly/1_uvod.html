@@ -1,0 +1,354 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Úvod &#8212; Školení PostGIS pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Začínáme" href="2_zaciname.html" />
+    <link rel="prev" title="Obsah" href="../index.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení PostGIS pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="../index.html" title="Obsah"
+             accesskey="P">předchozí</a> |
+          <a href="2_zaciname.html" title="Začínáme"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="uvod">
+<h1>Úvod<a class="headerlink" href="#uvod" title="Permalink to this heading">¶</a></h1>
+<section id="databaze">
+<h2>Databáze<a class="headerlink" href="#databaze" title="Permalink to this heading">¶</a></h2>
+<section id="kdy-ukladat-data-do-databaze">
+<h3>Kdy ukládat data do databáze?<a class="headerlink" href="#kdy-ukladat-data-do-databaze" title="Permalink to this heading">¶</a></h3>
+<p id="index-0">V geoinformatické praxi pracujeme se třemi typy zdrojů dat. V prvé
+řadě se jedná o data uložená v souborovém systému. Hovoříme-li o
+vektorových datech, tak může jít typicky o data v zastaralém, leč
+stále nejpoužívanějším formátu <a class="reference external" href="http://en.wikipedia.org/wiki/Esri Shapefile">Esri Shapefile</a>,
+případně <a class="reference external" href="http://en.wikipedia.org/wiki/Geography Markup Language">OGC GML</a>. Dalším
+typem jsou webové služby, jmenovitě <a class="reference external" href="http://training.gismentors.eu/open-source-gis/standardy/ogc/wfs.html">OGC WFS</a> (Web Feature Service). V případě WFS si aplikace
+vyžádá pomocí souboru ve značkovacím jazyce <a class="reference external" href="http://en.wikipedia.org/wiki/XML">XML</a> data
+na vzdáleném serveru po síti. Posledním typem uložení dat, kterému je
+věnováno toto školení, je databáze. Většina současných databází, ať
+již open source nebo ryze proprietárních, podporuje v nějaké míře
+ukládání a dotazování prostorových prvků.  Ať už <a class="reference external" href="http://cs.wikipedia.org/wiki/MySQL">MySQL</a>,
+<a class="reference external" href="http://cs.wikipedia.org/wiki/Oracle">Oracle</a>, nebo <a class="reference external" href="http://cs.wikipedia.org/wiki/MSSQL">MSSQL</a> a v neposlední řadě
+<a class="reference external" href="http://cs.wikipedia.org/wiki/PostgreSQL">PostgreSQL</a>, kterému je věnován tento kurz.</p>
+<div class="noteadvanced admonition">
+<p class="admonition-title">Poznámka pro pokročilé</p>
+<p>Hranice mezi jednotlivými typy zdrojů dat nemusí být
+vždy jednoznačná. Existují například takzvané <cite>souborové databáze</cite>,
+tedy soubory, které se chovají podobným způsobem jako databázový
+server, ovšem bez řady výhod, které poskytuje plnohodnotný
+databázový systém. Na druhou stranu se s nimi o poznání snáze
+manipuluje. Příkladem může být <a class="reference external" href="http://cs.wikipedia.org/wiki/MS Access">MS Access</a> nebo open
+source <a class="reference external" href="http://cs.wikipedia.org/wiki/SQLite">SQLite</a> (a jeho prostorové nadstavby
+<a class="reference external" href="http://en.wikipedia.org/wiki/GeoPackage">OGC GeoPackage</a> a
+<a class="reference external" href="http://en.wikipedia.org/wiki/SpatiaLite">SpatiaLite</a>).</p>
+</div>
+<p>Provoz databáze přináší ve srovnání s daty v souborech určité
+požadavky na režii. O její správu a nastavení se musí starat
+kvalifikovaný specialista, má určité nároky na hardware apod. Co nám
+tedy přináší a kdy je pro nás nezastupitelná?</p>
+<p>V první řadě je třeba vzít v potaz objem dat. Od jistého objemu není
+možné efektivně pracovat s daty uloženými v souborech. Naproti tomu v
+databázi můžeme pomocí indexů přistupovat přímo k jednotlivým záznamům
+tak, jak jsou uloženy na datových stránkách.</p>
+<section id="referencni-integrita">
+<span id="index-1"></span><h4>Referenční integrita<a class="headerlink" href="#referencni-integrita" title="Permalink to this heading">¶</a></h4>
+<p>Další benefit, který nám databáze může přinést je „hlídání“ tzv. <cite>referenční
+integrity</cite>.</p>
+<p>Referenční integrita znamená, že tabulky jsou mezi sebou provázány cizími
+klíči. Tedy pokud podřízená (slave) tabulka obsahuje položku s odkazy do
+jiné <cite>nadřízené</cite> tabulky, není možné do podřízené tabulky přidat záznam,
+pokud v nadřízené tabulce neexistuje hodnota, na kterou odkazuje cizí klíč.
+Nemůžeme tedy například do tabulky jednotlivých vozidel přidat vozidlo s
+odkazem na typ <cite>tříkolka</cite>, pokud nemáme v tabulce typů vozidel typ <cite>tříkolka</cite>.
+Nebo pokud máme tabulku staveb a parcel, při správně
+nastavené referenční integritě nám databáze nedovolí vložit budovu na
+neexistující parcele a pod.</p>
+<p>Další užitečnou vlastnosti je možnost nastavit chování podřízeného
+záznamu při smazání souvisejícího záznamu v nadřízené tabulce. Můžeme
+zvolit <span class="sqlcmd">RESTRICT</span> nebo <span class="sqlcmd">CASCADE</span>. V případě <span class="sqlcmd">CASCADE</span> se
+související záznamy mažou, v případě <span class="sqlcmd">RESTRICT</span> není možné nadřízený
+záznam smazat, dokud jsou na něj navázány záznamy v podřízených
+tabulkách.</p>
+</section>
+<section id="spoluprace">
+<h4>Spolupráce<a class="headerlink" href="#spoluprace" title="Permalink to this heading">¶</a></h4>
+<p>Není obvyklé, aby k jednomu souboru přistupovalo více klientských aplikací
+zároveň, protože by si ho přepisovaly „pod rukama“. Databáze je v tomhle daleko
+pokročilejší a umožňuje, aby nad jednou datovou sadou mohlo pracovat více klientů
+najednou. V databázi je navíc možné nastavovat práva na zápis, čtení a manipulaci
+s tabulkami, schématy, funkcemi… Podobně jako v souborovém systému.</p>
+</section>
+<section id="transakce">
+<span id="index-2"></span><h4>Transakce<a class="headerlink" href="#transakce" title="Permalink to this heading">¶</a></h4>
+<p>Transakčnost databáze znamená, že se série změn provede buď celá nebo vůbec.
+Typická (a tím pádem pěkně otřepaný případ) je situace, kdy převádíme peníze z
+účtu na účet. Tedy, nebylo by dobré, aby byly z jednoho účtu peníze odečteny, aniž by na
+cílový účet byly přidány.</p>
+<p>Seznam požadavků na transakční databázi bývá označován zkratkou
+<a class="reference external" href="http://cs.wikipedia.org/wiki/ACID">ACID</a>. Znamená to <cite>Atomic, Consistent, Isolated,
+Durable</cite>. Znamená to, že transakce je nedělitelná, před i po jejím
+proběhnutí musí být platná referenční integrita, transakce se navzájem
+neovlivňují a změny jsou trvalé i po případné havárii databázového
+serveru.</p>
+</section>
+</section>
+</section>
+<section id="co-je-databaze">
+<h2>Co je databáze?<a class="headerlink" href="#co-je-databaze" title="Permalink to this heading">¶</a></h2>
+<p>Databázi, ať už relační nebo dokumentovou, si můžeme představit jako
+knihovnu. V knihách (tabulkách) máme nějaké informace. Informace pro nás
+vyhledávají knihovnice (obslužné programy). K tomu používají katalogy a
+rejstříky (indexy). Organizace knihovny je plně pod naší kontrolou,
+ovlivňujeme hardware (kolik bude mít budova pater (disků), kolik bude
+volných regálů a manipulačního prostoru atd.), kolik bude mít knihovna
+fyzických zaměstnanců (počet jader procesoru). Dále ovlivňujeme
+organizaci, budou knihy řazeny podle abecedy podle názvů, podle klíčových
+slov, podle jména autora? Jak často budeme aktualizovat katalogy a
+rejstříky (aktualizovat indexy)? Kolik místa vlastně na katalogy/indexy
+vyhradíme? Jak budeme nakládat s místem po vyřazených svazcích (proces
+<span class="sqlcmd">VACUUM</span>)? A tak dále. Se svými zaměstnanci komunikujeme v jazyce <a class="reference internal" href="3_jazyk_sql.html"><span class="doc">SQL</span></a> (pokud
+tedy hovoříme o relační databázi).</p>
+<section id="tabulky">
+<span id="index-3"></span><h3>Tabulky<a class="headerlink" href="#tabulky" title="Permalink to this heading">¶</a></h3>
+<p>V relační databázi ukládáme data do tabulek (tzv. relací). Tabulka je
+svisle dělena na jednotlivé sloupce (často označovány jako atributy
+nebo položky) a vodorovně na řádky (záznamy).  Data v jednom sloupci
+musí mít stejný <cite>datový typ</cite> (datum, celé číslo, číslo s plovoucí
+desetinnou čárkou, textový řetězec apod.).</p>
+</section>
+<section id="schemata">
+<span id="index-4"></span><h3>Schémata<a class="headerlink" href="#schemata" title="Permalink to this heading">¶</a></h3>
+<p>Schémata můžeme vnímat podobně jako adresářovou strukturu, ovšem bez
+možnosti dalšího zanořování, případně jako <cite>jmenný prostor</cite>. Umožňuje
+nám logicky dělit databázi, což oceníme například při zálohování, při
+nastavování práv. Databázové tabulky, funkce, indexy apod. musí mít v
+rámci schématu (schéma je možné vnímat jako součást názvu) unikátní
+název. Tudíž můžeme mít v databázi stejně pojmenované tabulky v
+různých schématech. Příklad využití je napříkad při databázi rozdělené
+do schémat geograficky. Další výhodné využití je při historizování
+záznamů, kdy máme schéma <cite>historie</cite> s podobnou strukturou jako schéma
+s platnými daty.</p>
+</section>
+<section id="datove-typy">
+<span id="index-5"></span><h3>Datové typy<a class="headerlink" href="#datove-typy" title="Permalink to this heading">¶</a></h3>
+<p>Datové typy odpovídají typům z programovacích jazyků typu C. Základem jsou celočíselné
+typy (<cite>integer</cite>, <cite>bigint</cite> apod.) a řetězce (<cite>varchar</cite>, <cite>char</cite>, <cite>text</cite> …), tím ovšem výčet
+zdaleka nekončí. Pro prostorovou reprezentaci používáme datový typ <cite>geometry</cite> nebo
+<cite>geography</cite>. Záznamu v tabulce odpovídají kompozitní typy, celé datové struktury je
+možné ukládat do <cite>nerelačních datových typů</cite> jako je <a class="reference external" href="http://cs.wikipedia.org/wiki/JSON">JSON</a>, <a class="reference external" href="http://www.postgresql.org/docs/current/static/hstore.html">hstore</a> nebo <a class="reference external" href="http://cs.wikipedia.org/wiki/XML">XML</a>
+a dalo by se dále pokračovat.</p>
+</section>
+<section id="indexy">
+<span id="index-6"></span><span id="id1"></span><h3>Indexy<a class="headerlink" href="#indexy" title="Permalink to this heading">¶</a></h3>
+<p>Indexy v databázi slouží k co možná nejrychlejšímu dohledání
+záznamů v tabulce. Fungují na podobném principu jako rejstřík v knize. Jedná se o
+jakýsi utříděný seznam klíčů spojených s odkazem na konkrétní
+datovou stránku, na místo na pevném disku, kde je uložena požadovaná
+informace. Smyslem indexu je provést při dohledání záznamu minimum
+porovnání hodnot v indexu s požadovanou hodnotou. U neindexované tabulky
+bychom museli porovnat požadovanou hodnotu se všemi záznamy.</p>
+<div class="noteadvanced admonition">
+<p class="admonition-title">Poznámka pro pokročilé</p>
+<p>Nejčastějším typem indexu je <a class="reference external" href="http://en.wikipedia.org/wiki/B-tree">B-tree</a>, zde jsou hodnoty
+uloženy ve stromovité struktuře založené na dichotomickém větvení. Na
+každém uzlu porovnáme požadovanou hodnotu s hodnotou na uzlu a zjistíme,
+jestli je větší nebo menší. S každým patrem je síto jemnější. To je
+velice efektivní, když si uvědomíme, že při zdvojnásobení objemu dat
+přibude jen jedno porovnání navíc. B-tree index je možné sestavit jen nad
+položkami s takovým typem dat, který je možné porovnávat pomocí operátorů
+<code class="docutils literal notranslate"><span class="pre">&lt;</span></code> a <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>. Nehodí se tedy pro data vícedimenzionální, např. prostorová data.</p>
+</div>
+</section>
+<section id="omezeni-constraints">
+<span id="index-7"></span><h3>Omezení (constraints)<a class="headerlink" href="#omezeni-constraints" title="Permalink to this heading">¶</a></h3>
+<p>V odstavci věnovaném referenční integritě je zmíněno, že není možné vložit do sloupce s cizím
+klíčem hodnotu, která není v <cite>nadřízené</cite> tabulce. To je příkladem <cite>omezení cizího klíče</cite>. Dalším
+častým příkladem je omezení na unikátní hodnotu, což je podmínka pro <cite>primární klíč</cite>, tedy
+hodnotu, podle které je možné jednoznačně identifikovat záznam v tabulce. Omezení ovšem můžeme vytvářet dle
+libosti, například můžeme v tabulce osob nastavit, že není možné do sloupce se jménem vložit jméno
+<cite>František</cite>, případně do nějakého číselného sloupce hodnotu, která není dělitelná jedenácti, geometrii
+s rozlohou větší než hektar apod.</p>
+<p>Zde je dobré si uvědomit, že pokud se pokusíte vložit data do sloupce a porušíte omezení, vrátí server
+chybu. Pokud tedy bude tato dávka součástí transakce, neprovede se celá transakce.</p>
+</section>
+<section id="pohledy-views">
+<span id="index-8"></span><h3>Pohledy (views)<a class="headerlink" href="#pohledy-views" title="Permalink to this heading">¶</a></h3>
+<p><a class="reference external" href="http://www.postgresql.org/docs/current/static/sql-createview.html">Pohledy</a> jsou uložené dotazy, které se chovají obdobně jako tabulky.
+Můžeme je dotazovat, nastavovat jim práva. K tabulkám, do kterých pohledy nahlížejí, přistupují s právy
+toho, kdo je vytvořil. Můžeme tedy pohledem zpřístupnit pro některé uživatele vybraný obsah
+tabulek, které sami nevidí.</p>
+<p>Specifickou záležitostí jsou <a class="reference external" href="http://www.postgresql.org/docs/current/static/sql-creatematerializedview.html">materializované pohledy</a>.
+Zde je výstup dotazu uložen do tabulky a zároveň je uložen dotaz, kterým byl materializovaný
+pohledy vygenerován. Proto může být snadno přegenerován příkazem
+<a class="reference external" href="http://www.postgresql.org/docs/current/static/sql-refreshmaterializedview.html">REFRESH MATERIALIZE VIEW</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Materializované pohledy podporuje PostgreSQL od verze 9.3.</p>
+</div>
+</section>
+<section id="triggery">
+<span id="index-9"></span><h3>Triggery<a class="headerlink" href="#triggery" title="Permalink to this heading">¶</a></h3>
+<p><a class="reference external" href="http://www.postgresql.org/docs/current/static/sql-createtrigger.html">Trigger</a>, neboli spoušť spustí proceduru při nějaké události.
+Existují dva základní typy triggerů a to <cite>DML</cite> a <cite>DDL</cite> triggery.</p>
+<p><strong>DML</strong>, tedy <cite>Data Manipulation Language</cite> trigger se spustí při manipulaci s daty, tedy při vložení, smazání, případně
+aktualizaci záznamu. Obvyklé využití je například archivování smazávaných hodnot, kontrolu dat při vstupu a podobně.
+Pomocí triggerů lze ošetřit také kontrolu podobně jako u omezení. Pokud nastavíme trigger tak, aby se spustil před vložením
+záznamu, můžeme eliminovat duplicitní záznamy, dříve než dojde k chybě a tím pádem nedojde k pádu transakce.</p>
+<p><strong>DDL</strong>, tedy <cite>Data Definition Language</cite> trigger je v PostgreSQL relativně čerstvá novinka a spustí se při změně ve struktuře,
+například při přidání tabulky může nastavit práva, replikace apod.</p>
+<p>Obdobou triggerů jsou <a class="reference external" href="http://www.postgresql.org/docs/current/static/sql-createrule.html">pravidla</a>, ta ovšem nedisponují všemi možnostmi triggerů a nedoporučuje
+se jich příliš používat. Nicméně občas se mohou hodit, pokud chceme pracovat s pohledem jako s tabulkou a nastavit,
+co se má dít při vkládání nebo manipulaci s daty.</p>
+</section>
+<section id="funkce">
+<span id="index-10"></span><h3>Funkce<a class="headerlink" href="#funkce" title="Permalink to this heading">¶</a></h3>
+<p><a class="reference external" href="http://www.postgresql.org/docs/current/static/sql-createfunction.html">Funkce</a> je v databázi uložená procedura, kterou spustíme dotazem. V PostgreSQL může
+být napsaná v jazyce SQL, v procedurálním jazyce PosgreSQL PL/pgSQL <a class="reference external" href="http://www.postgresql.org/docs/current/static/plpgsql.html">plpgsql</a> či v dalším z jazyků, které
+PostgreSQL podporuje jako je Python, Perl, R, Javascript a další. Případně může být importovaná z externího modulu napsaného
+například v jazyce C.</p>
+<p>Funkce tedy spouští nějaký kód, může vracet jednu hodnotu, jednu hodnotu z více záznamů (agregační funkce), případně
+může vracet více záznamů, nebo provádět nějaké změny v databázi (například funkce PostGISu <a class="reference external" href="http://postgis.net/docs/AddGeometryColumn.html">AddGeometryColumn</a>). Specifickou
+skupinou jsou analytické <a class="reference external" href="http://www.postgresql.org/docs/current/static/tutorial-window.html">window funkce</a>.</p>
+<p>Nastavování práv k funkcím je složitější než u pohledů, je možno nastavit <span class="sqlcmd">SECURITY DEFINER</span> práva a potom
+přistupuje funkce k tabulkám s právy svého tvůrce.</p>
+<span class="target" id="prostorova-db"></span></section>
+</section>
+<section id="a-co-prostorova-databaze">
+<span id="index-11"></span><h2>A co prostorová databáze?<a class="headerlink" href="#a-co-prostorova-databaze" title="Permalink to this heading">¶</a></h2>
+<p>Prostorová databáze se podobá takové knihovně, ve které jsou kromě knih
+také mapy, atlasy, globusy… Zkrátka nosiče informací, které
+zaznamenávají také umístění jednotlivých údajů.</p>
+<p>PostGIS používá pro popis prostorových objektů specifikaci OGC <a class="reference external" href="http://www.opengeospatial.org/standards/sfa">Simple
+Features Access</a>
+(SFA). Tato specifikace popisuje společnou architekturu pro
+<em>tzv. jednoduché geoprvky</em> a specifikuje jejich uložení v digitální
+podobě.</p>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>V roce 2004 byla specifikace OGC SFA přijata jako
+mezinárodní norma označovaná jako ISO 19125 a později v roce
+2006 adoptována jako technická norma ČSN 19125.</p>
+</div>
+<p>Specifikace OGC SFA zavádí pro popis geometrie geoprvků nové datové
+typy jako je např. <em>Point</em>, <em>LineString</em>, <em>Polygon</em> a další.</p>
+<figure class="align-center" id="id2">
+<img alt="../_images/sfa-classes.png" class="large" src="../_images/sfa-classes.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 2 </span><span class="caption-text">Přehled jednotlivých typů geometrie dle specifikace OGC SFA.</span><a class="headerlink" href="#id2" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Úvod</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#databaze">Databáze</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#kdy-ukladat-data-do-databaze">Kdy ukládat data do databáze?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#co-je-databaze">Co je databáze?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tabulky">Tabulky</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#schemata">Schémata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#datove-typy">Datové typy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#indexy">Indexy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#omezeni-constraints">Omezení (constraints)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pohledy-views">Pohledy (views)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#triggery">Triggery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funkce">Funkce</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#a-co-prostorova-databaze">A co prostorová databáze?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2_zaciname.html">Začínáme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_jazyk_sql.html">Jazyk SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_prostorove_dotazy.html">Prostorové dotazy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_import_export.html">Import a export dat z databáze</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_procvicovani_a_prakticke_ukazky.html">Přehled vybraných prostorových funkcí a operátorů</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_procvicovani_a_prakticke_ukazky.html#prakticke-ukazky">Praktické ukázky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_instalace.html">Poznámky k instalaci a obnově databáze</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="../index.html" title="Obsah"
+              >předchozí</a> |
+            <a href="2_zaciname.html" title="Začínáme"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

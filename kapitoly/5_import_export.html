@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Import a export dat z databáze &#8212; Školení PostGIS pro začátečníky</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gismentors.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Přehled vybraných prostorových funkcí a operátorů" href="6_procvicovani_a_prakticke_ukazky.html" />
+    <link rel="prev" title="Prostorové dotazy" href="4_prostorove_dotazy.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">Školení PostGIS pro začátečníky</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="4_prostorove_dotazy.html" title="Prostorové dotazy"
+             accesskey="P">předchozí</a> |
+          <a href="6_procvicovani_a_prakticke_ukazky.html" title="Přehled vybraných prostorových funkcí a operátorů"
+             accesskey="N">další</a> |
+          <a href="../genindex.html" title="Obecný rejstřík"
+             accesskey="I">rejstřík</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="import-a-export-dat-z-databaze">
+<span id="index-0"></span><h1>Import a export dat z databáze<a class="headerlink" href="#import-a-export-dat-z-databaze" title="Permalink to this heading">¶</a></h1>
+<section id="nahravame-vlastni-data-do-databaze">
+<h2>Nahráváme vlastní data do databáze<a class="headerlink" href="#nahravame-vlastni-data-do-databaze" title="Permalink to this heading">¶</a></h2>
+<section id="spravce-databazi">
+<span id="index-1"></span><h3>Správce databází<a class="headerlink" href="#spravce-databazi" title="Permalink to this heading">¶</a></h3>
+<p>Předpokládáme, že každý uživatel pracuje ve vlastní databázovém
+schématu. Toto schéma vytvoříme pomocí <a class="reference internal" href="4_prostorove_dotazy.html#db-manager"><span class="std std-ref">správce databází</span></a> v QGISu.</p>
+<section id="vytvoreni-databazoveho-schematu">
+<span id="index-2"></span><h4>Vytvoření databázového schématu<a class="headerlink" href="#vytvoreni-databazoveho-schematu" title="Permalink to this heading">¶</a></h4>
+<p>V našem případě uložíme vektorová data do <em>vlastního schématu</em>,
+nejprve toto schéma vytvoříme <span class="menuselection">Schéma ‣ Vytvořit
+schéma</span>.</p>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="../_images/qgis-db-manager-new-schema-prop.png"><img alt="../_images/qgis-db-manager-new-schema-prop.png" src="../_images/qgis-db-manager-new-schema-prop.png" style="width: 700px;" /></a>
+<figcaption>
+<p><span class="caption-number">Obr. 10 </span><span class="caption-text">V nově vytvořeném schématu již má uživatel „skoleni“ právo
+zápisu.</span><a class="headerlink" href="#id4" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="import-dat">
+<h4>Import dat<a class="headerlink" href="#import-dat" title="Permalink to this heading">¶</a></h4>
+<p>Nahrání geodat do databáze PostGIS umožňuje v QGISu samotný <em>správce
+databází</em>. Soubor s geodaty anebo načtenou vrstvu v QGISu
+naimportujeme z menu <span class="menuselection">Tabulka ‣ Importovat
+vrstvu/soubor</span> anebo z nástrojové lišty správce databází <a class="reference internal" href="../_images/qgis-db-manager-import.png"><img alt="dbManagerImport" src="../_images/qgis-db-manager-import.png" style="width: 24px;" /></a>.</p>
+<p>V dialogu vybereme soubor pro import do geodatabáze
+<span class="fignote">(1)</span>. Dále můžeme změnit cílové schéma a název výsledné
+tabulky v databázi <span class="fignote">(2)</span>. Dialog nabízí další možnosti včetně
+transformace do jiného souřadnicového systému (pokud je zadán současně
+zdrojový a cílový souřadnicivový systém) anebo prosté vynucení
+cílového souřadnicového systému <span class="fignote">(3)</span>.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/qgis-db-manager-create-table.png"><img alt="../_images/qgis-db-manager-create-table.png" src="../_images/qgis-db-manager-create-table.png" style="width: 400px;" /></a>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Poznámka</p>
+<p>Ve níže uvedeném případě importujeme vrstvu veřejných toalet
+z <a class="reference external" href="http://www.geoportalpraha.cz/cs/opendata/27028B3A-9442-44BC-9EA2-4DF8A2DF9940">otevřené datové sady IPR</a>.</p>
+</div>
+<p>Naimportovaná vrstva z geodatabáze PostGIS se nezobrazí automaticky,
+musíte ji do mapového okna <a class="reference internal" href="2_zaciname.html#qgis-add-pg-layer"><span class="std std-ref">přidat manuálně</span></a>.</p>
+</section>
+</section>
+<section id="dalsi-moznosti">
+<h3>Další možnosti<a class="headerlink" href="#dalsi-moznosti" title="Permalink to this heading">¶</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Více k tomuto tématu ve školení <a class="reference external" href="http://training.gismentors.eu/postgis-pokrocily/kapitoly/3_shp2pgsql_a_davkove_nahrani.html">PostGIS pro
+pokročilé</a>.</p>
+</div>
+<section id="shp2pgsql">
+<span id="index-3"></span><h4>shp2pgsql<a class="headerlink" href="#shp2pgsql" title="Permalink to this heading">¶</a></h4>
+<p><a class="reference external" href="http://postgis.net/docs/using_postgis_dbmanagement.html#shp2pgsql_usage">shp2pgsql</a>
+je konzolový nástroj, který umožňuje import vektorových dat ve formátu
+<em>Esri Shapefile</em> do geodatabáze PostGIS. Tento nástroj je součástí
+instalace PostGIS.</p>
+<div class="notecmd admonition">
+<p class="admonition-title">Import dat do databáze pomocí shp2pgsql z příkazové řádky</p>
+<p>Nejprve vytvoříme SQL dávku</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shp2pgsql<span class="w"> </span>-s<span class="w"> </span><span class="m">5514</span><span class="w"> </span>FSV_VerejnaWC_b.shp<span class="w"> </span>skoleni.toalety<span class="w"> </span>&gt;<span class="w"> </span>wc.sql
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-s</span></code> definuje souřadnicový systém (v tomto případě <a class="reference external" href="http://epsg.io/5514">EPSG:5514</a>),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FSV_VerejnaWC_b.shp</span></code> je název vstupního souboru ve formátu Esri Shapefile,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">landa.toalety</span></code> je název výstupního databázového schématu a tabulky (oddělené tečkou),</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">wc.sql</span></code> dávka je uložena do souboru <code class="docutils literal notranslate"><span class="pre">wc.sql</span></code>.</p></li>
+</ul>
+<p>Vytvořenou SQL dávku nahrajeme do databáze <em>gismentors</em> přes
+nástroj <strong class="program">psql</strong> a jeho parametr <code class="xref std std-option docutils literal notranslate"><span class="pre">-f</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>psql<span class="w"> </span>gismentors<span class="w"> </span>-U<span class="w"> </span>skoleni<span class="w"> </span>-W<span class="w"> </span>-h<span class="w"> </span>training.gismentors.eu<span class="w"> </span>-f<span class="w"> </span>wc.sql
+</pre></div>
+</div>
+</div>
+</section>
+<section id="ogr2ogr">
+<span id="import-ogr2ogr"></span><span id="index-4"></span><h4>ogr2ogr<a class="headerlink" href="#ogr2ogr" title="Permalink to this heading">¶</a></h4>
+<p><a class="reference external" href="http://www.gdal.org/ogr2ogr.html">ogr2ogr</a> je konzolový nástroj
+knihovny <a class="reference external" href="http://gdal.org">GDAL</a> umožňující konverzi mezi datovými
+formáty podporovanými touto knihovnou.</p>
+<div class="notecmd admonition">
+<p class="admonition-title">Import dat do databáze pomocí ogr2ogr z příkazové řádky</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ogr2ogr<span class="w"> </span>-f<span class="w"> </span>PostgreSQL<span class="w"> </span><span class="se">\</span>
+PG:<span class="s2">&quot;dbname=gismentors host=training.gismentors.eu user=skoleni password=XXX \</span>
+<span class="s2">active_schema=skoleni&quot;</span><span class="w"> </span><span class="se">\</span>
+FSV_VerejnaWC_b.shp<span class="w"> </span><span class="se">\</span>
+-a_srs<span class="w"> </span>EPSG:5514
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="export-dat-z-databaze">
+<span id="index-5"></span><h2>Export dat z databáze<a class="headerlink" href="#export-dat-z-databaze" title="Permalink to this heading">¶</a></h2>
+<p>Data můžeme exportovat z databáze v prostředí QGIS naprosto stejně
+jako u jiných formátů. Načteme si do QGIS vrstvu, kterou si přejeme
+vyexportovat a z kontextového menu nad vrstvou zvolíme volbu
+<span class="item">Export/Uložit prvky jako</span>.</p>
+<p>V následujícím dialogu zvolíme požadovaný výstupní formát a připadně
+další volby, kterou jsou již závislé na zvoleném formátu.</p>
+<figure class="align-center" id="id5">
+<img alt="../_images/qgis-export-dialog.png" src="../_images/qgis-export-dialog.png" />
+<figcaption>
+<p><span class="caption-number">Obr. 11 </span><span class="caption-text">Příklad exportu vektorových dat z databáze do formátu OGC GML.</span><a class="headerlink" href="#id5" title="Permalink k tomuto obrázku">¶</a></p>
+</figcaption>
+</figure>
+<section id="pro-pokrocile-uzivatele">
+<h3>Pro pokročilé uživatele<a class="headerlink" href="#pro-pokrocile-uzivatele" title="Permalink to this heading">¶</a></h3>
+<p>Podobně jako v případě importu dat, lze použít pokročilejší konzolové
+nástroje. Ty je možné volat ve skriptech při automatizaci
+apod. Ukážeme si použití nástroje <strong class="program">pgsql2shp</strong>, který umožňuje
+export dat do formátu Esri Shapefile a <strong class="program">ogr2ogr</strong> knihovny
+GDAL.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Více k tomuto tématu ve školení <a class="reference external" href="http://training.gismentors.eu/postgis-pokrocily">PostGIS pro
+pokročilé</a>.</p>
+</div>
+<section id="pgsql2shp">
+<span id="index-6"></span><h4>pgsql2shp<a class="headerlink" href="#pgsql2shp" title="Permalink to this heading">¶</a></h4>
+<p>PostGIS kromě nástroje pro import dat ve formátu Esri Shapefile
+<strong class="program">shp2pgsql</strong> nabízí obdobný nástroj pro export dat
+<strong class="program">pgsql2shp</strong>.</p>
+<div class="notecmd admonition">
+<p class="admonition-title">Export do formátu Esri Shapefile pomocí pgsql2shp z příkazové řádky</p>
+<p>V níže uvedeném příkladě vyexportujeme tabulku <span class="dbtable">obce</span> ze
+schéma <em>ruain</em> do souboru <cite>obce.shp</cite>.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>pgsql2shp -h training.gismentors.eu -u skoleni -P XXX -f obce gismentors \
+ruian.obce
+</pre></div>
+</div>
+</div>
+</section>
+<section id="index-7">
+<span id="id3"></span><h4>ogr2ogr<a class="headerlink" href="#index-7" title="Permalink to this heading">¶</a></h4>
+<p><strong class="program">ogr2ogr</strong> slouží obecně ke konverzi dat, lze jej tedy použít
+jak pro import tak export dat.</p>
+<div class="notecmd admonition">
+<p class="admonition-title">Export do formátu Esri Shapefile pomocí ogr2ogr z příkazové řádky</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ogr2ogr<span class="w"> </span>-f<span class="w"> </span><span class="s1">&#39;ESRI Shapefile&#39;</span><span class="w"> </span><span class="se">\</span>
+-lco<span class="w"> </span><span class="s1">&#39;ENCODING=UTF-8&#39;</span><span class="w"> </span><span class="se">\</span>
+obce.shp<span class="w"> </span><span class="se">\</span>
+PG:<span class="s2">&quot;dbname=gismentors host=training.gismentors.eu user=skoleni password=XXX&quot;</span><span class="w"> </span><span class="se">\</span>
+ruian.obce
+</pre></div>
+</div>
+</div>
+<p>Na rozdíl od nástroje <strong class="program">pgsql2shp</strong> umožňuje <strong class="program">ogr2ogr</strong>
+export nejen do formátu Esri Shapefile, ale do <a class="reference external" href="http://gdal.org/ogr_formats.html">celé řady formátů</a>, které knihovna GDAL porpodruje v
+režimu zápisu.</p>
+<div class="notecmd admonition">
+<p class="admonition-title">Export do formátu GML pomocí ogr2ogr z příkazové řádky</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ogr2ogr<span class="w"> </span>-f<span class="w"> </span><span class="s1">&#39;GML&#39;</span><span class="w"> </span><span class="se">\</span>
+obce.gml<span class="w"> </span><span class="se">\</span>
+PG:<span class="s2">&quot;dbname=gismentors host=training.gismentors.eu user=skoleni password=XXX&quot;</span><span class="w"> </span><span class="se">\</span>
+ruian.obce_polygon
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_uvod.html">Úvod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_zaciname.html">Začínáme</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_jazyk_sql.html">Jazyk SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_prostorove_dotazy.html">Prostorové dotazy</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Import a export dat z databáze</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nahravame-vlastni-data-do-databaze">Nahráváme vlastní data do databáze</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spravce-databazi">Správce databází</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dalsi-moznosti">Další možnosti</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#export-dat-z-databaze">Export dat z databáze</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pro-pokrocile-uzivatele">Pro pokročilé uživatele</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="6_procvicovani_a_prakticke_ukazky.html">Přehled vybraných prostorových funkcí a operátorů</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_procvicovani_a_prakticke_ukazky.html#prakticke-ukazky">Praktické ukázky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_instalace.html">Poznámky k instalaci a obnově databáze</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Vyhledávání</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="OK" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="4_prostorove_dotazy.html" title="Prostorové dotazy"
+              >předchozí</a> |
+            <a href="6_procvicovani_a_prakticke_ukazky.html" title="Přehled vybraných prostorových funkcí a operátorů"
+              >další</a> |
+            <a href="../genindex.html" title="Obecný rejstřík"
+              >rejstřík</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2023 GISMentors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>
